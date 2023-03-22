@@ -32,10 +32,11 @@
     <hr>
     <marquee behavior="" direction="left">piao</marquee>
     <br>
-    <i>这几种强调</i><b>有什么</b> <strong>区别?</strong> <u>这个?</u> <i>这个?</i> 
-    <p>
+    <i>这几种强调</i><b>有什么</b> <strong>区别?</strong> <u>这个?</u> <em>这个?</em> 
+    <del>deltest test</del>
+    <div>
         &lt;!--这段注释需要出现在页面里面--&gt;
-    </p>
+    </div>
     
     <pre>
         <code>
@@ -48,10 +49,10 @@
     <div>
         <ul>
             <li>
-                小学
+                <span>小学</span>
                 <ol>
                     <li>
-                        一年级
+                        <span>一年级</span>    
                         <ol>
                             <li>上学期</li>
                             <li>下学期</li>
@@ -67,7 +68,8 @@
 
     </div>
     <hr>
-    <div>
+
+    <dl>
         <dt>
             班级
             <dd>三年二班</dd>
@@ -83,22 +85,27 @@
             <dd>小明</dd>
             <dd>豆豆</dd>
         </dt>
-    </div>
+    </dl>
     <hr>
     <form action="https://www.google.com.hk/search" target="_blank">
         <h1>Google搜索</h1>
         <input type="text" name="q">
-        <input type="submit" value="在新窗口打开搜索结果">
+        <!-- query -->
+        <input type="hidden" name="ie" value="UTF-8">
+        <!-- <input type="hidden" name=""> -->
+        <button type="submit">在新窗口打开搜索结果</button>
     <hr>
+    <form action="">
         个人信息调查表
+        <dl>
             <dt>性别</dt>
                 <dd>
-                    <input type="radio" name="gender" value="male">男</li>
-                    <input type="radio" name="gender" value="female">女</li>
+                    <label><input type="radio" name="gender" value="male" checked>男</li></label>
+                    <label><input type="radio" name="gender" value="female" checked>女</li></label> 
                 </dd>       
             <dt>年龄</dt>
                 <dd>
-                    <select name="" id="">
+                    <select name="age">
                         <optgroup label="少年">
                             <option value="children_0">1到6岁</option>
                             <option value="children_1">6到12岁</option>
@@ -113,28 +120,31 @@
                         </optgroup>
                         <option value="" selected hidden>请选择</option>
                     </select>
-                   
-                </dd>        
+                </dd>   
             <dt>生日</dt>
-                <dd> <input type="date" name="" id=""> </dd>
+                <dd> <input type="date" name="birthday" id=""> </dd>
             <dt>生辰</dt>
-                <dd> <input type="time" name="" id=""></dd>
+                <dd> <input type="time" name="birthtime" id=""></dd>
             <dt>照片</dt>
                 <dd> <label for="pic">点我上传照片, 我比上传文件按钮好看</label> 
-                    <input type="file" name="" id="pic" hidden accept=".jpg,.png">
+                    <input id="pic" type="file" name="photo"  hidden accept=".jpg,.png">
                 </dd>
             <dt>自我介绍</dt>
                 <dd>
-                    <textarea name="" id="" cols="30" rows="10" placeholder="</textarea>"></textarea>
-                </dd>
+                    <textarea name="" id="" cols="30" rows="10" placeholder="</textaera>"></textarea>
+                    <!-- &lt;/textarea&gt;  -->
+                </dd>    
+
+        </dl>
+            
   
-        <fieldset>
+        <fieldset disabled>
             <legend>这里全部禁用</legend>
-            <input type="text" name="" id="" disabled><input type="text" name="" id="" disabled>
+            <input type="text"><input type="text">
             <br>
-            <input type="text" name="" id="" disabled><input type="text" name="" id="" disabled>
+            <input type="text"><input type="text">
         </fieldset>
-        <button>提交</button> <button type="reset">重置</button>
+        <button type="submit">提交 </button> <button type="reset">重置</button>
     </form>
     <hr>
     <table border="1">
@@ -142,10 +152,13 @@
         <col>
         <col bgcolor="red">
         <thead>
-            <th>编号</th>
-            <th>品名</th>
-            <th>进价</th>
-            <th>出价</th>
+            <tr>
+                <th>编号</th>
+                <th>品名</th>
+                <th>进价</th>
+                <th>出价</th>
+            </tr>
+            
         </thead>
         <tbody>
             <tr>
@@ -179,12 +192,12 @@
         <img src="https://www.lifeofpix.com/wp-content/uploads/2023/03/image00005-min-1600x2409.jpeg" alt="" width="300" usemap="#maptest">
         <map name="maptest">
             <area shape="rect" coords="50,50,100,100" href="https://www.mi.com/" alt="">
-            <area shape="circle" coords="200, 200, 50, 50" href="https://www.jd.com/" alt="">
+            <area shape="circle" coords="200, 200, 100" href="https://www.jd.com/" alt="">
         </map>
     </div>
-    <a href="https://cg37.github.io/">Blog</a>
+    <a href="https://nodejs.org/en" target="frame">Nodejs</a>
     <br>
-    <iframe src="https://cg37.github.io/" frameborder="0" border="1"></iframe>
+    <iframe  name="frame" src="http://www.damiaoedu.com/" frameborder="0" border="1"></iframe>
     <br>
     <p>
         <strong>aaa</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>bbbb</strong>
@@ -192,9 +205,9 @@
         aaa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bbb
     </p>
     <div>
-        &gt;>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        >>>
         <br>
-        &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;span>&lt;/span>    
+        << >>&lt;span>&lt;/span>    
     </div>
     <div id="page-bottom"></div>
 </body>
