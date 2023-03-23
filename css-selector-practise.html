@@ -4,9 +4,92 @@
   <head>
     <meta charset="utf-8">
     <title>Document</title>
-    <link rel="stylesheet" href="./css/css-selector-practise.css">
+    <!-- <link rel="stylesheet" href="./css/css-selector-practise.css"> -->
     <style>
       /* 只能在这个style标签里写css，不能改变html结构 */
+      body>:first-child{
+  color:red;
+}
+
+/* 
+  :hover 鼠标悬浮  
+*/
+body>:nth-child(2):hover{
+  color:red;
+}
+
+/* 
+  :focus 选中被聚焦的元素 
+*/
+body>:nth-child(2):focus{
+  color:royalblue;
+}
+
+/* 
+  :active 选中被鼠标按下的元素 
+*/
+body>:nth-child(2):active{
+  color:green;
+}
+
+p>span{
+  color:red;
+}
+p>span>:first-child{
+  color:green;
+}
+p>span>:nth-child(2){
+  color:blue;
+}
+
+a:visited{
+  color:orange;
+}
+
+[href^="https:"]:link{
+  color:pink;
+}
+
+[href^="mailto:"],[href^="MAILTO:"]{
+  color: blue;
+}
+
+[href^="tel"]{
+  color: yellow;
+}
+
+[href$="pdf"],[href$="PDF"]{
+  font-size:30px;
+}
+
+div.a li:nth-child(4),
+div.a li:nth-child(5),
+div.a li:nth-child(6),
+div.a li:nth-child(7){
+  color:red;
+}
+
+div.b li:nth-child(-n+26){
+  color:red;
+}
+
+div.b li:nth-child(n+26){
+  color:blue;
+}
+
+div.b li:nth-last-child(-n+36){
+  color:green;
+}
+
+div.prime li:nth-child(2n+4),
+div.prime li:nth-child(3n+6),
+div.prime li:nth-child(5n+10),
+div.prime li:nth-child(7n+14){ 
+  color:blue;
+}
+
+
+
     </style>
   </head>
   <body>
