@@ -1,6 +1,9 @@
+/* 标签名选择器 */
+
 h1{
     color:red
 }
+
 #p1{
     background-color: bisque;
     color:deepskyblue;
@@ -8,4 +11,8 @@ h1{
 #p2{
     background-color: black;
     color:white;
+    font-size: 40px;
+}
+:first-child{
+    color:red;
 }
