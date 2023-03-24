@@ -5,21 +5,22 @@ body>:first-child{
 /* 
   :hover 鼠标悬浮  
 */
-body>:nth-child(2):hover{
-  color:red;
-}
+
 
 /* 
   :focus 选中被聚焦的元素 
 */
-body>:nth-child(2):focus{
+body>p:nth-child(2):focus{
   color:royalblue;
+}
+body>p:nth-child(2):hover{
+  color:red;
 }
 
 /* 
   :active 选中被鼠标按下的元素 
 */
-body>:nth-child(2):active{
+body>p:nth-child(2):active{
   color:green;
 }
 
@@ -41,15 +42,18 @@ a:visited{
   color:pink;
 }
 
-[href^="mailto:"],[href^="MAILTO:"]{
+[href^="mailto:" i]{
   color: blue;
 }
 
-[href^="tel"]{
+[href^="tel" i]{
   color: yellow;
 }
+/*
+ i: ingnore case 不区分大小写
+*/
 
-[href$="pdf"],[href$="PDF"]{
+[href$="pdf" i]{
   font-size:30px;
 }
 
@@ -60,11 +64,11 @@ div.a li:nth-child(7){
   color:red;
 }
 
-div.b li:nth-child(-n+26){
+div.b li:nth-child(-n+25){
   color:red;
 }
 
-div.b li:nth-child(n+26){
+div.b li:nth-child(n+35):nth-child(-n+50){
   color:blue;
 }
 
@@ -72,10 +76,7 @@ div.b li:nth-last-child(-n+36){
   color:green;
 }
 
-div.prime li:nth-child(2n+4),
-div.prime li:nth-child(3n+6),
-div.prime li:nth-child(5n+10),
-div.prime li:nth-child(7n+14){ 
+div.prime li:not(.prime li:nth-child(2n+4)):not(.prime li:nth-child(3n+6)):not(.prime li:nth-child(5n+25)):not(.prime li:nth-child(7n+49)){ 
   color:blue;
 }
 
