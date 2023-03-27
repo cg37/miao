@@ -1,0 +1,63 @@
+h1{
+  text-shadow: 0.5px 0.5px grey,
+                1px 1px grey, 
+                1.5px 1.5px grey,
+                2px 2px grey,
+                2.5px 2.5px grey;
+}
+h1 span{
+  color:navy;
+}
+h3 {
+  color: white;
+  font-size:3em;
+  text-shadow: 0px 0px 1px red,
+                0px 0px 1px red,
+                0px 0px 1px red,
+                0px 0px 1px red,
+                0px 0px 1px red,
+                0px 0px 1px red,
+                0px 0px 1px red,
+                0px 0px 1px red,
+                0px 0px 1px red,
+                0px 0px 1px red;
+}
+p.b{
+  font-size:36px;
+}
+input{
+  font-size:1em;
+  text-transform: uppercase;
+}
+h2{
+  font-family:"comic sans ms",宋体;
+  text-transform:capitalize;
+  font-variant: small-caps;
+}
+p.a{
+  font-size: 32px;
+  font-style:italic;
+  direction: rtl;
+}
+p>b{
+  color: #f0f;
+  text-decoration: underline 3px solid red;
+}
+p.a>span{
+  text-decoration:underline line-through;
+}
+p.d{
+  text-indent:2em;
+  letter-spacing: 5px;
+  word-spacing: 10px;
+  text-align:justify;
+}
+p.c{
+  font-size: 1em;
+}
+p.c span{
+  font-size: 140%;
+}
+div.f{
+  white-space: pre;
+}
