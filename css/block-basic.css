@@ -1,5 +1,9 @@
+body{
+  margin: 10px;
+}
+
 div.header{
-  margin: 15px 15px;
+  margin:margin;
   background-color: #539165;
 }
 div.header p{
@@ -10,11 +14,13 @@ div.header p{
 div.main{
   border: 2px solid #3F497F;
   max-width: 600px;
-  height: 250px;
   margin: auto;
+  margin-top: 20px;
 }
 div.main>p{
-  height: 68px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 3em;
   overflow-y:scroll;
   display: flow-root;
 }

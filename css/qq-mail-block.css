@@ -1,5 +1,6 @@
 body{
   margin: auto;
+  height: 100%;
 }
 
 header{
@@ -16,9 +17,10 @@ aside{
 }
 main{
   background-color: #BDCDD6;
-  height: calc(100vh - 100px);
   margin-left: 200px;
   margin-top: calc(100px - 100vh);
+  height: calc(100% - 100px);
+  overflow: auto;
 }
 p {
   margin: auto;

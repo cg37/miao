@@ -38,12 +38,11 @@ div.header p{
   margin-top:15px;
   margin-right:30px;
 }
+li{
+  list-style: none;
+}
 .productlist>div:hover{
   background-color: #00ADB5;
-}
-
-.productlist div:nth-child(n+5){
-  margin-left:210px;
 }
 
 .productlist div:nth-child(n+5){
