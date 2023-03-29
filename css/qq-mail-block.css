@@ -13,7 +13,7 @@ aside{
   background-color: #93BFCF;
   height: calc(100vh - 100px);
   width: 200px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 main{
   background-color: #BDCDD6;
