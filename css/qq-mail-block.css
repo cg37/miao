@@ -16,12 +16,14 @@ aside{
   overflow-y: auto;
 }
 main{
+  width: calc(100vw - 200px);
+  height: calc(100vh - 100px);
   background-color: #BDCDD6;
   margin-left: 200px;
   margin-top: calc(100px - 100vh);
-  height: calc(100% - 100px);
   overflow: auto;
 }
-p {
-  margin: auto;
+main p{
+  margin: 25px;
 }
+
