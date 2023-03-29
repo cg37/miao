@@ -1,0 +1,25 @@
+body{
+  margin: auto;
+}
+
+header{
+  background-color: #6096B4;
+  height: 100px;
+  width: 100%;
+  margin: auto;
+}
+aside{
+  background-color: #93BFCF;
+  height: calc(100vh - 100px);
+  width: 200px;
+  overflow-y: scroll;
+}
+main{
+  background-color: #BDCDD6;
+  height: calc(100vh - 100px);
+  margin-left: 200px;
+  margin-top: calc(100px - 100vh);
+}
+p {
+  margin: auto;
+}

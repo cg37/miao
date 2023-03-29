@@ -1,0 +1,49 @@
+body{
+  box-sizing: border-box;
+}
+body div.search{
+  width: 20%;
+  height: 100%;
+  border: 1px solid black;
+}
+.search p{
+  font-size: 4em;
+  font-weight: bold;
+  text-align: right;
+  margin-top: 20px;
+  margin-bottom: auto;
+}
+
+div.searchinput{
+  display:inline;
+  text-align: center;
+  font-size: 3em;
+}
+
+/* input[type="text" i] {
+  font-size: 16px;
+}
+button {
+  font-size: 16px;
+} */
+
+body div.word{
+  width: 50%;
+  border:1px solid black;
+  margin-left: 20%;
+  margin-top: -87px;
+}
+
+body div.vocabulary{
+  width: 15%;
+  border:1px solid black;
+  margin-left: 70%;
+  margin-top: -87px;
+}
+
+div.history{
+  width: 15%;
+  border:1px solid black;
+  margin-left: 85%;
+  margin-top: -87px;
+}
