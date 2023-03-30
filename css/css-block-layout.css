@@ -46,19 +46,27 @@ div#inline{
   line-height: 55px;
   word-spacing: 25px;
   margin-bottom: 10px;
-  vertical-align: top;
+  vertical-align: middle;
 }
 
 #inlineproductlist{
-  box-sizing: border-box;
+  background-color: #F9F5EB;
   text-align: center;
   display: inline-block;
   box-sizing: border-box;
   border: 2px solid black;
-
-  vertical-align: top;
   width: 180px;
   height: 40px;
+}
+#inlineproductlist:hover{
+  background-color: #002B5B;
+  color: #E4DCCF
+}
+
+#inlineproductlist span{
+
+  vertical-align: top;
+  line-height: 35px;
 }
 
 li{
