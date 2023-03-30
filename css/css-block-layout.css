@@ -38,6 +38,29 @@ div.header p{
   margin-top:15px;
   margin-right:30px;
 }
+
+div#inline{
+  width: 600px;
+  margin: auto;
+  margin-top: 30px;
+  line-height: 55px;
+  word-spacing: 25px;
+  margin-bottom: 10px;
+  vertical-align: top;
+}
+
+#inlineproductlist{
+  box-sizing: border-box;
+  text-align: center;
+  display: inline-block;
+  box-sizing: border-box;
+  border: 2px solid black;
+
+  vertical-align: top;
+  width: 180px;
+  height: 40px;
+}
+
 li{
   list-style: none;
 }
