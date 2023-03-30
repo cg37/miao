@@ -1,3 +1,116 @@
 body{
+  box-sizing: border-box;
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+}
+#oalddict{
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  min-width: 1600px;
+  /* word-spacing: 5px; */
+}
+
+
+
+#aside{
+  background-color: #EDE9D5;
+  box-sizing: border-box;
+  display: inline-block;
+  border-right: 1px solid black;
+  width:300px;
+  height: 100%;
+  vertical-align: top;
+}
+#aside>h1{
+  box-sizing: border-box;
   margin: auto;
+  height: 130px;
+  padding-top: 60px;
+  text-align: right;
+}
+
+div.searchinput{
+  box-sizing: border-box;
+  margin: auto;
+  text-align: center;
+  height:30px;
+  margin-bottom: 20px;
+}
+
+input{
+  width: 60%;
+  font-size: 1em;
+}
+
+button{
+  width: 30%;
+  font-size: 1em;
+  overflow: hidden;
+}
+
+#wordlist{
+  display: flow-root;
+  overflow-y: auto;
+  padding-top: 10px;
+  height:calc(100% - 190px)
+}
+
+#wordexplain{
+  box-sizing: border-box;
+  display: inline-block;
+  width: calc(100% - 900px);
+  height: 100%;
+  vertical-align: top;
+  overflow: hidden;
+}
+
+
+#wordexplain #wordtitle{
+  background-color: #E7AB9A;
+  display: flow-root;
+  width: 100%;
+  height: 160px;
+  border-bottom: 1px solid black;
+}
+
+#wordtitle h1{
+  font-size: 40px;
+  margin-top: 50px;
+  margin-left: 30px
+}
+#explain{
+  background-color: #344D67;
+  width: 100%;
+  height: calc(100% - 160px);
+  display: flow-root;
+  overflow-y: auto;
+}
+#explain ol{
+  margin-left: 30px;
+  margin-top: 40px;
+  font-size: 1.5em;
+
+}
+
+
+#vocabulary{
+  background-color: #DF7857;
+  box-sizing: border-box;
+  display: inline-block;
+  border-left: 1px solid black;
+  width: 300px;
+  height: 100%;
+  vertical-align: top;
+}
+
+#history{
+  background-color: #FFD4B2;
+  box-sizing: border-box;
+  display: inline-block;
+  border-left: 1px solid black;
+  width: 300px;
+  height: 100%;
+  vertical-align: top;
 }
