@@ -1,5 +1,11 @@
-body{
+* {
+  box-sizing: border-box;
+}
+html, body{
   margin: 0;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 div.header{
   background-color: #222831;
@@ -39,14 +45,17 @@ div.header p{
   margin-right:30px;
 }
 
+.productlist span{
+  vertical-align: top;
+  line-height: 28px;
+}
+
 div#inline{
   width: 600px;
   margin: auto;
   margin-top: 30px;
   line-height: 55px;
   word-spacing: 25px;
-  margin-bottom: 10px;
-  vertical-align: middle;
 }
 
 #inlineproductlist{
@@ -64,9 +73,38 @@ div#inline{
 }
 
 #inlineproductlist span{
-
   vertical-align: top;
   line-height: 35px;
+}
+
+div#ulinline{
+  background-color: #E4DCCF;
+  width: 600px;
+  margin: auto;
+  overflow: hidden;
+}
+
+div#ulinline ul{
+  font-size: 0px;
+  width: 630px;
+  padding: 0px;
+  margin: -8px -15px;
+
+}
+#ulinline li{
+  display: inline-block;
+  font-size: 16px;
+  width: 180px;
+  height: 40px;
+  border: 2px solid black;
+  margin: 8px 15px;
+  text-align: center;
+  vertical-align: top;
+  line-height: 33px;
+}
+#ulinline li:hover{
+  background-color: #002B5B;
+  color: #E4DCCF
 }
 
 li{

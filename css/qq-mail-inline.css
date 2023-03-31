@@ -1,28 +1,33 @@
-body{
-  margin: auto;
-  height: 100%;
+* {
   box-sizing: border-box;
 }
 
+html,body{
+  margin: auto;
+  height: 100%;
+
+}
+#wrapper{
+  width: 100%;
+  height: 100%;
+}
 .topdata{
-  box-sizing: border-box;
   color: white;
   height: 66px;
   background-color: #354b66;
-  vertical-align: bottom;
   display:flow-root;
 }
 .topdata h1{
   margin: 12px;
 }
 .main{
-  box-sizing: border-box;
-  height: calc(100vh - 66px);
+
+  height: calc(100% - 66px);
   display: flow-root;
 }
 
 #leftpanel{
-  box-sizing: border-box;
+
   display: inline-block;
   width: 187px;
   height: 100%;
@@ -33,10 +38,10 @@ body{
 }
 
 #mainframecontainer{
-  box-sizing: border-box;
+
   display: inline-block;
   padding: 10px;
-  height: calc(100vh - 66px);
+  height: 100%;
   width: calc(100% - 187px);
   vertical-align: top;
   background-color: #bcc2cd;
@@ -47,7 +52,7 @@ body{
 }
 
 #mainframecontainer p {
-  box-sizing: border-box;
+
   margin: auto;
   height: auto;
   width: 100%;

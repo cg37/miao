@@ -1,0 +1,64 @@
+* {
+  box-sizing: border-box;
+}
+
+* {
+  background-color: rgba(0,0,0,0.08);
+  box-shadow: inset 0 0 1px red;
+}
+
+html,body{
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  position:
+}
+
+#cssmenu{
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}
+
+#navbar{
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  height: 100px;
+}
+div.items{
+  width: 100%;
+  height: 70px;
+  margin: 15px 0px;
+  margin-left: 100px;
+  position: absolute;
+  bottom:0px;
+}
+
+div.menuitem{
+  display: inline-block;
+  width: auto;
+  font-size: 2em;
+  margin-right: 50px;
+  border: 2px solid black;
+  border-radius: 10px;
+  line-height: 150%;
+  margin-top: 10px;
+}
+div.menuitem:hover{
+  background-color: aliceblue;
+}
+.menuitem span{
+  vertical-align: baseline;
+  margin: 0px 30px;
+}
+
+#docmenu:hover {
+  display: block;
+}
+
+#docmenu{
+  display: none
+}
+
+

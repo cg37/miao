@@ -1,6 +1,15 @@
+* {
+  box-sizing: border-box;
+}
 body{
   margin: auto;
   height: 100%;
+  width: 100%;
+}
+
+#qqmailblock{
+  height: 100%;
+  width: 100%;
 }
 
 header{
@@ -8,6 +17,12 @@ header{
   height: 100px;
   width: 100%;
   margin: auto;
+  overflow: scroll;
+}
+
+#down{
+  height: calc(100% - 100px);
+  width: 100%;
 }
 aside{
   background-color: #93BFCF;
