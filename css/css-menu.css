@@ -7,11 +7,20 @@
   box-shadow: inset 0 0 1px red;
 }
 
+ul{
+  padding: 5px;
+  margin: auto;
+}
+li{
+  list-style: none;
+}
+
 html,body{
   height: 100%;
   width: 100%;
   margin: auto;
-  position:
+  min-width: 1000px;
+
 }
 
 #cssmenu{
@@ -21,18 +30,18 @@ html,body{
 }
 
 #navbar{
-  width: 100%;
   position: fixed;
   top: 0px;
+  width: 100%;
   height: 100px;
+  background-color: rgb(50,50,51);
 }
 div.items{
-  width: 100%;
-  height: 70px;
-  margin: 15px 0px;
-  margin-left: 100px;
   position: absolute;
-  bottom:0px;
+  top: 15px;
+  left: 60px;
+  width: auto;
+  height: 70px;
 }
 
 div.menuitem{
@@ -40,25 +49,105 @@ div.menuitem{
   width: auto;
   font-size: 2em;
   margin-right: 50px;
-  border: 2px solid black;
-  border-radius: 10px;
   line-height: 150%;
   margin-top: 10px;
 }
-div.menuitem:hover{
-  background-color: aliceblue;
+
+#docmenubuttom{
+  position: absolute;
+  background-color: rgb(50,50,51);
+  color:white;
+  left: 0px;
+  top: 0px;
 }
+
 .menuitem span{
   vertical-align: baseline;
   margin: 0px 30px;
 }
 
-#docmenu:hover {
+#docmenu{
+  display: none;
+  background-color: rgb(37,37,38);
+  color:white;
+  position: absolute;
+  width: auto;
+  top: 48px;
+  left: -2px;
+  border: 3px solid black;
+  border-radius: 10px;
+  border-top-left-radius: 0px;
+  width: max-content;
+}
+
+.menuitem:hover{
+  background-color: rgb(37,37,38);
+  border-bottom: none;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.menuitem:hover #docmenu{
+  display: block;
+  /* position: absolute;
+  top: 70px;
+  left: 0px;
+  border: 3px solid black; */
+}
+
+li#openrecentfile{
+  position: relative;
+}
+
+li#openrecentfile::after{
+  content: '>';
+  color: white;
+}
+
+ul.thirdmenu{
+  padding-left: 10px;
+}
+div.thirdmenu{
+  display: none;
+  position: absolute;
+  left: calc(100% + 0px);
+  top: 0px;
+  border: 3px solid black;
+  border-radius: 10px;
+  background-color: rgb(37,37,38);
+}
+
+li#openrecentfile:hover div.thirdmenu{
   display: block;
 }
 
-#docmenu{
-  display: none
+
+
+
+
+
+
+
+
+#editmenubuttom{
+  position: absolute;
+  left: 300px;
+  top: 0px;
 }
+
+#selectmenubuttom{
+  position: absolute;
+  left: 600px;
+  top: 0px;
+}
+
+/* div.menuitem:hover{
+  background-color: aliceblue;
+} */
+
+
+
+
+
 
 
