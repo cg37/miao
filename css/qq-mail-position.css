@@ -1,0 +1,101 @@
+* {
+  box-sizing: border-box;
+}
+* {
+  background-color: rgba(0,0,0,0.08);
+  box-shadow: inset 0 0 1px red;
+}
+
+
+
+html,body{
+  width: 100%;
+  height: 100%;
+  margin: auto;
+}
+
+#navbar{
+  position: fixed;
+  height: 100px;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+#navbar>h1{
+  position: absolute;
+  top: 29px;
+  left: 40px;
+  margin: auto;
+}
+
+#link{
+  color: black;
+  position: absolute;
+  right: 5px;
+  bottom: 10px;
+}
+
+[href]:link{
+  color:black;
+  font-size: 2em;
+}
+
+#mainframe{
+  position: fixed;
+  top: 100px;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  height: calc(100% - 100px);
+}
+
+#leftpanel{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 200px;
+  height: 100%;
+}
+
+ul{
+  position: absolute;
+  top: 50px;
+  left: 30px;
+  padding: 0px;
+  margin: auto;
+}
+
+li{
+  list-style: none;
+  font-size: 1.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+#main{
+  position: absolute;
+  left: 200px;
+  width: calc(100% - 200px);
+  height: 100%;
+  top: 0px;
+}
+
+#main h1{
+  position: absolute;
+  top: 30px;
+  left: 28px;
+  width: max-content;
+  margin: auto;
+}
+
+#mailcontainer{
+  position: absolute;
+  top: 90px;
+  left: 38px;
+  right: 38px;
+  bottom: 38px;
+  text-indent: 2em;
+  font-size: 24px;
+  overflow-y: auto;
+}
