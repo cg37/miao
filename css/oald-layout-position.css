@@ -1,0 +1,137 @@
+* {
+  background-color: rgba(0,0,0,0.08);
+  box-shadow: inset 0 0 1px red;
+}
+*{
+  box-sizing: border-box;
+}
+
+html,body{
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  min-width: 850px;
+  overflow: hidden;
+}
+
+#oaldposition{
+  width: 100%;
+  height: 100%;
+}
+
+#leftpanel{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 12%;
+  bottom: 0px;
+  z-index: 9;
+}
+
+#leftpanel h1{
+  position: absolute;
+  top: 25px;
+  left: 0px;
+  margin: auto;
+  width: 100%;
+}
+
+#searchinput{
+  position: absolute;
+  top: 100px;
+  text-align: center;
+}
+
+input{
+  width: 60%;
+}
+
+button{
+  width: 30%;
+}
+
+#wordlist{
+  position: absolute;
+  top: 30px;
+  left: 10px;
+  text-align: left;
+  overflow-y: auto;
+}
+
+#wordlist ul{
+  padding-left: 0px;
+}
+#wordlist li{
+  list-style: none;
+}
+
+#main{
+  position: absolute;
+  left: 12%;
+  width: 65%;
+  top: 0px;
+  height: 100%;
+  z-index: 10;
+}
+
+#wordtitle{
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  height: 100px;
+}
+#wordtitle h1{
+  position: absolute;
+  top: 25px;
+  left: 10px;
+  margin: auto;
+}
+
+#wordexplain{
+  position: absolute;
+  top: 100px;
+  left: 0px;
+  width: 100%;
+  height: calc(100% - 100px);
+  padding: 10px 0px;
+  overflow-y: auto;
+}
+
+#wordexplain p{
+  margin: auto;
+}
+
+#wordexplain ol{
+  margin:auto;
+}
+
+#rightpanel1{
+  position: absolute;
+  top: 0px;
+  left: 77%;
+  height: 100%;
+  width: 12%;
+}
+#rightpanel1 h1{
+  position: absolute;
+  top: 25px;
+  left: 10px;
+  margin: auto;
+}
+
+#rightpanel2{
+  position: absolute;
+  top: 0px;
+  left: 89%;
+  width: calc(100% - 89%);
+  height: 100%;
+}
+
+#rightpanel2 h1{
+  position: absolute;
+  top: 25px;
+  left: 10px;
+  margin: auto;
+}
+
+
