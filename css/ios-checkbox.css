@@ -33,8 +33,7 @@ html,body{
   height: 100%;
   z-index: 0;
   transition-property: height,width,top,left;
-  transition-duration: 0.3s, 0.3s;
-  transition-timing-function: cubic-bezier(.29,.59,.67,.43);
+  transition-duration: 0.5s, 0.5s;
 }
 
 
@@ -49,7 +48,6 @@ html,body{
   background-color: rgba(255,255,255,1);
   box-shadow: 0px 30px 97px 10px rgb(220,220,220);
   transition: 0.3s;
-  transition-timing-function: cubic-bezier(.29,.59,.67,.43);
 }
 
 #buttonborder:hover{
