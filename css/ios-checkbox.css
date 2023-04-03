@@ -1,6 +1,17 @@
 * {
   box-sizing: inherit;
 }
+/* :root{
+  --button-width:500px;
+  --button-height: 295px;
+  --toggle-diameter: 255px;
+  --button-toggle-offset: calc((var(--button-height) - var(--toggle-diameter)) / 2);
+  --toggle-shadow-offset: 10px;
+  --tiggle-wider: 333px;
+  --color-grey:#E9E9E9;
+  --color-darg-grey:#39393D;
+  --color-green-: #30d158;
+} */
 html,body{
   box-sizing: border-box;
   width: 100%;
@@ -72,3 +83,26 @@ html,body{
   top: 109px;
   left: 194px;
 }
+
+/* span::after{
+  content: '';
+  display: inline-block;
+  width: var(--toggle-diameter);
+  height: var(--toggle-diameter);
+  background-color: white;
+  border-radius: calc(var(--toggle-diameter) / 2);
+  position: absolute;
+  top: var(--button-toggle-offset);
+  transform: translateX(var(--button-toggle-offset));
+  box-shadow: var(--toggle-shadow-offset) 0 calc(var(--toggle-shadow-offset) * 4) rgba(0,0,0,.10);
+
+}
+
+span{
+  display: inline-block;
+  width: var(--button-width);
+  height: var(--button-height);
+  background-color: var(--color-grey);
+  border-radius: calc(var(--button-height) / 2);
+  position: relative;
+} */
