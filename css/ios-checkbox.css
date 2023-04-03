@@ -33,7 +33,8 @@ html,body{
   height: 100%;
   z-index: 0;
   transition-property: height,width,top,left;
-  transition-duration: 0.5s, 0.5s;
+  transition-duration: 0.3s, 0.3s;
+  transition-timing-function: cubic-bezier(.33,0,.62,.99);
 }
 
 
@@ -44,10 +45,14 @@ html,body{
   margin: 0px;
   top: 10px;
   left: 10px;
+  right: 180px;
+  bottom: 10px;
   border-radius: 99px;
   background-color: rgba(255,255,255,1);
   box-shadow: 0px 30px 97px 10px rgb(220,220,220);
-  transition: 0.3s;
+  transition-property: right, left;
+  transition-duration: 0.3s, 0.3s;
+  transition-timing-function: cubic-bezier(.33,0,.62,.99);
 }
 
 #buttonborder:hover{
@@ -56,10 +61,10 @@ html,body{
 
 #buttonborder:hover>#button{
   background-color: rgb(255,255,255);
-  box-shadow: 0px 0px 18px 13px rgb(38,211,60);
+  box-shadow: 0px 3px 28px 10px rgb(38,211,60);
   position: absolute;
-  top: 10px;
   left: 180px;
+  right: 10px;
 }
 #buttonborder:hover>#bgc{
   width: 0px;
