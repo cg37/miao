@@ -1,0 +1,74 @@
+* {
+  box-sizing: inherit;
+}
+html,body{
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+#ioscheckbox{
+  width: 100%;
+  height: 100%;
+}
+#buttonborder{
+  position: relative;
+  width: 400px;
+  height: 230px;
+  margin: auto;
+  top: 100px;
+  border: 6px solid rgb(198,198,198);
+  border-radius: 115px;
+  background-color: rgb(255,255,255);
+}
+
+#bgc{
+  position: absolute;
+  background-color: rgb(255,255,255);
+  border-radius: 115px;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition-property: height, width,top,left;
+  transition-duration: 0.8s, 0.8s;
+}
+
+
+#button{
+  position: absolute;
+  width:198px;
+  height: 198px;
+  margin: 0px;
+  top: 10px;
+  left: 10px;
+  border-radius: 99px;
+  background-color: rgba(255,255,255,1);
+  box-shadow: 0px 30px 97px 10px rgb(220,220,220);
+  transition: 0.5s;
+  z-index: 3;
+}
+
+#buttonborder:hover{
+  background-color: rgb(48,243,76);
+  border:6px solid rgb(48,243,76);
+  transition: 0.5s;
+}
+
+#buttonborder:hover>#button{
+  background-color: rgb(255,255,255);
+  box-shadow: 0px 0px 18px 13px rgb(38,211,60);
+  position: absolute;
+  top: 10px;
+  left: 180px;
+  transition: 0.5s;
+}
+#buttonborder:hover>#bgc{
+  width: 0px;
+  height: 0px;
+  top: 109px;
+  left: 220px;
+  transition-property: height,width,top,left;
+  transition-duration: 0.8s, 0.8s;
+}
