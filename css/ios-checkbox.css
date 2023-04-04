@@ -84,6 +84,38 @@ html,body{
   left: 194px;
 }
 
+#testbutton{
+  position: fixed;
+  top: 430px;
+  left: calc(50% - 140px);
+  height: calc(100% - 430px);
+}
+
+label{
+  display: inline-block;
+}
+span{
+  display: inline-block;
+  width: 270px;
+  height: 160px;
+  border: 6px solid rgb(198,198,198);
+  border-radius: 999px;
+}
+
+span::before{
+  display: inline-block;
+  content: '';
+  position: absolute;
+  width: 136px;
+  height: 136px;
+  border-radius: 999px;
+  margin: 6px 6px;
+  box-shadow: 0px 30px 97px 10px rgb(220,220,220);
+}
+
+label:checked span{
+  background-color:rgb(48,243,76);;
+}
 /* span::after{
   content: '';
   display: inline-block;
