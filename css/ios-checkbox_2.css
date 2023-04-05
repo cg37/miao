@@ -1,0 +1,65 @@
+* {
+  box-sizing: inherit;
+}
+
+:root {
+  --button-width:500px;
+  --button-height: 295px;
+  --toggle-diameter: 255px;
+  --button-toggle-offset: calc((var(--button-height) - var(--toggle-diameter)) / 2);
+  --toggle-shadow-offset: 10px;
+  --tiggle-wider: 333px;
+  --color-grey:#E9E9E9;
+  --color-darg-grey:#39393D;
+  --color-green-: #30d158;
+}
+
+html, body {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+#testbutton {
+  position: fixed;
+  top: 100px;
+  left: 100px;
+}
+
+label {
+  position: relative;
+  display: inline-block;
+  width: 270px;
+  height: 160px;
+  border: 6px solid rgb(198, 198, 198);
+  border-radius: 999px;
+  transition: 0.6s;
+}
+label::before {
+  background-color: white;
+  display: block;
+  content: "";
+  position: absolute;
+  width: auto;
+  height: 136px;
+  border-radius: 999px;
+  margin: 6px 6px;
+  box-shadow: 0px 5px 10px rgb(220, 220, 220);
+  left: 0px;
+  right: 114px;
+  transition-property: left, right;
+  transition-duration: 0.4s, 0.7s;
+}
+
+input:checked + label {
+  border-color: var(--color-green-);
+  box-shadow: inset 30px 0 0 80px var(--color-green-);
+}
+input:checked + label::before {
+  left: 114px;
+  right: 0px;
+  transition-property: left, right;
+  transition-duration: 0.7s, 0.4s;
+}
+
+/*# sourceMappingURL=ios-checkbox_2.css.map */
