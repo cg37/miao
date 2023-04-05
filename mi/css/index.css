@@ -1,0 +1,87 @@
+@charset "UTF-8";
+* {
+  box-sizing: inherit;
+  margin: auto;
+}
+
+html, body {
+  box-sizing: border-box;
+  min-width: 1700px;
+  font-family: Helvetica Neue, Helvetica, Arial, Microsoft Yahei, Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
+  font-size: 14px;
+}
+
+a:link {
+  color: #b0b0b0;
+  text-decoration: none;
+}
+
+a:visited {
+  color: rgb(158, 158, 158);
+}
+
+a:hover {
+  color: white;
+}
+
+.site-topbar {
+  color: rgb(158, 158, 158);
+  position: relative;
+  height: 40px;
+  background-color: #333;
+  line-height: 40px;
+  word-spacing: 2px;
+  text-align: center;
+}
+.site-topbar .container {
+  width: 1226px;
+  height: 100%;
+  margin: auto;
+  position: relative;
+}
+.site-topbar .container .topbarnav {
+  font-size: 12px;
+  position: absolute;
+}
+.site-topbar .container .topbarnav span {
+  color: #424242;
+}
+.site-topbar .container .topnavright {
+  position: absolute;
+  right: 0px;
+  height: 100%;
+  width: 400px;
+}
+.site-topbar .container .topnavright .topbarinfo {
+  display: inline-block;
+  width: 189px;
+  height: 100%;
+  margin: 0px;
+  margin-right: 50px;
+}
+.site-topbar .container .topnavright #shoppingcart {
+  height: 300px;
+  width: 400px;
+  position: absolute;
+  right: 0px;
+  top: 40px;
+  background-color: rgb(66, 66, 66);
+  box-shadow: 0 0 1px 1px black;
+}
+.site-topbar .container .topnavright #shoppingcart span {
+  content: "购物车";
+  position: absolute;
+  right: 0px;
+  top: -40px;
+  background-color: #666;
+  width: 130px;
+}
+.site-topbar .container .topnavright #shoppingcart span:hover {
+  background-color: #fff;
+}
+.site-topbar .container .topnavright #shoppingcart:hover {
+  display: inline-block;
+  background-color: white;
+}
+
+/*# sourceMappingURL=index.css.map */
