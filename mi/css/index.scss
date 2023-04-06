@@ -56,42 +56,56 @@ a:hover{
         margin-right: 50px;
       }
 
-
+      span#shoppingcarttitle{
+        content: '购物车';
+        position: absolute;
+        right: 0px;
+        // top: -40px;
+        background-color: #666;
+        width: 130px;
+        &:hover{
+          background-color: #fff;
+        }
+        &:hover + #shoppingcart{
+          display: block;
+        }
+      }
       #shoppingcart{
-        height: 300px;
-        width: 400px;
+        display: none;
+        height: 150px;
+        width: 460px;
         position: absolute;
         right: 0px;
         top: 40px;
-        background-color: rgb(66,66,66);
-        box-shadow: 0 0 1px 1px black;
-        span{
-          content: '购物车';
-          position: absolute;
-          right: 0px;
-          top: -40px;
-          background-color: #666;
-          width: 130px;
-          &:hover{
-            background-color: #fff;
-          }
-        }
-        // &::before{
-        //   content: '购物车';
-        //   position: absolute;
-        //   top: -40px;
-        //   right: 0px;
-        //   background-color: #666;
-        //   width: 130px;
-        // }
-        &:hover{
-          display: inline-block;
-          background-color: white;
-
-        }
+        background-color: #fff;
+        box-shadow: 0 4px 13px -4px grey;
       }
     }
   }
 }
+
+#site-header{
+  border: 1px solid black;
+  height: 100px;
+}
+
+#headercontainer{
+  margin: auto;
+  height: 100%;
+  width: 1226px;
+}
+
+.miicon{
+  display: block;
+  margin-left: 0px;
+  margin-top: 22px;
+  height: 56px;
+  width: 56px;
+  background-image: url(../pic/logo-mi2.png);
+  background-size: 100%;
+}
+
+
+
 
 

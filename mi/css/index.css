@@ -59,29 +59,49 @@ a:hover {
   margin: 0px;
   margin-right: 50px;
 }
-.site-topbar .container .topnavright #shoppingcart {
-  height: 300px;
-  width: 400px;
-  position: absolute;
-  right: 0px;
-  top: 40px;
-  background-color: rgb(66, 66, 66);
-  box-shadow: 0 0 1px 1px black;
-}
-.site-topbar .container .topnavright #shoppingcart span {
+.site-topbar .container .topnavright span#shoppingcarttitle {
   content: "购物车";
   position: absolute;
   right: 0px;
-  top: -40px;
   background-color: #666;
   width: 130px;
 }
-.site-topbar .container .topnavright #shoppingcart span:hover {
+.site-topbar .container .topnavright span#shoppingcarttitle:hover {
   background-color: #fff;
 }
-.site-topbar .container .topnavright #shoppingcart:hover {
-  display: inline-block;
-  background-color: white;
+.site-topbar .container .topnavright span#shoppingcarttitle:hover + #shoppingcart {
+  display: block;
+}
+.site-topbar .container .topnavright #shoppingcart {
+  display: none;
+  height: 150px;
+  width: 460px;
+  position: absolute;
+  right: 0px;
+  top: 40px;
+  background-color: #fff;
+  box-shadow: 0 4px 13px -4px grey;
+}
+
+#site-header {
+  border: 1px solid black;
+  height: 100px;
+}
+
+#headercontainer {
+  margin: auto;
+  height: 100%;
+  width: 1226px;
+}
+
+.miicon {
+  display: block;
+  margin-left: 0px;
+  margin-top: 22px;
+  height: 56px;
+  width: 56px;
+  background-image: url(../pic/logo-mi2.png);
+  background-size: 100%;
 }
 
 /*# sourceMappingURL=index.css.map */
