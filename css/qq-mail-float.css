@@ -1,0 +1,57 @@
+* {
+  box-sizing: inherit;
+}
+
+html, body {
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+#qqmailfloat {
+  width: 100%;
+  height: 100%;
+}
+
+#header {
+  float: left;
+  height: 66px;
+  background-color: rgb(53, 71, 97);
+  width: 100%;
+  border-bottom: 2px solid black;
+}
+#header h1 {
+  margin: 10px;
+}
+
+#main {
+  float: left;
+  position: absolute;
+  top: 66px;
+  bottom: 0px;
+  width: 100%;
+}
+#main #leftpanel {
+  float: left;
+  height: 100%;
+  width: 187px;
+  background-color: rgb(232, 235, 239);
+  border-right: 2px solid black;
+}
+#main #leftpanel ul {
+  padding: 30px;
+  margin: 0px;
+  font-size: 32px;
+  font-weight: bold;
+}
+#main #leftpanel ul li {
+  list-style: none;
+}
+#main #mainframe {
+  height: 100%;
+  padding: 10px;
+  border: inset 10px rgba(51, 153, 0, 0.65);
+  overflow-y: auto;
+  background-color: rgb(244, 246, 248);
+}
+
+/*# sourceMappingURL=qq-mail-float.css.map */

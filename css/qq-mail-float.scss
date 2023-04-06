@@ -1,0 +1,55 @@
+* {
+  box-sizing: inherit;
+}
+
+html,body{
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+#qqmailfloat{
+  width: 100%;
+  height: 100%;
+}
+
+#header{
+  float: left;
+  height: 66px;
+  background-color: rgb(53,71,97);
+  width: 100%;
+  h1{
+    margin: 10px;
+  }
+  border-bottom: 2px solid black;
+}
+
+#main{
+  float: left;
+  position: absolute;
+  top: 66px;
+  bottom: 0px;
+  width: 100%;
+  #leftpanel{
+    float: left;
+    height: 100%;
+    width: 187px;
+    background-color: rgb(232,235,239);
+    ul{
+      padding: 30px;
+      margin: 0px;
+      font-size: 32px;
+      font-weight: bold;
+      li{
+        list-style: none;
+      }
+    }
+    border-right: 2px solid black;
+  }
+  #mainframe{
+    height: 100%;
+    padding: 10px;
+    border: inset 10px rgba(51,153,0,0.65);
+    overflow-y: auto;
+    background-color: rgb(244,246,248);
+  }
+}
