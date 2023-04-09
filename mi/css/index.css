@@ -12,16 +12,7 @@ html, body {
 }
 
 a:link {
-  color: #b0b0b0;
   text-decoration: none;
-}
-
-a:visited {
-  color: rgb(158, 158, 158);
-}
-
-a:hover {
-  color: white;
 }
 
 .site-topbar {
@@ -32,6 +23,16 @@ a:hover {
   line-height: 40px;
   word-spacing: 2px;
   text-align: center;
+}
+.site-topbar a:link {
+  color: #b0b0b0;
+  text-decoration: none;
+}
+.site-topbar a:visited {
+  color: rgb(158, 158, 158);
+}
+.site-topbar a:hover {
+  color: white;
 }
 .site-topbar .container {
   width: 1226px;
@@ -84,14 +85,79 @@ a:hover {
 }
 
 #site-header {
-  border: 1px solid black;
   height: 100px;
 }
-
-#headercontainer {
+#site-header #headercontainer {
   margin: auto;
   height: 100%;
   width: 1226px;
+}
+#site-header #headercontainer #headerlogo {
+  float: left;
+}
+#site-header #headercontainer #serachpanel {
+  float: right;
+  width: 320px;
+  height: 55px;
+  margin-top: 25px;
+}
+#site-header #headercontainer #serachpanel * {
+  height: 100%;
+}
+#site-header #headercontainer #serachpanel input {
+  float: left;
+  width: 80%;
+}
+#site-header #headercontainer #serachpanel button {
+  float: right;
+  width: 20%;
+}
+#site-header #headercontainer #productlist {
+  margin-left: 230px;
+  color: #333;
+  height: 100%;
+  width: 610px;
+  overflow: hidden;
+  font-size: 16px;
+}
+#site-header #headercontainer #productlist ul {
+  padding: 0px;
+  margin: 0px;
+  margin-top: 40px;
+}
+#site-header #headercontainer #productlist li {
+  display: inline;
+  margin-right: 13px;
+  color: #333;
+}
+#site-header #headercontainer #productlist li a:link {
+  color: #333;
+}
+#site-header #headercontainer #productlist li a:visited {
+  color: #333;
+}
+#site-header #headercontainer #productlist li a:hover {
+  color: rgb(249, 106, 17);
+}
+#site-header #headercontainer #productlist li:hover {
+  color: rgb(249, 106, 17);
+}
+
+#firstpanel {
+  width: 1226px;
+  height: 465px;
+  border: 1px solid blue;
+}
+#firstpanel #leftpanel {
+  float: left;
+  width: 240px;
+  height: 100%;
+  border: 1px solid black;
+  background-color: rgb(165, 163, 163);
+}
+#firstpanel #radioslider {
+  height: 100%;
+  width: auto;
 }
 
 .miicon {

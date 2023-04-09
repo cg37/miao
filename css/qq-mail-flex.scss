@@ -1,0 +1,78 @@
+* {
+  box-sizing: inherit;
+  margin: inherit;
+}
+html, body{
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+div#qqmailflex{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+div#topnavcontainer{
+  display:flex;
+  width: 100%;
+  height: 66px;
+  justify-content: space-between;
+  align-content: center;
+  background-color: #454545;
+  border-bottom: 2px solid;
+  overflow: auto;
+  #topnavtitle{
+    display: flex;
+    align-items: center;
+  }
+  #topnavinfo{
+    display: flex;
+    align-items: center;
+  }
+}
+
+div#mainframe{
+  display:flex;
+  width: 100%;
+  height: calc(100% - 66px);
+  overflow: auto;
+  flex-shrink: 0;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  #leftpanel{
+    display: flex;
+    align-items: center;
+    width: 187px;
+    background-color: #FF6000;
+    border-right: 2px solid;
+    flex-shrink: 0;
+    overflow: auto;
+    #leftpanelcontainer{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      ul{
+        padding-left: 0px;
+        li{
+          list-style-type: none;
+        }
+      }
+    }
+  }
+  #main{
+    width: auto;
+    flex-grow: 1;
+    background-color: #FFA559;
+    overflow: auto;
+  }
+}
+
+
+
+
+
