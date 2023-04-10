@@ -1,0 +1,34 @@
+* {
+  box-sizing: inherit;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  box-sizing: content-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div#grid {
+  width: auto;
+  height: auto;
+  font-size: 64px;
+}
+
+table {
+  border-collapse: collapse;
+}
+table td {
+  height: 100px;
+  width: 100px;
+  text-align: center;
+  vertical-align: middle;
+  border: 5px solid black;
+}
+table td:hover {
+  border: 5.4px solid #537FE7;
+}
+
+/*# sourceMappingURL=9-grid.css.map */

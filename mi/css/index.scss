@@ -8,87 +8,105 @@ html,body{
   min-width: 1700px;
   font-family: Helvetica Neue,Helvetica,Arial,Microsoft Yahei,Hiragino Sans GB,Heiti SC,WenQuanYi Micro Hei,sans-serif;;
   font-size:14px;
+  transform-origin: center;
 }
 
 a:link{
   text-decoration: none;
 }
 
-.site-topbar{
-  color: rgb(158,158,158);
-  position: relative;
-  height: 40px;
-  background-color: #333;
-  line-height: 40px;
-  word-spacing: 2px;
-  text-align: center;
-  a:link{
-    color: #b0b0b0;
-    text-decoration: none;
-  }
-  a:visited{
+#mishop{
+  display: flex;
+  flex-flow: column wrap;
+  transform-origin: center;
+  .site-topbar{
+    width: 100%;
+    display: flex;
+    justify-content: center;
     color: rgb(158,158,158);
-  }
-
-  a:hover{
-    color: white;
-  }
-  .container{
-    width: 1226px;
-    height: 100%;
-    margin: auto;
     position: relative;
-    .topbarnav{
-      font-size: 12px;
-      position: absolute;
-      span{
-        color: #424242;
-      }
+    height: 40px;
+    background-color: #333;
+    line-height: 40px;
+    word-spacing: 2px;
+    text-align: center;
+    a:link{
+      color: #b0b0b0;
+      text-decoration: none;
     }
-    .topnavright{
-      position: absolute;
-      right: 0px;
+    a:visited{
+      color: rgb(158,158,158);
+    }
+
+    a:hover{
+      color: white;
+    }
+    .container{
+      width: 1226px;
       height: 100%;
-      width: 400px;
-
-      .topbarinfo{
-        display: inline-block;
-        width: 189px;
+      margin: auto;
+      position: relative;
+      .topbarnav{
+        font-size: 12px;
+        position: absolute;
+        span{
+          color: #424242;
+        }
+      }
+      .topnavright{
+        position: absolute;
+        right: 0px;
         height: 100%;
-        margin: 0px;
-        margin-right: 50px;
-      }
+        width: 400px;
 
-      span#shoppingcarttitle{
-        content: '购物车';
-        position: absolute;
-        right: 0px;
-        // top: -40px;
-        background-color: #666;
-        width: 130px;
-        &:hover{
+        .topbarinfo{
+          display: inline-block;
+          width: 189px;
+          height: 100%;
+          margin: 0px;
+          margin-right: 50px;
+        }
+
+        span#shoppingcarttitle{
+          content: '购物车';
+          position: absolute;
+          right: 0px;
+          // top: -40px;
+          background-color: #666;
+          width: 130px;
+          &:hover{
+            background-color: #fff;
+          }
+          &:hover + #shoppingcart{
+            display: block;
+          }
+        }
+        #shoppingcart{
+          display: none;
+          height: 150px;
+          width: 460px;
+          position: absolute;
+          right: 0px;
+          top: 40px;
           background-color: #fff;
+          box-shadow: 0 4px 13px -4px grey;
         }
-        &:hover + #shoppingcart{
-          display: block;
-        }
-      }
-      #shoppingcart{
-        display: none;
-        height: 150px;
-        width: 460px;
-        position: absolute;
-        right: 0px;
-        top: 40px;
-        background-color: #fff;
-        box-shadow: 0 4px 13px -4px grey;
       }
     }
+  }
+  #firstport{
+    background-color: white;
+    width: 100%;
+    border: 1px solid;
   }
 }
 
+
+
+
 #site-header{
   height: 100px;
+  width: 100%;
   #headercontainer{
     margin: auto;
     height: 100%;
@@ -113,6 +131,7 @@ a:link{
         width:20%;
       }
     }
+
     #productlist{
       margin-left: 230px;
       color: #333;
@@ -160,16 +179,44 @@ a:link{
       height: 100%;
       border: 1px solid black;
       background-color: rgb(165,163,163);
-
     }
     #radioslider{
       height: 100%;
       width: auto;
     }
+  }
 
+  div.home-sub{
+    width: 1226px;
+    height: 170px;
+    border: 2px solid;
+    margin-top: 15px;
+    margin-bottom: 30px;
   }
 
 
+  #mainport{
+    width: 100%;
+    background-color: rgb(245,245,245);
+    #maincontainer{
+      width: 1226px;
+      margin: auto;
+      .home-banner-box{
+        width: 100%;
+        margin: 22px 0;
+        overflow: hidden;
+        img{
+          width: 100%;
+        }
+      }
+
+      .homebrickbox{
+        width: 1226px;
+        height: 100px;
+        background-color: white;
+      }
+    }
+  }
 
 .miicon{
   display: block;

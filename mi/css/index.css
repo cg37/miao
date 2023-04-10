@@ -9,13 +9,22 @@ html, body {
   min-width: 1700px;
   font-family: Helvetica Neue, Helvetica, Arial, Microsoft Yahei, Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
   font-size: 14px;
+  transform-origin: center;
 }
 
 a:link {
   text-decoration: none;
 }
 
-.site-topbar {
+#mishop {
+  display: flex;
+  flex-flow: column wrap;
+  transform-origin: center;
+}
+#mishop .site-topbar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
   color: rgb(158, 158, 158);
   position: relative;
   height: 40px;
@@ -24,56 +33,56 @@ a:link {
   word-spacing: 2px;
   text-align: center;
 }
-.site-topbar a:link {
+#mishop .site-topbar a:link {
   color: #b0b0b0;
   text-decoration: none;
 }
-.site-topbar a:visited {
+#mishop .site-topbar a:visited {
   color: rgb(158, 158, 158);
 }
-.site-topbar a:hover {
+#mishop .site-topbar a:hover {
   color: white;
 }
-.site-topbar .container {
+#mishop .site-topbar .container {
   width: 1226px;
   height: 100%;
   margin: auto;
   position: relative;
 }
-.site-topbar .container .topbarnav {
+#mishop .site-topbar .container .topbarnav {
   font-size: 12px;
   position: absolute;
 }
-.site-topbar .container .topbarnav span {
+#mishop .site-topbar .container .topbarnav span {
   color: #424242;
 }
-.site-topbar .container .topnavright {
+#mishop .site-topbar .container .topnavright {
   position: absolute;
   right: 0px;
   height: 100%;
   width: 400px;
 }
-.site-topbar .container .topnavright .topbarinfo {
+#mishop .site-topbar .container .topnavright .topbarinfo {
   display: inline-block;
   width: 189px;
   height: 100%;
   margin: 0px;
   margin-right: 50px;
 }
-.site-topbar .container .topnavright span#shoppingcarttitle {
+#mishop .site-topbar .container .topnavright span#shoppingcarttitle {
   content: "购物车";
   position: absolute;
   right: 0px;
   background-color: #666;
   width: 130px;
 }
-.site-topbar .container .topnavright span#shoppingcarttitle:hover {
+#mishop .site-topbar .container .topnavright span#shoppingcarttitle:hover {
   background-color: #fff;
 }
-.site-topbar .container .topnavright span#shoppingcarttitle:hover + #shoppingcart {
+#mishop .site-topbar .container .topnavright span#shoppingcarttitle:hover + #shoppingcart {
   display: block;
 }
-.site-topbar .container .topnavright #shoppingcart {
+#mishop .site-topbar .container .topnavright #shoppingcart {
   display: none;
   height: 150px;
   width: 460px;
@@ -83,9 +92,15 @@ a:link {
   background-color: #fff;
   box-shadow: 0 4px 13px -4px grey;
 }
+#mishop #firstport {
+  background-color: white;
+  width: 100%;
+  border: 1px solid;
+}
 
 #site-header {
   height: 100px;
+  width: 100%;
 }
 #site-header #headercontainer {
   margin: auto;
@@ -158,6 +173,36 @@ a:link {
 #firstpanel #radioslider {
   height: 100%;
   width: auto;
+}
+
+div.home-sub {
+  width: 1226px;
+  height: 170px;
+  border: 2px solid;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+#mainport {
+  width: 100%;
+  background-color: rgb(245, 245, 245);
+}
+#mainport #maincontainer {
+  width: 1226px;
+  margin: auto;
+}
+#mainport #maincontainer .home-banner-box {
+  width: 100%;
+  margin: 22px 0;
+  overflow: hidden;
+}
+#mainport #maincontainer .home-banner-box img {
+  width: 100%;
+}
+#mainport #maincontainer .homebrickbox {
+  width: 1226px;
+  height: 100px;
+  background-color: white;
 }
 
 .miicon {
