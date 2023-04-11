@@ -9,71 +9,53 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  align-content: center;
-  font-size: 16px;
+  font-size: 1em;
 }
 
 #bootstraptable {
-  border: 2px solid;
+  border: 2px solid rgb(220, 226, 230);
   padding: 20px;
-}
-
-th {
-  padding-right: 55px;
+  border-radius: 5px;
+  width: 100%;
 }
 
 .table {
+  width: 100%;
   border-collapse: collapse;
-  background-color: transparent;
-}
-.table th {
-  padding-right: 55px;
-}
-.table > * > * > * {
-  padding: 10px;
-  padding-left: 10px;
-  padding-right: 150px;
   text-align: left;
-  box-shadow: inset 0 0 0 9999px transparent;
-  border-bottom: 1px solid;
-  border-bottom-color: rgb(222, 226, 230);
 }
-
-.table-dark {
-  border-collapse: collapse;
-  background-color: #212529;
+.table td, .table th {
+  border-bottom: 1px solid rgb(220, 226, 230);
+  padding: 8px;
 }
-.table-dark th {
-  padding-right: 55px;
+.table.table-dark {
+  color: rgb(174, 181, 189);
+  background-color: rgb(33, 37, 41);
 }
-.table-dark > * > * > * {
-  color: #AEB5BD;
-  padding: 10px;
-  padding-left: 10px;
-  padding-right: 150px;
-  text-align: left;
-  box-shadow: inset 0 0 0 9999px transparent;
-  border-bottom: 1px solid;
-  border-bottom-color: rgb(222, 226, 230);
+.table.table-dark th, .table.table-dark td {
+  border-bottom: 0.6px solid rgb(55, 59, 62);
+  color: white;
 }
-
-.table-striped {
-  border-collapse: collapse;
+.table.table-striped tbody > tr:nth-of-type(odd) {
+  background-color: rgb(242, 242, 242);
 }
-.table-striped th {
-  padding-right: 55px;
+.table.table-striped.table-dark tbody > tr:nth-of-type(odd) {
+  background-color: rgb(44, 48, 52);
 }
-.table-striped tbody > tr:nth-of-type(odd) {
-  background-color: rgba(242, 242, 242, 0.8);
+.table.table-hover tbody > tr:hover {
+  background-color: rgb(236, 236, 236);
 }
-.table-striped > * > * > * {
-  padding: 10px;
-  padding-left: 10px;
-  padding-right: 150px;
-  text-align: left;
-  box-shadow: inset 0 0 0 9999px transparent;
-  border-bottom: 1px solid;
-  border-bottom-color: rgb(222, 226, 230);
+.table.table-hover.table-dark tbody > tr:hover {
+  background-color: rgb(50, 53, 57);
+}
+.table.table-bordered th, .table.table-bordered td {
+  border: 0.6px solid rgb(220, 226, 230);
+}
+.table.table-bordered.table-dark th, .table.table-bordered.table-dark td {
+  border: 0.6px solid rgb(55, 59, 62);
+}
+.table.table-sm th, .table.table-sm td {
+  padding: 4px;
 }
 
 /*# sourceMappingURL=bootstrap-table.css.map */
