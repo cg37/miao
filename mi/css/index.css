@@ -1,211 +1,19 @@
-@charset "UTF-8";
 * {
   box-sizing: inherit;
-  margin: auto;
+  background-color: rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0 0 1px red;
 }
 
 html, body {
   box-sizing: border-box;
-  min-width: 1700px;
+  min-width: 1226px;
   font-family: Helvetica Neue, Helvetica, Arial, Microsoft Yahei, Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
   font-size: 14px;
   transform-origin: center;
+  margin: 0;
 }
 
-a:link {
-  text-decoration: none;
-}
-
-#mishop {
-  display: flex;
-  flex-flow: column wrap;
-  transform-origin: center;
-}
-#mishop .site-topbar {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  color: rgb(158, 158, 158);
-  position: relative;
-  height: 40px;
-  background-color: #333;
-  line-height: 40px;
-  word-spacing: 2px;
-  text-align: center;
-}
-#mishop .site-topbar a:link {
-  color: #b0b0b0;
-  text-decoration: none;
-}
-#mishop .site-topbar a:visited {
-  color: rgb(158, 158, 158);
-}
-#mishop .site-topbar a:hover {
-  color: white;
-}
-#mishop .site-topbar .container {
-  width: 1226px;
-  height: 100%;
-  margin: auto;
-  position: relative;
-}
-#mishop .site-topbar .container .topbarnav {
-  font-size: 12px;
-  position: absolute;
-}
-#mishop .site-topbar .container .topbarnav span {
-  color: #424242;
-}
-#mishop .site-topbar .container .topnavright {
-  position: absolute;
-  right: 0px;
-  height: 100%;
-  width: 400px;
-}
-#mishop .site-topbar .container .topnavright .topbarinfo {
-  display: inline-block;
-  width: 189px;
-  height: 100%;
-  margin: 0px;
-  margin-right: 50px;
-}
-#mishop .site-topbar .container .topnavright span#shoppingcarttitle {
-  content: "购物车";
-  position: absolute;
-  right: 0px;
-  background-color: #666;
-  width: 130px;
-}
-#mishop .site-topbar .container .topnavright span#shoppingcarttitle:hover {
-  background-color: #fff;
-}
-#mishop .site-topbar .container .topnavright span#shoppingcarttitle:hover + #shoppingcart {
-  display: block;
-}
-#mishop .site-topbar .container .topnavright #shoppingcart {
-  display: none;
-  height: 150px;
-  width: 460px;
-  position: absolute;
-  right: 0px;
-  top: 40px;
-  background-color: #fff;
-  box-shadow: 0 4px 13px -4px grey;
-}
-#mishop #firstport {
-  background-color: white;
-  width: 100%;
-  border: 1px solid;
-}
-
-#site-header {
-  height: 100px;
-  width: 100%;
-}
-#site-header #headercontainer {
-  margin: auto;
-  height: 100%;
-  width: 1226px;
-}
-#site-header #headercontainer #headerlogo {
-  float: left;
-}
-#site-header #headercontainer #serachpanel {
-  float: right;
-  width: 320px;
-  height: 55px;
-  margin-top: 25px;
-}
-#site-header #headercontainer #serachpanel * {
-  height: 100%;
-}
-#site-header #headercontainer #serachpanel input {
-  float: left;
-  width: 80%;
-}
-#site-header #headercontainer #serachpanel button {
-  float: right;
-  width: 20%;
-}
-#site-header #headercontainer #productlist {
-  margin-left: 230px;
-  color: #333;
-  height: 100%;
-  width: 610px;
-  overflow: hidden;
-  font-size: 16px;
-}
-#site-header #headercontainer #productlist ul {
-  padding: 0px;
-  margin: 0px;
-  margin-top: 40px;
-}
-#site-header #headercontainer #productlist li {
-  display: inline;
-  margin-right: 13px;
-  color: #333;
-}
-#site-header #headercontainer #productlist li a:link {
-  color: #333;
-}
-#site-header #headercontainer #productlist li a:visited {
-  color: #333;
-}
-#site-header #headercontainer #productlist li a:hover {
-  color: rgb(249, 106, 17);
-}
-#site-header #headercontainer #productlist li:hover {
-  color: rgb(249, 106, 17);
-}
-
-#firstpanel {
-  width: 1226px;
-  height: 465px;
-  border: 1px solid blue;
-}
-#firstpanel #leftpanel {
-  float: left;
-  width: 240px;
-  height: 100%;
-  border: 1px solid black;
-  background-color: rgb(165, 163, 163);
-}
-#firstpanel #radioslider {
-  height: 100%;
-  width: auto;
-}
-
-div.home-sub {
-  width: 1226px;
-  height: 170px;
-  border: 2px solid;
-  margin-top: 15px;
-  margin-bottom: 30px;
-}
-
-#mainport {
-  width: 100%;
-  background-color: rgb(245, 245, 245);
-}
-#mainport #maincontainer {
-  width: 1226px;
-  margin: auto;
-}
-#mainport #maincontainer .home-banner-box {
-  width: 100%;
-  margin: 22px 0;
-  overflow: hidden;
-}
-#mainport #maincontainer .home-banner-box img {
-  width: 100%;
-}
-#mainport #maincontainer .homebrickbox {
-  width: 1226px;
-  height: 100px;
-  background-color: white;
-}
-
-.miicon {
+.logo {
   display: block;
   margin-left: 0px;
   margin-top: 22px;
@@ -213,6 +21,96 @@ div.home-sub {
   width: 56px;
   background-image: url(../pic/logo-mi2.png);
   background-size: 100%;
+}
+
+a {
+  color: #757575;
+}
+a, a :hover {
+  text-decoration: none;
+}
+
+.container {
+  width: 1226px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.header .site-topbar {
+  position: relative;
+  z-index: 30;
+  height: 40px;
+  font-size: 12px;
+  color: #b0b0b0;
+  background-color: #333;
+}
+.header .site-topbar .topbarnav {
+  float: left;
+  height: 40px;
+  line-height: 40px;
+}
+.header .site-topbar .topbarnav a {
+  display: inline-block;
+  color: #b0b0b0;
+  line-height: 40px;
+}
+.header .site-topbar .topbarnav .sep {
+  margin: 0 0.3em;
+  color: #424242;
+}
+.header .site-topbar .topbar-cart {
+  position: relative;
+  float: right;
+  width: 120px;
+  line-height: 40px;
+  height: 40px;
+  margin-left: 15px;
+  transition: 0.2s;
+}
+.header .site-topbar .topbar-cart:hover > div {
+  height: 100px;
+}
+.header .site-topbar .topbar-cart .cart-menu {
+  position: absolute;
+  right: 0px;
+  top: 40px;
+  height: 0px;
+  width: 316px;
+  transition: 0.2s;
+}
+.header .site-topbar .topbar-info {
+  float: right;
+  height: 40px;
+  line-height: 40px;
+}
+.header .site-header {
+  position: relative;
+  height: 100%;
+}
+.header .site-header .container {
+  height: 100px;
+}
+.header .site-header .container .header-logo {
+  float: left;
+  width: 62px;
+  margin-top: 22px;
+}
+.header .site-header .container .header-nav {
+  float: left;
+  width: 850px;
+}
+.header .site-header .container .header-nav .nav-list {
+  position: relative;
+  float: left;
+  width: 1100px;
+  height: 88px;
+  margin: 0px;
+  padding: 12px 0 0 30px;
+  list-style-type: none;
+  font-size: 16px;
+}
+.header .site-header .container .header-nav .nav-list .nav-item {
+  float: left;
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -1,224 +1,21 @@
 * {
   box-sizing: inherit;
-  margin: auto;
+  background-color: rgba(0,0,0,0.08);
+  box-shadow: inset 0 0 1px red;
+
 }
 
 html,body{
   box-sizing: border-box;
-  min-width: 1700px;
+  min-width: 1226px;
   font-family: Helvetica Neue,Helvetica,Arial,Microsoft Yahei,Hiragino Sans GB,Heiti SC,WenQuanYi Micro Hei,sans-serif;;
   font-size:14px;
   transform-origin: center;
-}
-
-a:link{
-  text-decoration: none;
-}
-
-#mishop{
-  display: flex;
-  flex-flow: column wrap;
-  transform-origin: center;
-  .site-topbar{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    color: rgb(158,158,158);
-    position: relative;
-    height: 40px;
-    background-color: #333;
-    line-height: 40px;
-    word-spacing: 2px;
-    text-align: center;
-    a:link{
-      color: #b0b0b0;
-      text-decoration: none;
-    }
-    a:visited{
-      color: rgb(158,158,158);
-    }
-
-    a:hover{
-      color: white;
-    }
-    .container{
-      width: 1226px;
-      height: 100%;
-      margin: auto;
-      position: relative;
-      .topbarnav{
-        font-size: 12px;
-        position: absolute;
-        span{
-          color: #424242;
-        }
-      }
-      .topnavright{
-        position: absolute;
-        right: 0px;
-        height: 100%;
-        width: 400px;
-
-        .topbarinfo{
-          display: inline-block;
-          width: 189px;
-          height: 100%;
-          margin: 0px;
-          margin-right: 50px;
-        }
-
-        span#shoppingcarttitle{
-          content: '购物车';
-          position: absolute;
-          right: 0px;
-          // top: -40px;
-          background-color: #666;
-          width: 130px;
-          &:hover{
-            background-color: #fff;
-          }
-          &:hover + #shoppingcart{
-            display: block;
-          }
-        }
-        #shoppingcart{
-          display: none;
-          height: 150px;
-          width: 460px;
-          position: absolute;
-          right: 0px;
-          top: 40px;
-          background-color: #fff;
-          box-shadow: 0 4px 13px -4px grey;
-        }
-      }
-    }
-  }
-  #firstport{
-    background-color: white;
-    width: 100%;
-    border: 1px solid;
-  }
+  margin: 0;
 }
 
 
-
-
-#site-header{
-  height: 100px;
-  width: 100%;
-  #headercontainer{
-    margin: auto;
-    height: 100%;
-    width: 1226px;
-    #headerlogo{
-      float: left
-    }
-    #serachpanel{
-      float:right;
-      width: 320px;
-      height: 55px;
-      margin-top: 25px;
-      *{
-        height: 100%;
-      }
-      input{
-        float:left;
-        width:80%;
-      }
-      button{
-        float:right;
-        width:20%;
-      }
-    }
-
-    #productlist{
-      margin-left: 230px;
-      color: #333;
-      height: 100%;
-      width: 610px;
-      overflow:hidden;
-      font-size: 16px;
-      ul{
-        padding: 0px;
-        margin: 0px;
-        margin-top: 40px
-
-      }
-      li{
-        display: inline;
-        margin-right: 13px;
-        color: #333;
-        a{
-          &:link{
-            color: #333;
-          }
-          &:visited{
-            color: #333;
-          }
-          &:hover{
-            color: rgb(249,106,17);
-          }
-        }
-        &:hover{
-          color: rgb(249,106,17);
-
-        }
-        }
-      }
-    }
-  }
-
-  #firstpanel{
-    width: 1226px;
-    height:465px;
-    border: 1px solid blue;
-    #leftpanel{
-      float: left;
-      width: 240px;
-      height: 100%;
-      border: 1px solid black;
-      background-color: rgb(165,163,163);
-    }
-    #radioslider{
-      height: 100%;
-      width: auto;
-    }
-  }
-
-  div.home-sub{
-    width: 1226px;
-    height: 170px;
-    border: 2px solid;
-    margin-top: 15px;
-    margin-bottom: 30px;
-  }
-
-
-  #mainport{
-    width: 100%;
-    background-color: rgb(245,245,245);
-    #maincontainer{
-      width: 1226px;
-      margin: auto;
-      .home-banner-box{
-        width: 100%;
-        margin: 22px 0;
-        overflow: hidden;
-        img{
-          width: 100%;
-        }
-      }
-
-      .homebrickbox{
-        width: 1226px;
-        height: 100px;
-        background-color: white;
-      }
-    }
-  }
-
-.miicon{
+.logo{ //小米图标
   display: block;
   margin-left: 0px;
   margin-top: 22px;
@@ -227,6 +24,387 @@ a:link{
   background-image: url(../pic/logo-mi2.png);
   background-size: 100%;
 }
+
+a{
+  color: #757575;
+  &,:hover{
+    text-decoration: none;
+  }
+}
+
+.container{
+  width: 1226px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.header{
+  .site-topbar{
+    position: relative;
+    z-index: 30;
+    height: 40px;
+    font-size: 12px;
+    color: #b0b0b0;
+    background-color: #333;
+    .topbarnav{
+      float: left;
+      height: 40px;
+      line-height: 40px;
+      a{
+        display: inline-block;
+        color: #b0b0b0;
+        line-height: 40px;
+      }
+      .sep{
+        margin: 0 0.3em;
+        color: #424242;
+      }
+    }
+
+    .topbar-cart{
+      position: relative;
+      float: right;
+      width: 120px;
+      line-height: 40px;
+      height: 40px;
+      margin-left: 15px;
+      transition: 0.2s;
+
+      &:hover > div{
+        height: 100px;
+      }
+
+      .cart-menu{
+        position: absolute;
+        right: 0px;
+        top: 40px;
+        height: 0px;
+        width: 316px;
+        transition: 0.2s;
+      }
+    }
+
+    .topbar-info{
+      float: right;
+      height: 40px;
+      line-height: 40px;
+    }
+  }
+
+  .site-header{
+    position: relative;
+    height: 100%;
+    .container{
+      height: 100px;
+
+      .header-logo{
+        float: left;
+        width: 62px;
+        margin-top: 22px;
+        .logo{
+
+        }
+      }
+
+      .header-nav{
+        float: left;
+        width: 850px;
+        .nav-list{
+          position: relative;
+          float: left;
+          width: 1100px;
+          height: 88px;
+          margin: 0px;
+          padding: 12px 0 0 30px;
+          list-style-type: none;
+          font-size: 16px;
+          .nav-item{
+            float: left;
+          }
+        }
+
+      }
+    }
+  }
+}
+
+// ul{
+//   list-style: none;
+//   margin: 0 0 -14px -14px;
+//   padding: 0px;
+// }
+
+// a:link{
+//   text-decoration: none;
+// }
+
+
+
+// #mishop{
+//   display: flex;
+//   flex-flow: column nowrap;
+//   justify-content: center;
+
+//   #firstport{
+//     background-color: white;
+//     width: 100%;
+//     display: flex;
+//     justify-content: center;
+//     flex-wrap: wrap;
+//   }
+// }
+
+// .site-topbar{ //最顶部导航栏
+//   width: 100%;
+//   display: flex;
+//   justify-content: center;
+//   color: rgb(158,158,158);
+//   position: relative;
+//   height: 40px;
+//   background-color: #333;
+//   line-height: 40px;
+//   word-spacing: 2px;
+//   text-align: center;
+//   a:link{
+//     color: #b0b0b0;
+//     text-decoration: none;
+//   }
+//   a:visited{
+//     color: rgb(158,158,158);
+//   }
+
+//   a:hover{
+//     color: white;
+//   }
+//   .container{
+//     width: 1226px;
+//     height: 100%;
+//     margin: auto;
+//     position: relative;
+//     .topbarnav{
+//       font-size: 12px;
+//       position: absolute;
+//       span{
+//         color: #424242;
+//       }
+//     }
+//     .topnavright{
+//       position: absolute;
+//       right: 0px;
+//       height: 100%;
+//       width: 400px;
+
+//       .topbarinfo{
+//         display: inline-block;
+//         width: 189px;
+//         height: 100%;
+//         margin: 0px;
+//         margin-right: 50px;
+//       }
+
+//       span#shoppingcarttitle{
+//         content: '购物车';
+//         position: absolute;
+//         right: 0px;
+//         // top: -40px;
+//         background-color: #666;
+//         width: 130px;
+//         &:hover{
+//           background-color: #fff;
+//         }
+//         &:hover + #shoppingcart{
+//           display: block;
+//         }
+//       }
+//       #shoppingcart{
+//         display: none;
+//         height: 150px;
+//         width: 460px;
+//         position: absolute;
+//         right: 0px;
+//         top: 40px;
+//         background-color: #fff;
+//         box-shadow: 0 4px 13px -4px grey;
+//       }
+//     }
+//   }
+// }
+
+// #site-header{ //第一屏 白色第色 小米图标 搜索框
+//   height: 100px;
+//   width: 100%;
+//   #headercontainer{
+//     margin: auto;
+//     height: 100%;
+//     width: 1226px;
+//     #headerlogo{
+//       float: left
+//     }
+//     #serachpanel{
+//       float:right;
+//       width: 320px;
+//       height: 55px;
+//       margin-top: 25px;
+//       *{
+//         height: 100%;
+//       }
+//       input{
+//         float:left;
+//         width:80%;
+//       }
+//       button{
+//         float:right;
+//         width:20%;
+//       }
+//     }
+
+//     #productlist{
+//       margin-left: 230px;
+//       color: #333;
+//       height: 100%;
+//       width: 610px;
+//       overflow:hidden;
+//       font-size: 16px;
+//       ul{
+//         padding: 0px;
+//         margin: 0px;
+//         margin-top: 40px
+
+//       }
+//       li{
+//         display: inline;
+//         margin-right: 13px;
+//         color: #333;
+//         a{
+//           &:link{
+//             color: #333;
+//           }
+//           &:visited{
+//             color: #333;
+//           }
+//           &:hover{
+//             color: rgb(249,106,17);
+//           }
+//         }
+//         &:hover{
+//           color: rgb(249,106,17);
+
+//         }
+//         }
+//       }
+//     }
+//   }
+
+//   .page-mian.home-main{
+//     padding-top: 4px;
+//     padding-bottom: 12px;
+//     .container{
+//       width: 1226px;
+//       margin-right: auto;
+//       margin-left: auto;
+//       .home-banner-box{
+
+//       }
+//     }
+//     // width: 100%;
+//     // background-color: rgb(245,245,245);
+//     // #maincontainer{
+//     //   width: 1226px;
+//     //   margin: auto;
+//     //   .home-banner-box{
+//     //     width: 100%;
+//     //     margin: 22px 0;
+//     //     overflow: hidden;
+//     //     img{
+//     //       width: 100%;
+//     //     }
+//     //   }
+//   }
+
+//   #firstpanel{
+//     width: 1226px;
+//     height:465px;
+//     #leftpanel{
+//       float: left;
+//       width: 240px;
+//       height: 100%;
+//       background-color: rgb(165,163,163);
+//     }
+//     #radioslider{
+//       height: 100%;
+//       width: auto;
+//     }
+//   }
+
+//   div.home-sub{
+//     width: 1226px;
+//     height: 170px;
+//     margin-top: 15px;
+//     margin-bottom: 30px;
+//   }
+
+
+
+
+
+//   .homebrickbox{
+//     width: 1226px;
+//     height: 100px;
+//     background-color: white;
+//     margin-bottom: 8px;
+//     .box_hd{
+//       height: 58px;
+//       position: relative;
+
+//       .title{
+//         margin: 0px;
+//         font-size: 20px;
+//         font-weight: 200;
+//         line-height: 58px;
+//         color: #333;
+//       }
+
+//       .more{
+//         position: absolute;
+//         right: 0;
+//         top: 0;
+//         .more-link{
+//           font-size: 16px;
+//           line-height: 58px;
+//           color: #424242;
+//         }
+//       }
+//     }
+//     .box_bd{
+//       .row{
+//         height: 614px;
+//         margin-left: -14px;
+
+//         .span4{
+//           width: 234px;
+//           .brick-promo-list{ //ul
+//             margin: 0 0 -14px -14px;
+//             list-style-type: none;
+//             .brick-item-1{
+//               img{
+//                 height: 614px;
+//                 width: 234px;
+//               }
+//             }
+//           }
+//         }
+//       }
+
+//     }
+
+//   }
+
+// .span4{
+//   float: left;
+//   margin-left: 14px;
+// }
+
+
 
 
 

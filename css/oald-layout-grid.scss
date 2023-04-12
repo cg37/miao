@@ -1,0 +1,43 @@
+* {
+  box-sizing: inherit;
+  background-color: rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0 0 1px red;
+}
+
+html, body{
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  box-sizing: border-box;
+
+}
+
+.oald-layout-grid{
+
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 200px 1fr 200px 200px;
+  grid-template-rows: 72px 1fr;
+
+  *{
+    overflow: scroll;
+  }
+
+  #header{
+    background-color: white;
+  }
+
+  #list{
+    grid-row: 1 / span 2;
+  }
+
+  #vocubulary{
+    grid-row: span 2;
+  }
+
+  #history{
+    grid-row: span 2;
+  }
+}
+
