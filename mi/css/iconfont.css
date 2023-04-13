@@ -1,0 +1,23 @@
+@font-face {
+  font-family: iconfont;
+  src: url(../src/iconfont.ttf);
+  font-weight: 400;
+}
+[class*=iconfont] {
+  font-family: iconfont !important;
+  font-style: normal;
+}
+
+.iconfont-cart::before {
+  content: "\e60c";
+}
+
+.iconfont-search::before {
+  content: "\e616";
+}
+
+.iconfont-arrow-right-big::before {
+  content: "\e623";
+}
+
+/*# sourceMappingURL=iconfont.css.map */

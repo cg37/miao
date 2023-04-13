@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/iconfont.css">
   <link rel="stylesheet" href="css/index.css">
   <title>Document</title>
 </head>
@@ -44,7 +45,15 @@
             </div>
 
             <div id="minicarttrigger" class="topbar-cart">
-              <a href="https://www.mi.com/shop/buy/cart" class="cart-mini">购物车</a>
+              <a href="https://www.mi.com/shop/buy/cart" class="cart-mini">
+                <em class="iconfont-cart">
+                </em>
+                <em class="iconfont-cart-full hide"></em>
+                "购物车"
+                <span class="cart-mini-num J_cartmenu">(0)</span>
+              </a>
+
+
               <div class="cart-menu" id="minicartmenu">
 
               </div>
@@ -75,7 +84,79 @@
             <div class="header-nav">
               <ul class="nav-list">
                 <li id="J_navCategory" class="nav-category"></li>
+                  <a href="" class="link-category">
+                    <span class="text" hidden>全部商品分类</span>
+                  </a>
 
+                  <div class="site-category">
+                    <ul id="J_categoryList" class="site-category-list clearfix site-category-list-custom">
+                      <li class="category-item">
+                        <a href="" class="title">
+                          手机
+                          <em class="iconfont-arrow-right-big"></em>
+                        </a>
+                      </li>
+                      <li class="category-item">
+                        <a href="" class="title">
+                          电视
+                          <em class="iconfont-arrow-right-big"></em>
+                        </a>
+                      </li>
+                      <li class="category-item">
+                        <a href="" class="title">
+                          家电
+                          <em class="iconfont-arrow-right-big"></em>
+                        </a>
+                      </li>
+                      <li class="category-item">
+                        <a href="" class="title">
+                          笔记本 平板
+                          <em class="iconfont-arrow-right-big"></em>
+                        </a>
+                      </li>
+                      <li class="category-item">
+                        <a href="" class="title">
+                          出行 穿戴
+                          <em class="iconfont-arrow-right-big"></em>
+                        </a>
+                      </li>
+                      <li class="category-item">
+                        <a href="" class="title">
+
+                          耳机 音箱
+                          <em class="iconfont-arrow-right-big"></em>
+
+                        </a>
+                      </li>
+
+                      <li class="category-item">
+                        <a href="" class="title">
+                          健康 儿童
+                          <em class="iconfont-arrow-right-big"></em>
+                        </a>
+                      </li>
+
+                      <li class="category-item">
+                        <a href="" class="title">
+                          生活 箱包
+                          <em class="iconfont-arrow-right-big"></em>
+
+                        </a>
+                      </li>
+                      <li class="category-item">
+                        <a href="" class="title">
+                          智能 路由器
+                          <em class="iconfont-arrow-right-big"></em>
+                        </a>
+                      </li>
+                      <li class="category-item">
+                        <a href="" class="title">
+                          电源 配件
+                          <em class="iconfont-arrow-right-big"></em>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 <li data-index="0"class="nav-item">
                   <a href="">
                     <span>Ximomi手机</span>
@@ -118,21 +199,74 @@
                     <span>路由器</span>
                   </a>
                 </li>
-                <li data-index="7"class="nav-item"><a href="https://www.mi.com/service">服务中心</a></li>
-                <li data-index="8"class="nav-item"><a href="https://www.xiaomi.cn/">社区</a></li>
+                <li data-index="7"class="nav-item">
+                  <a href="https://www.mi.com/service">
+                    <span>
+                      服务中心
+                    </span>
+                  </a>
+                </li>
+                <li data-index="8"class="nav-item">
+                  <a href="https://www.xiaomi.cn/">
+                  <span>社区</span>
+                  </a>
+                </li>
               </ul>
+            </div>
+
+            <div class="header-search">
+              <form action="" id="J_searchForm" class="search-form">
+                <a href="">
+                  <input type="search" name="keyword" id="search" class="search-text">
+                </a>
+
+                <a id="J_submitBtn">
+                  <input type="submit" value="" class="search-btn iconfont">
+                </a>
+
+                <div id="J_keywordlist" class="keyword-list hide">
+                  <ul class="result-list">
+                    <li data-key="全部商品">
+                      <a href="">全部商品</a>
+                    </li>
+                    <li data-key="空调">
+                      <a href="">空调</a>
+                    </li>
+                    <li data-key="">
+                      <a href="">冰箱</a>
+                    </li>
+                    <li data-key="">
+                      <a href="">洗衣机</a>
+                    </li>
+                    <li data-key="">
+                      <a href="">手机</a>
+                    </li>
+                    <li data-key="">
+                      <a href="">电视</a>
+                    </li>
+                    <li data-key="">
+                      <a href="">笔记本</a>
+                    </li>
+                    <li data-key="">
+                      <a href="">小米平板</a>
+                    </li>
+                  </ul>
+                </div>
+
+              </form>
             </div>
 
           </div>
         </div>
-
       </div>
     </div>
 
     <div class="home-hero-container container">
       <div class="home-hero">
         <div id="homeswiper" class="swiper-container home-hero-swiper">
-          <!-- 选项卡 + 轮播图 -->
+          <!--轮播图 -->
+
+
         </div>
 
         <div class="home-hero-sub row">
