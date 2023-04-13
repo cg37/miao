@@ -118,6 +118,7 @@ ul{
         float: left;
         width: 850px;
         height: 100%;
+
         .nav-list{
           position: relative;
           float: left;
@@ -127,6 +128,7 @@ ul{
           padding: 12px 0 0 30px;
           list-style-type: none;
           font-size: 16px;
+
           .nav-category{
             width: 127px;
             padding-right: 15px;
@@ -136,13 +138,14 @@ ul{
           }
 
           div.site-category{
+            z-index: 21;
             display: block;
             position: absolute;
             top: 100px;
             left: -62px;
             width: 234px;
             height: 460px;
-            background-color: #3F3F40;
+            background-color: rgba(105,101,101,.6);
             .site-category-list{
               height: 420px;
               margin-top: 20px;
@@ -221,6 +224,76 @@ ul{
     }
   }
 }
+
+.home-hero-container{
+  position: relative;
+
+  .home-hero{
+    position: relative;
+    margin-bottom: 26px;
+
+    .swiper-container{
+      z-index: 1;
+      .swiper-wrapper{
+        .swiper-slide{
+          img{
+            display: block;
+            width: 1226px;
+            height: 460px;
+          }
+        }
+      }
+    }
+
+    .home-hero-sub{
+      margin-top: 14px;
+
+      .span4{
+        width: 234px;
+        height: 170px;
+        float: left;
+
+        ul.home-channel-list{
+          padding: 3px;
+          margin: 0;
+          font-size: 12px;
+          text-align: center;
+          background-color: #5f5750;
+          height: 100%;
+          li{
+            float: left;
+            width: 76px;
+            height: 82px;
+            a{
+              padding-top: 18px;
+            }
+          }
+        }
+      }
+
+      .span16{
+        width: 978px;
+        float: left;
+        margin-left: 14px;
+        ul.home-promo-list{
+          li{
+            float: left;
+            margin-left: 15px;
+            img{
+              width: 316px;
+              height: 170px;
+            }
+          }
+          li.first{
+            margin-left: 0px;
+          }
+
+        }
+      }
+    }
+  }
+}
+
 
 // ul{
 //   list-style: none;
