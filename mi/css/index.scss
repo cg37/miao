@@ -1,7 +1,7 @@
 * {
   box-sizing: inherit;
-  background-color: rgba(0,0,0,0.08);
-  box-shadow: inset 0 0 1px red;
+  // background-color: rgba(0,0,0,0.08);
+  // box-shadow: inset 0 0 1px red;
 }
 
 html,body{
@@ -247,7 +247,7 @@ ul{
 
     .home-hero-sub{
       margin-top: 14px;
-
+      height: 170px;
       .span4{
         width: 234px;
         height: 170px;
@@ -294,108 +294,112 @@ ul{
   }
 }
 
+.page-main{
+  padding-top: 4px;
+  padding-bottom: 12px;
+  background-color: rgb(245,245,245);
+  .home-banner-box{
+    margin: 22px 0;
+    height: 120px;
+    overflow: hidden;
+    img{
+      width: 1226px;
+      height: 120px;
+      aspect-ratio: auto 1226 / 120;
+    }
+  }
+  .home-brick-box{ //grid 布局
+    margin-bottom: 8px;
+    .box-head{
+      .title{
+        margin: 0px;
+        font-size: 22px;
+        font-weight: 200;
+        line-height: 58px;
+        color: #333;
+      }
+      .more{
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        .more-link{
+          font-size: 16px;
+          line-height: 58px;
+          color: #424242;
+          transition: all 0.4s;
+        }
+      }
+      height: 58px;
+      position: relative;
+    }
+    .box_body{
+      .product-wall{
+        height: 614px;
 
-// ul{
-//   list-style: none;
-//   margin: 0 0 -14px -14px;
-//   padding: 0px;
-// }
+        .brick-list{
+          display: grid;
+          grid-template-columns: 234px repeat(4, 1fr);
+          grid-template-rows: 1fr 1fr;
+          gap: 14px;
+          overflow: hidden;
 
-// a:link{
-//   text-decoration: none;
-// }
+          .brick-item{
+            height: 300px;
+            background-color: #fff;
+            a{
+              display: block;
+              height: 100%;
+              padding: 20px 0px;
+              .figure{
+                margin: 0px auto 18px;
+                height: 160px;
+                width: 160px;
+                img{
+                  height: 160px;
+                  width: 160px;
+                }
+              }
+              .title{
+                margin: 0px 10px 2px;
+                text-align: center;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+              }
+              .desc{
+                margin: 0 10px 10px;
+                height: 18px;
+                font-size: 12px;
+                color: #b0b0b0;
+                text-align: center;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+              }
+              .price{
+                margin: 0 10px 14px;
+                text-align: center;
+                color: #ff6700;
+              }
+            }
+          }
 
+          .brick-item-big{
+            grid-row: span 2;
+            a{
+              padding: 0;
+              img{
+                height: 614px;
+                width: 234px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
-
-// #mishop{
-//   display: flex;
-//   flex-flow: column nowrap;
-//   justify-content: center;
-
-//   #firstport{
-//     background-color: white;
-//     width: 100%;
-//     display: flex;
-//     justify-content: center;
-//     flex-wrap: wrap;
-//   }
-// }
-
-// .site-topbar{ //最顶部导航栏
-//   width: 100%;
-//   display: flex;
-//   justify-content: center;
-//   color: rgb(158,158,158);
-//   position: relative;
-//   height: 40px;
-//   background-color: #333;
-//   line-height: 40px;
-//   word-spacing: 2px;
-//   text-align: center;
-//   a:link{
-//     color: #b0b0b0;
-//     text-decoration: none;
-//   }
-//   a:visited{
-//     color: rgb(158,158,158);
-//   }
-
-//   a:hover{
-//     color: white;
-//   }
-//   .container{
-//     width: 1226px;
-//     height: 100%;
-//     margin: auto;
-//     position: relative;
-//     .topbarnav{
-//       font-size: 12px;
-//       position: absolute;
-//       span{
-//         color: #424242;
-//       }
-//     }
-//     .topnavright{
-//       position: absolute;
-//       right: 0px;
-//       height: 100%;
-//       width: 400px;
-
-//       .topbarinfo{
-//         display: inline-block;
-//         width: 189px;
-//         height: 100%;
-//         margin: 0px;
-//         margin-right: 50px;
-//       }
-
-//       span#shoppingcarttitle{
-//         content: '购物车';
-//         position: absolute;
-//         right: 0px;
-//         // top: -40px;
-//         background-color: #666;
-//         width: 130px;
-//         &:hover{
-//           background-color: #fff;
-//         }
-//         &:hover + #shoppingcart{
-//           display: block;
-//         }
-//       }
-//       #shoppingcart{
-//         display: none;
-//         height: 150px;
-//         width: 460px;
-//         position: absolute;
-//         right: 0px;
-//         top: 40px;
-//         background-color: #fff;
-//         box-shadow: 0 4px 13px -4px grey;
-//       }
-//     }
-//   }
-// }
 
 // #site-header{ //第一屏 白色第色 小米图标 搜索框
 //   height: 100px;
