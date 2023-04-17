@@ -20,4 +20,16 @@
   content: "\e623";
 }
 
+.iconfont-tool::before {
+  content: "\e634";
+}
+
+.iconfont-circle-7::before {
+  content: "\e635";
+}
+
+.iconfont-circle-15::before {
+  content: "\e636";
+}
+
 /*# sourceMappingURL=iconfont.css.map */
