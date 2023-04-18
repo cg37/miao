@@ -7,6 +7,7 @@
 
 [class*=iconfont]{
   font-family: iconfont!important;
+  position: relative;
   font-style: normal;
 }
 
@@ -15,6 +16,7 @@
 }
 
 .iconfont-search::before{
+
   content:"\E616";
 }
 

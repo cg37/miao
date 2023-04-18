@@ -5,6 +5,7 @@
 }
 [class*=iconfont] {
   font-family: iconfont !important;
+  position: relative;
   font-style: normal;
 }
 
