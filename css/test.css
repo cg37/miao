@@ -1,18 +1,22 @@
 /* 标签名选择器 */
+* {
+    border: 1px solid black;
 
-h1{
-    color:red
+}
+.test1{
+    color: red;
+}
+.test2{
+    color:black;
 }
 
-#p1{
-    background-color: bisque;
-    color:deepskyblue;
+.test3{
+    color: blue;
 }
-#p2{
-    background-color: black;
-    color:white;
-    font-size: 40px;
+.test4{
+    color: red;
 }
-:first-child{
-    color:red;
+
+.test2:hover :is(.test4){
+    color: black;
 }
