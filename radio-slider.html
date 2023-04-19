@@ -8,94 +8,71 @@
   <title>radioslider</title>
 </head>
 <body>
-  <div id="radioslider">
+  <div class="radioslider">
+    <input type="radio" name="slide1" id="sl-1" checked>
+    <input type="radio" name="slide1" id="sl-2">
+    <input type="radio" name="slide1" id="sl-3">
+    <input type="radio" name="slide1" id="sl-4">
+    <input type="radio" name="slide1" id="sl-5">
 
-    <div id="piccontainer">
-
-      <div id="picbox">
-        <img src="img/1.png" alt="">
-        <img src="img/2.png" alt="">
-        <img src="img/3.png" alt="">
-        <img src="img/4.png" alt="">
-        <img src="img/5.png" alt="">
-      </div>
-
-      <div id="controlpanel">
-        <div id="dirbut">
-
-        </div>
-      </div>
-
+    <div class="sliderpic">
+      <span style="background-image: url(./img/1.png);">
+      </span>
+      <span style="background-image: url(./img/2.png);">
+      </span>
+      <span style="background-image: url(./img/3.png);">
+      </span>
+      <span style="background-image: url(./img/4.png);">
+      </span>
+      <span style="background-image: url(./img/5.png);">
+      </span>
     </div>
 
+    <div class="sliderpic">
+      <span style="background-image: url(./img/1.png);">
+      </span>
+      <span style="background-image: url(./img/2.png);">
+      </span>
+      <span style="background-image: url(./img/3.png);">
+      </span>
+      <span style="background-image: url(./img/4.png);">
+      </span>
+      <span style="background-image: url(./img/5.png);">
+      </span>
+    </div>
+
+    <div class="sliderpic">
+      <span style="background-image: url(./img/1.png);">
+      </span>
+      <span style="background-image: url(./img/2.png);">
+      </span>
+      <span style="background-image: url(./img/3.png);">
+      </span>
+      <span style="background-image: url(./img/4.png);">
+      </span>
+      <span style="background-image: url(./img/5.png);">
+      </span>
+    </div>
+
+    <div class="sliderpic">
+      <span style="background-image: url(./img/1.png);">
+      </span>
+      <span style="background-image: url(./img/2.png);">
+      </span>
+      <span style="background-image: url(./img/3.png);">
+      </span>
+      <span style="background-image: url(./img/4.png);">
+      </span>
+      <span style="background-image: url(./img/5.png);">
+      </span>
+    </div>
+
+    <div class="indicators">
+      <label for="sl-1"></label>
+      <label for="sl-2"></label>
+      <label for="sl-3"></label>
+      <label for="sl-4"></label>
+      <label for="sl-5"></label>
+    </div>
   </div>
 </body>
-<!-- <body>
-  <div id="radioslider">
-    <input type="radio" name="dir" id="btn1">
-    <input type="radio" name="dir" id="btn2">
-    <input type="radio" name="dir" id="btn3">
-    <input type="radio" name="dir" id="btn4">
-    <input type="radio" name="dir" id="btn5">
-
-    <input type="radio" name="dir" id="left_btn1" class="dir_btn">
-    <input type="radio" name="dir" id="left_btn2" class="dir_btn">
-    <input type="radio" name="dir" id="left_btn3" class="dir_btn">
-    <input type="radio" name="dir" id="left_btn4" class="dir_btn">
-    <input type="radio" name="dir" id="left_btn5" class="dir_btn">
-
-    <input type="radio" name="dir" id="right_btn1" class="dir_btn">
-    <input type="radio" name="dir" id="right_btn2" class="dir_btn">
-    <input type="radio" name="dir" id="right_btn3" class="dir_btn">
-    <input type="radio" name="dir" id="right_btn4" class="dir_btn">
-    <input type="radio" name="dir" id="right_btn5" class="dir_btn">
-
-    <div class="pic">
-      <div class="box">
-        <img src="img/1.png" alt="">
-        <img src="img/2.png" alt="">
-        <img src="img/3.png" alt="">
-        <img src="img/4.png" alt="">
-        <img src="img/5.png" alt="">
-      </div>
-
-      <div class="before_box">
-        <img src="img/5.png" alt="">
-        <img src="img/1.png" alt="">
-      </div>
-
-      <div class="after_box">
-        <img src="img/5.png" alt="">
-        <img src="img/1.png" alt="">
-
-      </div>
-
-      <div class="left_box dir_box">
-        <label for="left_btn1" class="left_btn1 btn_btn_1"></label>
-        <label for="left_btn2" class="left_btn2 btn_btn_2"></label>
-        <label for="left_btn3" class="left_btn3 btn_btn_3"></label>
-        <label for="left_btn4" class="left_btn4 btn_btn_4"></label>
-        <label for="left_btn5" class="left_btn5 btn_btn_5"></label>
-      </div>
-
-      <div class="right_box dir_box">
-        <label for="right_btn1" class="right_btn_1 btn_btn_1"></label>
-        <label for="right_btn2" class="right_btn_2 btn_btn_1"></label>
-        <label for="right_btn3" class="right_btn_3 btn_btn_1"></label>
-        <label for="right_btn4" class="right_btn_4 btn_btn_1"></label>
-        <label for="right_btn5" class="right_btn_5 btn_btn_1"></label>
-      </div>
-
-      <div class="count">
-        <ul>
-          <li><label for="btn1" class="btn_1"></label></li>
-          <li><label for="btn2" class="btn_1"></label></li>
-          <li><label for="btn3" class="btn_1"></label></li>
-          <li><label for="btn4" class="btn_1"></label></li>
-          <li><label for="btn5" class="btn_1"></label></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</body> -->
-</html>

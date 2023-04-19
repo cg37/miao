@@ -1,45 +1,43 @@
-* {
-  background:#0001;
-  box-sizing: inherit;
-}
-html, body{
-  box-sizing: border-box ;
-  width: 100%;
-  height: 100%;
-}
-@keyframes leave{
+* {background:#0001;
+  box-shadow:
+ inset 0 0 1px red;
+} html { zoom: 2;}
+
+
+
+@keyframes leave {
   from {
     left: 0;
   }
-
   to {
     left: 100%;
   }
 }
 
-.radioslider{
-  width: 512px;
-  height: 288px;
+.slider {
+  width: 300px;
+  height: 200px;
   position: relative;
   margin: auto;
-  border: 3px solid royalblue;
+  border: 3px solid aqua;
   overflow: hidden;
   display: flex;
 
-  > input{
+  > input {
     display: none;
 
-    &:nth-child(1):checked ~ .sliderpic  span:nth-child(1),
-    &:nth-child(2):checked ~ .sliderpic  span:nth-child(2),
-    &:nth-child(3):checked ~ .sliderpic  span:nth-child(3),
-    &:nth-child(4):checked ~ .sliderpic  span:nth-child(4),
-    &:nth-child(5):checked ~ .sliderpic  span:nth-child(5),
-    &:nth-child(6):checked ~ .sliderpic  span:nth-child(6),
-    &:nth-child(7):checked ~ .sliderpic  span:nth-child(7),
-    &:nth-child(8):checked ~ .sliderpic  span:nth-child(8){
+    &:nth-child(1):checked ~ .slides span:nth-child(1),
+    &:nth-child(2):checked ~ .slides span:nth-child(2),
+    &:nth-child(3):checked ~ .slides span:nth-child(3),
+    &:nth-child(4):checked ~ .slides span:nth-child(4),
+    &:nth-child(5):checked ~ .slides span:nth-child(5),
+    &:nth-child(6):checked ~ .slides span:nth-child(6),
+    &:nth-child(7):checked ~ .slides span:nth-child(7),
+    &:nth-child(8):checked ~ .slides span:nth-child(8) {
       left: 0;
       z-index: 8;
       animation: none;
+      xtransition-duration: 0.6s;
     }
     &:nth-child(1):checked ~ .indicators label:nth-child(1),
     &:nth-child(2):checked ~ .indicators label:nth-child(2),
@@ -49,56 +47,54 @@ html, body{
     &:nth-child(6):checked ~ .indicators label:nth-child(6),
     &:nth-child(7):checked ~ .indicators label:nth-child(7),
     &:nth-child(8):checked ~ .indicators label:nth-child(8) {
-      background-color: royalblue;
+        background-color: gold;
     }
   }
   .indicators {
     position: absolute;
-    bottom: 0px;
-    right: 5px;
-    z-index: 10;
-    label{
+    bottom: 0;
+    right: 0;
+    z-index: 888;
+    > label {
       cursor: pointer;
       margin: 5px;
+      text-indent: -9999px;
       display: inline-block;
       width: 10px;
       height: 10px;
-      border-radius: 5px;
-      background-color: #333;
+      border-radius: 999px;
+      background-color: red;
     }
   }
-
-  .sliderpic{
+  .slides {
     width: 25%;
     height: 100%;
     position: relative;
     overflow: hidden;
-    > span{
+    > span { /* 离场图片 */
       position: absolute;
       width: 100%;
       height: 100%;
       left: -100%;
-      transition: .6s;
-      animation :leave .6s;
+      transition: 0.6s;
+      animation: leave 0.6s;
+      xopacity: 0.5;
       background-size: 400% 100%;
     }
-    &:nth-of-type(1) > span{
+    &:nth-of-type(1) > span {
       background-position: 0%;
     }
-    &:nth-of-type(2) > span{
-      background-position: 33.3333333%;
+    &:nth-of-type(2) > span {
+      background-position: 33.33%;
     }
-    &:nth-of-type(3) > span{
-      background-position: 66.6666666%;
+    &:nth-of-type(3) > span {
+      background-position: 66.66%;
     }
-    &:nth-of-type(4) > span{
+    &:nth-of-type(4) > span {
       background-position: 100%;
     }
   }
 }
-
-
-
 
 
 
