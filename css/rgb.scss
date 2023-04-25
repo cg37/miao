@@ -5,48 +5,83 @@ html, body{
 .rgb{
   width: 100%;
   height: 100%;
-  padding-left: 400px;
-  padding-top: 200px;
+
 }
 
-[class*="surface"]{
-  width: 200px;
-  height: 200px;
-  position: absolute;
-  background:#0001;
-  box-shadow:
-  inset 0 0 1px #FF6969;
+.ctrlx{
+  &:active ~ .box{
+    transform:  perspective(1000px) rotateX(360deg) rotateY(0deg) rotateZ(0deg);
+  }
 }
+
+.ctrlY{
+  &:active ~ .box{
+    transform:  perspective(1000px) rotateX(0deg) rotateY(360deg) rotateZ(0deg);
+  }
+}
+
+.ctrlZ{
+  &:active ~ .box{
+    transform:  perspective(1000px) rotateX(0deg) rotateY(0deg) rotateZ(360deg);
+  }
+}
+
 
 .box{
-  width: 100%;
-  height: 100%;
-  perspective-origin: 500px -300px;
-  perspective: 1500px;
+  // &:hover{
+  //   transform: perspective(1000px) rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+  // }
+  background-color: #FF6969;
+  position:absolute;
+  top: 60px;
+  left: 400px;
+  transform-style: preserve-3d;
+  width: 400px;
+  height: 400px;
+  perspective-origin: 200px 200px;
+  // transform: perspective(1000px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  position: relative;
+  transition: 5s;
 
-  .surface1{
+  [class*="surface"]{
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    background:#0001;
+    box-shadow:
+    inset 0 0 1px #FF6969;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    // transform: var(--rotate), translateZ(100px);
   }
-  .surface2{
-    transform:translateY(100px) translateZ(100px) rotateX(90deg);
+  .surface1{ //back
+    transform: rotatey(180deg) translatez(100px);
   }
-  .surface3{
-    transform: translateX(-100px) translateZ(100px) rotateY(90deg);
+  .surface2{ //bottom
+    transform: rotateX(-90deg) translatez(100px);
+  }
+  .surface3{ // left
+    transform: rotateY(-90deg) translatez(100px);
   }
   .surface4{
-    transform: translateY(-100px) translateZ(100px) rotateX(90deg);
+    transform: rotateX(90deg) translatez(100px);
   }
-  .surface5{
-    transform: translateX(100px) translateZ(100px) rotateY(90deg);
+  .surface5{ //right
+    transform: rotateY(90deg) translatez(100px);
   }
   .surface6{
-    transform: translateZ(200px);
+    transform: rotate(0deg) translatez(100px);
   }
   .bigsurface{
     width: 400px;
     height: 400px;
     border: 3px solid;
     transform-origin: 0 0 0;
-    transform: rotateX(45deg)  rotateY(35.26deg);// rotateZ(45deg) translateX(-60px);
+    transform: rotateX(45deg)  rotateY(35.26deg)translateX(-50px);
     background-color: #FF696988;
     z-index: 0;
   }
