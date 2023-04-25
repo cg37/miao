@@ -6,7 +6,132 @@
   console.log(a + b)
 </script>
 
-<script id="ch0103/02">
+<script id="ch0103/02" type="finished">
+  var a = prompt("Plz input a:" )
+  var b = prompt("Plz input b:")
+  var c = prompt("Plz input c:")
+  a = Number(a)
+  b = Number(b)
+  c = Number(c)
 
+  console.log((a + b) * c)
 </script>
 
+<script id="ch0103/03" type="finished">
+  var a = prompt("Plz input a:" )
+  var b = prompt("Plz input b:")
+  var c = prompt("Plz input c:")
+  a = Number(a)
+  b = Number(b)
+  c = Number(c)
+
+  console.log((a + b) / c)
+</script>
+<script id="ch0103/04" type="finished">
+  var a = + prompt("plz input dividend")
+  var b = + prompt("plz input divisor")
+
+
+  console.log(Math.trunc(a / b), a % b);
+</script>
+
+<script id="ch0103/05" type="finished">
+  var a = + prompt("plz input dividend")
+  var b = + prompt("plz input divisor")
+
+  console.log((a/b).toFixed(9))
+</script>
+
+<script id="ch0103/06" type="finished">
+  var a = + prompt("plz input 确诊数")
+  var b = + prompt("plz input 死亡数")
+
+  console.log(((b/a).toFixed(5)) * 100 + '%')
+</script>
+
+<script id="ch0103/07" type="finished">
+  var a = + prompt("plz input a")
+  var b = + prompt("plz input b")
+  var c = + prompt("Plz input c")
+  var d = + prompt("Plz input d")
+  var x = + prompt("plz input x")
+
+  console.log(+ (a * (x ** 3) + b * (x ** 2) + c * x + d).toFixed(7))
+</script>
+
+<script id="ch0103/08" type="finished">
+  var f = + prompt("plz input 华氏度")
+  console.log(+ (5*(f - 32)/9).toFixed(5))
+</script>
+
+<script id="ch0103/09" type="finished">
+  var r = + prompt("plz input 圆的半径")
+  console.log(r*2, + (Math.PI * r * 2).toFixed(4), + (Math.PI*Math.pow(r,2)).toFixed(4))
+</script>
+
+<script id="ch0103/10" type="finished">
+  var r1= + prompt("plz input r1")
+  var r2= + prompt("plz input r2")
+
+  console.log( + (1 / (1 / r1 + 1 / r2)).toFixed(2))
+</script>
+
+<script id="ch0103/11" type="finished">
+  var a = + prompt("Plz input a")
+  var b = + prompt("Plz input b")
+
+  console.log(+ (a % b).toFixed(4));
+</script>
+
+<script id="ch0103/12" type="finished">
+  var r = + prompt("plz input r")
+
+  console.log(+ (4 / 3 * Math.PI * r**3).toFixed(2))
+</script>
+
+<script id="ch0103/13" type="finished">
+  var n = + prompt("Plz input n")
+  console.log('' + n % 10 + ((n % 100 - n % 10) / 10) + (Math.trunc(n / 100)))
+  // console.log((n % 100 - n % 10) / 10)
+  // console.log(Math.trunc(n / 100));
+</script>
+
+<script id="ch0103/14" type="finished">
+  var h = + prompt("Plz input h(cm)")
+  var r = + prompt("Plz input r(cm)")
+  console.log( Math.ceil(Math.PI * r ** 2 * h / 1000 / 20))
+</script>
+
+<script id="ch0103/15" type="finished">
+  var n = + prompt("一箱n个苹果")
+  var x = + prompt("每x小时吃一个")
+  var y = + prompt("过了y小时")
+
+  console.log(Math.floor(n - y / x))
+</script>
+
+<script id="ch0103/16" type="finished">
+  var x1 = + prompt("x1")
+  var y1 = + prompt("y1")
+  var x2 = + prompt("x2")
+  var y2 = + prompt("y2")
+
+  console.log( + (Math.sqrt(Math.pow(x2-x1, 2)+Math.pow(y2-y1, 2))).toFixed(3))
+</script>
+
+<script id="ch0103/17">
+  var x1 = + prompt("x1")
+  var y1 = + prompt("y1")
+  var x2 = + prompt("x2")
+  var y2 = + prompt("y2")
+  var x3 = + prompt("x3")
+  var y3 = + prompt("y3")
+
+  var s1 = Math.sqrt(Math.pow(x2-x1, 2)+Math.pow(y2-y1, 2))
+  var s2 = Math.sqrt(Math.pow(x3-x2, 2)+Math.pow(y3-y2, 2))
+  var s3 = Math.sqrt(Math.pow(x1-x3, 2)+Math.pow(y1-y3, 2))
+
+  var s = (s1 + s2 + s3) / 2;
+
+  console.log(Math.sprt(s * (s - s1)(s - s2)(s - s3)))
+</script>
