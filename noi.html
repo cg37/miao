@@ -237,30 +237,50 @@
     console.log("NO")
   }
 </script>
-<script id="ch0104/09" type="finished">
+<script id="ch0104/09" type="">
+  //
+  // if (n % 3 == 0) {
+  //   if (n % 5 == 0) {
+  //     if (n % 7 == 0) {
+  //       console.log(3, 5, 7)
+  //     } else{
+  //       console.log(3, 5)
+  //     }
+  //   } else if (n % 7 == 0) {
+  //     console.log(3, 7)
+  //   } else {
+  //     console.log(3)
+  //   }
+  // } else if (n % 5 == 0) {
+  //   if (n % 7 == 0) {
+  //     console.log(5, 7)
+  //   } else {
+  //     console.log(5)
+  //   }
+  // } else if(n % 7 ==0){
+  //     console.log(7)
+  // } else {
+  //   console.log('n');
+  // }
   var n = + prompt("Plz input n")
+  var flag = false
   if (n % 3 == 0) {
-    if (n % 5 == 0) {
-      if (n % 7 == 0) {
-        console.log(3, 5, 7)
-      } else{
-        console.log(3, 5)
-      }
-    } else if (n % 7 == 0) {
-      console.log(3, 7)
-    } else {
-      console.log(3)
-    }
-  } else if (n % 5 == 0) {
-    if (n % 7 == 0) {
-      console.log(5, 7)
-    } else {
-      console.log(5)
-    }
-  } else if(n % 7 ==0){
-      console.log(7)
-  } else {
-    console.log('n');
+    console.log(3)
+    flag = true
+  }
+
+  if (n % 5 == 0) {
+    console.log(5)
+    flag = true
+  }
+
+  if (n % 7 == 0) {
+    console.log(7)
+    flag = true
+  }
+
+  if (flag === false) {
+    console.log('n')
   }
 </script>
 <script id="ch0104/10" type="finished">
@@ -373,8 +393,7 @@
     console.log('no')
   }
 </script>
-<script id="ch0104/19" type="">
-  debugger
+<script id="ch0104/19" type="finished">
   var x = + prompt("Plz input x")
   var y = + prompt("Plz input y")
   var operator = prompt("Plz input operator")
