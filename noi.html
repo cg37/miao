@@ -159,3 +159,259 @@
   console.log(Math.pow(2, n))
 
 </script>
+
+<script id="ch0104/01" type="finished">
+  debugger
+  var a = + prompt("整数n")
+  if(a > 0){
+    console.log("positive")
+  } else if (a < 0) {
+    console.log("negative")
+  } else {
+    console.log("zero");
+  }
+</script>
+
+<script id="ch0104/02" type="finished">
+  var a = + prompt("Plz input a")
+  if (a < 0) {
+    console.log(Math.abs(a))
+  } else if (a > 0){
+    console.log(a)
+  }else {
+    console.log(0)
+  }
+</script>
+
+<script id="ch0104/03" type="finished">
+  var a = + prompt("Plz input a")
+  if(a % 2 == 0) {
+    console.log("even")
+  } else {
+    console.log("odd")
+  }
+</script>
+
+<script id="ch0104/04" type="finished">
+  var a = prompt("input char").charCodeAt(0)
+  if(a % 2 == 0) {
+    console.log("NO")
+  } else {
+    console.log("YES")
+  }
+</script>
+<script id="ch0104/05" type="finished">
+  var x = + prompt("Plz input x")
+  var y = + prompt("Plz input y")
+  if( x > y) {
+    console.log(">")
+  } else if (x < y) {
+    console.log("<")
+  } else {
+    console.log("=")
+  }
+</script>
+
+<script id="ch0104/06" type="finished">
+  var x = + prompt("Plz input x")
+  if (x >= 10 && x <=99) {
+    console.log(1)
+  } else {
+    console.log(0)
+  }
+</script>
+<script id="ch0104/07" type="finished">
+  var lucky = + prompt("Plz input lucky")
+  var keepon = + prompt("Plz input keepon")
+  if (lucky >= 10 || keepon >=20) {
+    console.log(1)
+  } else {
+    console.log(0)
+  }
+</script>
+<script id="ch0104/08" type="finished">
+  var n = + prompt("Plz input n")
+  if (n % 3 == 0 && n % 5 == 0) {
+    console.log("YES")
+  } else {
+    console.log("NO")
+  }
+</script>
+<script id="ch0104/09" type="finished">
+  var n = + prompt("Plz input n")
+  if (n % 3 == 0) {
+    if (n % 5 == 0) {
+      if (n % 7 ==0) {
+        console.log(3, 5, 7)
+      } else {
+        console.log(3, 5)
+      }
+    } else {
+      console.log(3)
+    }
+
+  } else {
+    console.log('n');
+  }
+</script>
+<script id="ch0104/10" type="finished">
+  var x = + prompt("Plz input English")
+  var y = + prompt("Plz input Math")
+  if ((x >60 && y < 60) || (x< 60 && y > 60)) {
+    console.log(1)
+  } else {
+    console.log(0)
+  }
+</script>
+<script id="ch0104/11" type="finished">
+  var n = + prompt("Plz input n")
+  if (n == 1 || n == 3 || n == 5) {
+    console.log("NO")
+  } else {
+    console.log("YES")
+  }
+</script>
+<script id="ch0104/12" type="finished">
+  var distance = + prompt("Plz input distance")
+  var walktime = distance / 1.2
+  var biketime = distance / 3 + 27 + 23
+  if (walktime > biketime) {
+    console.log("Bike")
+  } else if( biketime > walktime) {
+    console.log("Walk")
+  } else {
+    console.log("All")
+  }
+</script>
+<script id="ch0104/13" type="finished">
+  var x = + prompt("Plz input x")
+  var y = 0
+  if (x >= 0 && x < 5) {
+    y = -1 * x + 2.5
+  } else if (x < 10) {
+    y = 2 - 1.5 * (x - 3) ** 2
+  } else {
+    y = x / 2 - 1.5
+  }
+  console.log(y.toFixed(3))
+</script>
+<script id="ch0104/14" type="finished">
+  var weight = + prompt("Plz input weight")
+  var urgent = prompt("Plz input isurgent?")
+  var price = 0
+  if (weight <= 1000) {
+    price = 8
+  } else {
+    price = 8 + Math.ceil((weight - 1000) / 500) * 4
+  }
+  if (urgent == 'y') {
+    price += 5
+  }
+  console.log(price)
+
+</script>
+<script id="ch0104/15" type="finished">
+  var x = + prompt("Plz input x")
+  var y = + prompt("Plz input y")
+  var z = + prompt("Plz input z")
+  if (x > y) {
+    if (x > z) {
+      console.log(x)
+    } else {
+      console.log(z)
+    }
+  } else if (y > x) {
+    if (y > z) {
+      console.log(y)
+    } else {
+      console.log(z)
+    }
+  }
+
+</script>
+<script id="ch0104/16" type="finished">
+  var x = + prompt("Plz input x")
+  var y = + prompt("Plz input y")
+  var z = + prompt("Plz input z")
+  if (x + y > z && Math.abs(x - y) < z) {
+    if (z + y > x && Math.abs(z - y) < x){
+      if (x + z > y && Math.abs(x - z) < y) {
+        console.log("yes")
+      } else {
+        console.log("no")
+      }
+    } else {
+      console.log("no")
+    }
+  } else {
+      console.log("no")
+  }
+</script>
+<script id="ch0104/17" type="finished">
+  var x = + prompt("Plz input x")
+  if ((x % 4 == 0 && x % 100 != 0) || x % 400 == 0) {
+    console.log("Y")
+  } else {
+    console.log("N")
+  }
+</script>
+<script id="ch0104/18" type="finished">
+  var x = + prompt("Plz input x")
+  var y = + prompt("Plz input y")
+  if ( (x >=-1 && x <=1) && (y >=-1 && y <=1)){
+    console.log('yes')
+  } else {
+    console.log('no')
+  }
+</script>
+<script id="ch0104/19" type="finished">
+  var x = + prompt("Plz input x")
+  var y = + prompt("Plz input y")
+  var operator = prompt("Plz input operator")
+  if (operator = '+') {
+    console.log(x + y)
+  } else if (operator = '-') {
+    console.log(x - y)
+  } else if (operator = '*') {
+    console.log(x * y)
+  } else if (operator == '/') {
+    if (y = 0) {
+      console.log("Divided by zero!")
+    } else {
+      console.log(x / y)
+    }
+  } else {
+    console.log("Invalid operator!")
+  }
+</script>
+<script id="ch0104/20" type="finished">
+  var a = + prompt("Plz input a")
+  var b = + prompt("Plz input b")
+  var c = + prompt("Plz input c")
+
+  var delta = b * b - 4 * a * c
+  var ans = 0
+  var ans_1
+  if (delta == 0) {
+    ans = -1 * b / 2 * a
+    console.log("x1=x2=" + ans)
+  } else if (delta > 0) {
+    ans = (-1 * b + Math.sqrt(delta)) / (2 * a)
+    ans_1 = (-1 * b - Math.sqrt(delta)) / (2 * a)
+    console.log('x1=' + ans + 'x2=' + ans_1)
+  } else {
+    var real =(-1 * b / (2 * a)).toFixed(5)
+    var inscriber = (Math.sqrt(4 * a * c - b ** 2) / (2 * a)).toFixed(5)
+    console.log('x1=' + real + '+' + inscriber + 'i' + ';' + 'x2=' + real + '-' + inscriber + 'i')
+  }
+
+</script>
+<script id="ch0104/21" type="">
+  var n = + prompt("一箱n个苹果")
+  var x = + prompt("每x小时吃一个")
+  var y = + prompt("过了y小时")
+
+  console.log(Math.floor(n - y / x))
+</script>
+
+
