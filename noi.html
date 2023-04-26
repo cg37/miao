@@ -241,15 +241,24 @@
   var n = + prompt("Plz input n")
   if (n % 3 == 0) {
     if (n % 5 == 0) {
-      if (n % 7 ==0) {
+      if (n % 7 == 0) {
         console.log(3, 5, 7)
-      } else {
+      } else{
         console.log(3, 5)
       }
+    } else if (n % 7 == 0) {
+      console.log(3, 7)
     } else {
       console.log(3)
     }
-
+  } else if (n % 5 == 0) {
+    if (n % 7 == 0) {
+      console.log(5, 7)
+    } else {
+      console.log(5)
+    }
+  } else if(n % 7 ==0){
+      console.log(7)
   } else {
     console.log('n');
   }
@@ -364,18 +373,19 @@
     console.log('no')
   }
 </script>
-<script id="ch0104/19" type="finished">
+<script id="ch0104/19" type="">
+  debugger
   var x = + prompt("Plz input x")
   var y = + prompt("Plz input y")
   var operator = prompt("Plz input operator")
-  if (operator = '+') {
+  if (operator == '+') {
     console.log(x + y)
-  } else if (operator = '-') {
+  } else if (operator == '-') {
     console.log(x - y)
-  } else if (operator = '*') {
+  } else if (operator == '*') {
     console.log(x * y)
   } else if (operator == '/') {
-    if (y = 0) {
+    if (y == 0) {
       console.log("Divided by zero!")
     } else {
       console.log(x / y)
@@ -406,7 +416,7 @@
   }
 
 </script>
-<script id="ch0104/21" type="">
+<script id="ch0104/21" type="finished">
   var n = + prompt("一箱n个苹果")
   var x = + prompt("每x小时吃一个")
   var y = + prompt("过了y小时")
