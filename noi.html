@@ -237,7 +237,7 @@
     console.log("NO")
   }
 </script>
-<script id="ch0104/09" type="">
+<script id="ch0104/09" type="finished">
   //
   // if (n % 3 == 0) {
   //   if (n % 5 == 0) {
@@ -283,10 +283,17 @@
     console.log('n')
   }
 </script>
-<script id="ch0104/10" type="finished">
+<script id="ch0104/10" type="">
   var x = + prompt("Plz input English")
   var y = + prompt("Plz input Math")
-  if ((x >60 && y < 60) || (x< 60 && y > 60)) {
+  var flag = 0
+  if (x < 60) {
+    flag += 1
+  }
+  if (y < 60) {
+    flag += 1
+  }
+  if (flag = 1) {
     console.log(1)
   } else {
     console.log(0)
