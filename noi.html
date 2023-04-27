@@ -548,21 +548,17 @@
 </script>
 <script id="ch0105/07" type="finished">
   var n = + prompt("day:")
-  var count = n * 3
+  var count = n
   var gold = 0
   var silver = 0
   var copper = 0
 
   while (count--) {
-    if (count % 3 == 0) {
-      copper = copper + +prompt('奖牌')
-    }
-    if ((count - 1) % 3 == 0) {
-      silver = silver + +prompt('奖牌')
-    }
-    if ((count - 2) % 3 == 0) {
-      gold = gold + +prompt('奖牌')
-    }
+    gold = gold + +prompt('gold')
+    silver = silver + +prompt('silver')
+    copper = copper + +prompt('copper')
+
+
   }
   console.log(gold, silver, copper, gold + silver + copper)
 </script>
