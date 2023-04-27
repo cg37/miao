@@ -283,7 +283,7 @@
     console.log('n')
   }
 </script>
-<script id="ch0104/10" type="">
+<script id="ch0104/10" type="finished">
   var x = + prompt("Plz input English")
   var y = + prompt("Plz input Math")
   var flag = 0
@@ -346,23 +346,21 @@
   console.log(price)
 
 </script>
-<script id="ch0104/15" type="finished">
+<script id="ch0104/15" type="">
   var x = + prompt("Plz input x")
   var y = + prompt("Plz input y")
   var z = + prompt("Plz input z")
-  if (x > y) {
-    if (x > z) {
-      console.log(x)
-    } else {
-      console.log(z)
-    }
-  } else if (y > x) {
-    if (y > z) {
-      console.log(y)
-    } else {
-      console.log(z)
-    }
+  var max = x
+
+  if (y > max) {
+    max = y
   }
+
+  if (z > max) {
+    max = z
+  }
+
+  console.log(max)
 
 </script>
 <script id="ch0104/16" type="finished">
