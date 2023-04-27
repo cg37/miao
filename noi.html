@@ -346,7 +346,7 @@
   console.log(price)
 
 </script>
-<script id="ch0104/15" type="">
+<script id="ch0104/15" type="finished">
   var x = + prompt("Plz input x")
   var y = + prompt("Plz input y")
   var z = + prompt("Plz input z")
@@ -446,6 +446,153 @@
   var y = + prompt("过了y小时")
 
   console.log(Math.floor(n - y / x))
+</script>
+
+
+<script id="game" type="finished">
+  var secret =Math.trunc(Math.random() * 100)
+  console.log(secret)
+  var x = prompt("猜:")
+
+  while(x != secret ) {
+    if (x == 'quit') {
+      break;
+    }
+    x = prompt("再猜")
+
+  }
+
+  console.log("猜对了")
+  console.log(x)
+</script>
+
+
+<script id="ch0105/01" type="finished">
+  var stucount = + prompt("学生个数")
+  var count = stucount
+  var age = 0
+  var average = 0
+
+  while (count--) {
+    age = age + Number(prompt('age'))
+    average = age / stucount
+  }
+  console.log(average)
+</script>
+
+<script id="ch0105/02" type="finished">
+  var n = 12
+  var sum = 0
+  var x = 0
+  while (n--) {
+    x = + prompt("月末结余")
+    sum = x + sum
+  }
+  console.log('$',(sum/12).toFixed(2))
+</script>
+
+<script id="ch0105/03" type="finished">
+  var n = + prompt("n")
+  var count = n
+  var sum = 0
+  var average = 0
+
+  while (count--) {
+    sum = sum + Number(prompt('date'))
+    average = sum / n
+  }
+  console.log(average.toFixed(4))
+</script>
+
+<script id="ch0105/04" type="finished">
+  var n = + prompt("n")
+  var count = n
+  var average = 0
+  var sum = 0
+
+  while (count--) {
+    sum = sum + Number(prompt('date'))
+    average = sum / n
+  }
+  console.log(sum, + average.toFixed(5))
+
+</script>
+
+<script id="ch0105/05" type="finished">
+  var n = + prompt("n")
+  var score = 0
+  var max = + prompt("score:")
+  n--
+  while (n--) {
+    score = + prompt("score:")
+    if (score > max){
+      max = score
+    }
+  }
+  console.log(max)
+</script>
+<script id="ch0105/06" type="finished">
+  var n = + prompt("n")
+  var score = 0
+  var max = + prompt("score:")
+  var min = max
+  n--
+  while (n--) {
+    score = + prompt("score:")
+    if (score > max){
+      max = score
+    }
+    if (score < min) {
+      min = score
+    }
+  }
+
+  console.log(max - min)
+
+</script>
+<script id="ch0105/07" type="">
+  var n = + prompt("day:")
+  var count = n * 3
+  var gold = 0
+  var silver = 0
+  var copper = 0
+
+  while (count--) {
+    if (count % 3 == 0) {
+      copper = copper + +prompt('奖牌')
+    }
+    if ((count - 1) % 3 == 0) {
+      silver = silver + +prompt('奖牌')
+    }
+    if ((count - 2) % 3 == 0) {
+      gold = gold + +prompt('奖牌')
+    }
+  }
+  console.log(gold, silver, copper, gold + silver + copper)
+</script>
+<script id="ch0105/01" type="finished">
+  var x = + prompt("")
+  var y = + prompt("")
+
+  console.log()
+</script>
+<script id="ch0105/01" type="finished">
+  var x = + prompt("")
+  var y = + prompt("")
+
+  console.log()
+</script>
+<script id="ch0105/01" type="finished">
+  var x = + prompt("")
+  var y = + prompt("")
+
+  console.log()
+</script>
+<script id="ch0105/01" type="finished">
+  var x = + prompt("")
+  var y = + prompt("")
+
+  console.log()
 </script>
 
 
