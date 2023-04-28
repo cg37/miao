@@ -637,49 +637,100 @@
   console.log(count)
 </script>
 
-<script id="ch0105/13" type="">
-  var x = + prompt("")
-  var y = + prompt("")
+<script id="ch0105/13" type="finished">
+  var a = + prompt("a:")
+  var n = + prompt("n")
+  var ans = 1
 
+  for (var i = 0; i < n; i++) {
+    ans = ans * a
+  }
+  console.log(ans)
+</script>
+
+<script id="ch0105/14" type="finished">
+  var people = + prompt("people")
+  var n = + prompt("after n years")
+
+  while (n--) {
+    people = people + people * 0.001
+  }
+
+  console.log(people.toFixed(4))
+</script>
+
+<script id="ch0105/15" type="finished">
+  var interest_rate = + prompt("interest rate")
+  var captial = + prompt("captial")
+  var years = + prompt("after _ years")
+
+  while (years--) {
+    captial = captial + captial * (interest_rate / 100)
+  }
+  console.log(Math.trunc(captial))
+</script>
+
+<script id="ch0105/16" type="finished">
+  // debugger
+  var salary = + prompt("年薪")
+  var growth_rate = + prompt("房价增速")
+  var price = 200
+
+  for (var i = 1; i < 22; i++) {
+    if ((salary * i) > price){
+      break
+    }
+    price = price + price * (growth_rate / 100)
+  }
+  if (i > 20) {
+    console.log("Impossible")
+  }
+  console.log(i)
+</script>
+
+<script id="ch0105/17" type="finished">
+  var n = + prompt("n:")
+  var n1 = 1
+  var n2 = 1
+  var flag = 0
+  if (n < 3) {
+    console.log(1)
+  } else {
+      for(var i = 0; i < n - 2; i++) {
+        flag = n1 + n2
+        n1 = n2
+        n2 = flag
+      }
+    console.log(flag)
+  }
+
+</script>
+
+<script id="ch0105/18" type="finished">
+  var n = + prompt("group_data_test")
+  var compare = 0
+
+  for (var i = 0; i < n; i++){
+    var all = + prompt("all")
+    var good = + prompt("good")
+    if (i == 0) {
+      compare = good / all
+      continue
+    } else {
+      var compare_0 = good / all
+      if (compare - compare_0 > 0.05){
+        console.log('worse')
+      } else if (compare_0 - compare > 0.05) {
+        console.log('better')
+      } else {
+        console.log('same')
+      }
+    }
+  }
   console.log()
 </script>
 
-<script id="ch0105/01" type="finished">
-  var x = + prompt("")
-  var y = + prompt("")
-
-  console.log()
-</script>
-
-<script id="ch0105/01" type="finished">
-  var x = + prompt("")
-  var y = + prompt("")
-
-  console.log()
-</script>
-
-<script id="ch0105/01" type="finished">
-  var x = + prompt("")
-  var y = + prompt("")
-
-  console.log()
-</script>
-
-<script id="ch0105/01" type="finished">
-  var x = + prompt("")
-  var y = + prompt("")
-
-  console.log()
-</script>
-
-<script id="ch0105/01" type="finished">
-  var x = + prompt("")
-  var y = + prompt("")
-
-  console.log()
-</script>
-
-<script id="ch0105/01" type="finished">
+<script id="ch0105/19" type="">
   var x = + prompt("")
   var y = + prompt("")
 
