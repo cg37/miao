@@ -649,14 +649,14 @@
 </script>
 
 <script id="ch0105/14" type="finished">
-  var people = + prompt("people")
+  var base = + prompt("base")
   var n = + prompt("after n years")
 
   while (n--) {
-    people = people + people * 0.001
+    base = base + base * 0.001
   }
 
-  console.log(people.toFixed(4))
+  console.log(base.toFixed(4))
 </script>
 
 <script id="ch0105/15" type="finished">
@@ -696,7 +696,7 @@
   if (n < 3) {
     console.log(1)
   } else {
-      for(var i = 0; i < n - 2; i++) {
+      for(var i = 2; i < n; i++) {
         flag = n1 + n2
         n1 = n2
         n2 = flag
@@ -730,77 +730,332 @@
   console.log()
 </script>
 
-<script id="ch0105/19" type="">
-  var x = + prompt("")
-  var y = + prompt("")
+<script id="ch0105/19" type="finished">
+  var n = + prompt("屋顶数")
+  var totaltime = 0
+  while (n--) {
+    var posx = + prompt("x position")
+    var posy = + prompt("y position")
+    var people = + prompt('prople')
+    var distance = Math.sqrt(posx * posx + posy * posy) * 2
+    totaltime += Math.ceil((distance / 50) + (people * 1) + (0.5 * people))
+  }
+  console.log(totaltime)
+</script>
+
+<script id="ch0105/20" type="finished">
+  var height = + prompt("height")
+  total = -height
+  for (var i = 0; i < 10; i++) {
+    total += height * 2
+    height = height / 2
+  }
+
+  console.log(total.toFixed(4))
+  console.log(height.toFixed(7))
+
+</script>
+
+<script id="ch0105/21" type="finished">
+  var x = + prompt("x")
+
+  while (x != 1) {
+    if (x % 2 == 1) {
+      var ans = x * 3 + 1
+      console.log(x + '*3+1=' + ans)
+    } else {
+      var ans = x / 2
+      console.log(x + '/2=' + x / 2)
+    }
+    x = ans
+  }
+  console.log('End')
+</script>
+
+<script id="ch0105/22" type="finished">
+  debugger
+  var money = 0;  //money in hand
+  var stock = 0   //money in card
+  var getStockFlag = true
+  for(var month = 1; month <= 12; month++) {
+    money = money + 300
+    var budget = + prompt('budget')
+    if (budget > money) { //预算大于钱
+      console.log(-month)
+      getStockFlag = false
+      break;
+    } else {
+      money = money - budget
+    }
+
+    if (money >= 100) { //花完后手上的多余100$
+      stock = stock + (money - (money % 100))
+      money = money % 100
+    }
+  }
+  if (getStockFlag) {
+    console.log(money + stock * 1.2)
+  }
+
+</script>
+
+<script id="ch0105/23" type="finished">
+  var lastpill = + prompt("totalpill") //剩下的药片
+  var patient = + prompt("patient")
+  var count = 0
+  for (var i = 0; i < patient; i++) {
+    var needpill = + prompt("need mount")
+    if (needpill > lastpill) {
+      count++
+      continue
+    }
+    lastpill = lastpill - needpill
+  }
+  console.log(count)
+</script>
+
+<script id="ch0105/24" type="finished">
+  var nhours = + prompt("nhours")
+  var normaltime = 0
+
+  for(var i = 0; i < nhours; i++) {
+    var highpressure = + prompt('highpressure')
+    var lowpressure = + prompt('lowpressure')
+
+    if (highpressure >= 90 &&
+        highpressure <=140 &&
+        lowpressure >= 60 &&
+        lowpressure <=90) {
+
+      normaltime++
+    } else {
+
+      normaltime = 0
+      continue
+    }
+  }
+
+  console.log(normaltime)
+</script>
+
+<script id="ch0105/25" type="finished">
+
+  // var decimal_unit = decimal % 10
+  // var decimal_ten = ((decimal - decimal_unit) / 10) % 10
+  // var decimal_hundred = ((decimal - decimal_ten * 10 - decimal_unit) / 100) % 10
+
+  // var seven_unit = decimal % 7
+  // var seven_ten = ((decimal - seven_unit) / 7) % 7
+  // var seven_hundred = ((decimal - seven_ten * 7 - seven_unit) / 7 / 7) % 7
+
+  // var nine_unit = decimal % 9
+  // var nine_ten = ((decimal - nine_unit) / 9) % 9
+  // var nine_hundred = ((decimal - nine_ten * 9 - nine_unit) / 9 / 9) % 9
+
+  for (var decimal = 81; decimal < 513; decimal ++) {
+    var seven_unit = decimal % 7
+    var seven_ten = ((decimal - seven_unit) / 7) % 7
+    var seven_hundred = ((decimal - seven_ten * 7 - seven_unit) / 7 / 7) % 7
+
+    var nine_unit = decimal % 9
+    var nine_ten = ((decimal - nine_unit) / 9) % 9
+    var nine_hundred = ((decimal - nine_ten * 9 - nine_unit) / 9 / 9) % 9
+
+    if (nine_hundred == seven_unit && seven_ten == nine_ten && nine_unit == seven_hundred){
+      console.log(decimal)
+      console.log('' + seven_hundred + seven_ten + seven_unit)
+      console.log('' + nine_hundred + nine_ten + nine_unit)
+    }
+  }
+
+</script>
+
+<script id="ch0105/26" type="finished">
+  var count = + prompt("count")
+  var ans = 0
+  for (var i = 0; i < count; i++) {
+    var decimal = + prompt("")
+    var decimal_unit = decimal % 10
+    var decimal_ten = ((decimal - decimal_unit) / 10) % 10
+    var decimal_hundred = ((decimal - decimal_ten * 10 - decimal_unit) / 100) % 10
+    var decimal_thousand = ((decimal - decimal_hundred * 100 - decimal_ten * 10 - decimal_unit) / 1000) % 10
+    if (decimal_unit - decimal_thousand - decimal_hundred - decimal_ten > 0) {
+      ans++
+    }
+
+  }
+  console.log(ans)
+</script>
+
+<script id="ch0105/27" type="finished">
+  var targetSum = + prompt("targetsum")
+  var sum = 0
+  var count = 1
+  for(;;){
+    sum = sum + 1 / count
+    if (sum > targetSum) {
+      break
+    }
+    count++
+  }
+  console.log(count)
+</script>
+
+<script id="ch0105/28" type="finished">
+  var number = + prompt("number")
+  for(;;){
+    if(number == 0) {
+      break;
+    }
+    console.log(number % 10)
+    number = Math.trunc(number / 10)
+  }
+
+</script>
+
+<script id="ch0105/29" type="finished">
+  var number = + prompt("number")
+  var numberOrigin = number
+  var count = 0
+  var ans = 0
+
+  for(;;){
+    number = Math.trunc(number / 10)
+    count++
+    if(number == 0) {
+      break;
+    }
+  }
+
+  while(count--){
+    ans = (Math.pow(10, count) * (numberOrigin % 10)) + ans
+    numberOrigin = Math.trunc(numberOrigin / 10)
+  }
+  console.log(ans)
+
+</script>
+
+<script id="ch0105/30" type="finished">
+  var number = + prompt("number")
+  var countof3 = + prompt("count of 3")
+  var count = 0
+
+  if (number % 19 === 0) {
+    for(;;){
+      if(number == 0) {
+        break;
+      }
+
+      if(number % 10 == 3) {
+        count ++
+      }
+      number = Math.trunc(number / 10)
+    }
+    if (count == countof3) {
+      console.log('YES')
+    } else {
+      console.log('NO')
+    }
+  } else {
+      console.log('NO')
+    }
+
+
+</script>
+
+<script id="ch0105/31" type="finished">
+  var NLight = + prompt("N light")
+  var MPeople= + prompt("people count")
+
+
+  for (var n = 1; n <= NLight; n++) {
+    var flag = 0
+    for (var m = 1; m <= MPeople; m++) {
+
+      if (n % m == 0) {
+        flag++
+      }
+    }
+    if (flag % 2 != 0) {
+      console.log(n+',')
+    }
+  }
+
+</script>
+<script id="ch0105/32" type="finished">
+  var count = + prompt("count")
+
+  var p1 = 1
+  var q1 = 2
+
+  var sum = 0
+  var temp = 0
+  while (count--) {
+    sum = sum + q1 / p1
+    temp = p1 + q1
+    p1 = q1
+    q1 = temp
+  }
+  console.log(sum.toFixed(4))
+</script>
+<script id="ch0105/33" type="finished">
+  var count = + prompt("count")
+  var signalCount = 0
+
+  var sum = 0
+
+  for(var i = 1; i <= count; i++) {
+    if (i % 2 == 1) {
+      sum = sum + 1 / i
+    } else {
+      sum = sum - 1 / i
+    }
+  }
+
+  console.log(sum.toFixed(4))
+</script>
+<script id="ch0105/34" type="">
+  debugger
+  var count = + prompt("count")
+  var sum = 1
+
+  for(var i = 1; i <= count; i++) {
+    while(i--) {
+      sum = sum * i
+    }
+    console.log(i, sum)
+  }
+
+  console.log()
+</script>
+<script id="ch0105/29" type="finished">
+  var count = + prompt("count")
+  var count = + prompt("count")
 
   console.log()
 </script>
 
-<script id="ch0105/01" type="finished">
-  var x = + prompt("")
-  var y = + prompt("")
+<script id="ch0105/29" type="finished">
+  var count = + prompt("count")
+  var count = + prompt("count")
 
   console.log()
 </script>
 
-<script id="ch0105/01" type="finished">
-  var x = + prompt("")
-  var y = + prompt("")
+<script id="ch0105/29" type="finished">
+  var count = + prompt("count")
+  var count = + prompt("count")
 
   console.log()
 </script>
 
-<script id="ch0105/01" type="finished">
-  var x = + prompt("")
-  var y = + prompt("")
+<script id="ch0105/29" type="finished">
+  var count = + prompt("count")
+  var count = + prompt("count")
 
   console.log()
 </script>
 
-<script id="ch0105/01" type="finished">
-  var x = + prompt("")
-  var y = + prompt("")
-
-  console.log()
-</script>
-
-<script id="ch0105/01" type="finished">
-  var x = + prompt("")
-  var y = + prompt("")
-
-  console.log()
-</script>
-
-<script id="ch0105/01" type="finished">
-  var x = + prompt("")
-  var y = + prompt("")
-
-  console.log()
-</script>
-
-<script id="ch0105/01" type="finished">
-  var x = + prompt("")
-  var y = + prompt("")
-
-  console.log()
-</script>
-
-<script id="ch0105/01" type="finished">
-  var x = + prompt("")
-  var y = + prompt("")
-
-  console.log()
-</script>
-
-<script id="ch0105/01" type="finished">
-  var x = + prompt("")
-  var y = + prompt("")
-
-  console.log()
-</script>
-
-<script id="ch0105/01" type="finished">
 
 
 
