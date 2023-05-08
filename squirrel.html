@@ -1,0 +1,77 @@
+<script src="./jacques_journal.js">  </script>
+<script>
+function phi(table) {
+  ans = (table[0] * table[3] - table[1] * table[2])
+  /
+  Math.sqrt((table[0] + table[1])
+            *
+            (table[0] + table[2])
+            *
+            (table[1] + table[3])
+            *
+            (table[2] + table[3]))
+  return ans;
+}
+
+function hasEvent(event, entry) {  //形参event 事件, entry 数据JOURNAL 中的某一组数据
+  if (entry.events.indexOF(event) === -1) //events 中不存在event
+    return false
+  else
+    return true
+}
+function tableFor (event, journal) { //jouranl == JOURANL
+  let table = [0, 0, 0, 0]
+  for (let i = 0; i < journal.length; i++) {
+    let singledayevents = journal[i]
+    let index = 0
+
+    if(singledayevents.events.includes(event)) {
+      index = index + 1
+    }
+    if(singledayevents.squirrel){
+      index = index + 2
+    }
+    table[index] = table[index] + 1
+  }
+  return table
+}
+
+function eventsList(journal) {
+  let allEventList = []
+  for (let everydaydate of journal) {  //遍历每一天的数据
+    for (let event of everydaydate.events) { //遍历每天数据中的events 属性
+      if (!allEventList.includes(event)){ //新建的事件列表中没有当前event
+        allEventList.push(event)
+      }
+    }
+  }
+  return allEventList
+}
+//console.log(eventsList(JOURNAL))
+function makeWholeTable(journal) {
+  let wholeTable = {}
+  for(let event of eventsList(JOURNAL)) {
+    wholeTable[event] = phi(tableFor(event, JOURNAL))
+  }
+  return wholeTable
+}
+//console.log(makeWholeTable(JOURNAL))
+
+// for(let event of eventsList(JOURNAL)) {
+//   let variance = phi(tableFor(event, JOURNAL)) //方差
+//   if(Math.abs(variance) > 0.1){
+//     console.log(event+ ':' + makeWholeTable(JOURNAL)[event] )
+//   }
+// }
+
+for (let dayDate of JOURNAL) {
+  if(!dayDate.events.includes('brushed teeth')
+      && dayDate.events.includes('peanuts')) {
+        dayDate.events.push('peanuts but no brush teeth')
+      }
+}
+
+console.log('peanuts but no brush teeth' + ':' + phi(tableFor('peanuts but no brush teeth', JOURNAL)))
+
+
+</script>
