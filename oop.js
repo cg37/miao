@@ -1,12 +1,10 @@
-
-
-{/* 将MyMap，MySet，Stack，Queue，LinkedList
+/* 将MyMap，MySet，Stack，Queue，LinkedList
 全部使用class语法重写
 /miao/oop.js
 
 
 |充电大喵| 11:11:51
-LinkedList实现前后增删以及at以及length */}
+LinkedList实现前后增删以及at以及length */
 
 
 class Vector{
@@ -50,7 +48,7 @@ class Complex{
     let imag = complex1.real * complex2.imag + complex1.imag * complex2.real
     return new Complex(real, imag)
   }
-  static div(complex1, complex2) {
+  static div1(complex1, complex2) {
     let helper = new Complex(complex2.real, -complex2.imag)
     let up = Complex.mul(complex1, helper)
     let down = Complex.mul(complex2, helper)
@@ -82,7 +80,7 @@ class Complex{
     return new Complex(real, imag)
   }
 
-  div1(complex) {
+  div(complex) {
     let helper = new Complex(complex.real, -complex.imag)
     let up = this.mul1(helper)
     let down = complex.mul1(helper)
@@ -190,7 +188,7 @@ class Complex{
     }
   }
 
-class Stack {
+// class Stack {
 
-}
+// }
 
