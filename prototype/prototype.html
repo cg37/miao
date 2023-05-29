@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    function speak(line) {
+      console.log('The ' + this.type + ' rabbit says "' + line +'"');
+    }
+
+    let fatRabbit = {
+      type: 'fat',
+      speak: speak
+    }
+    let whiteRabbit = {
+      type: 'white',
+      speak: speak
+    }
+    // whiteRabbit.speak('I`m white,' + ' hi big guy')
+    // fatRabbit.speak('I`m ' + fatRabbit.type)
+    //speak.call(fatRabbit, 'I`m ' + fatRabbit.type)
+    // speak.apply(fatRabbit, ['test'])
+
+    let proroRabbit = {
+      speak(line) {
+        console.log(`this ${this.type} rabbit says '${line}'`);
+      }
+    }
+    let killerRabbit = Object.create(proroRabbit)
+    killerRabbit.type = 'killer'
+    //killerRabbit.speak('SKRRRRRR')
+
+    function Rabbit(type) {
+      this.type = type
+    }
+
+    killerRabbit = new Rabbit('killer')
+    let blackRabbit = new Rabbit('nigger')
+    // console.log(blackRabbit.type)
+    // console.log(killerRabbit.type)
+
+    Rabbit.prototype.teeth = 'normal'
+    killerRabbit.teeth = 'long, sharp'
+    /*
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    */
+  function Vector(x,y){
+    this.x = x
+    this.y = y
+  }
+
+  Vector.prototype.plus = function(vector){
+    let x = this.x + vector.x
+    let y = this.y + vector.y
+    return new Vector(x, y)
+  }
+
+  Vector.prototype.minus = function(vector){
+    let x = this.x - vector.x
+    let y = this.y - vector.y
+    return new Vector(x, y)
+  }
+
+  Object.defineProperty(Vector.prototype,'length', {
+    get: function(){
+      return Math.sqrt(Math.abs(this.x * this.x + this.y * this.y))
+    }
+  })
+
+
+    /*
+    *
+    *
+    *
+    * 复数
+    *
+    *
+    */
+    function Complex(real, imag){
+      this.real = real
+      this.imag = imag
+    }
+
+    Complex.prototype.plus = function(complex){
+      let real = this.real + complex.real
+      let imag = this.imag + complex.imag
+      return new Complex(real, imag)
+    }
+
+    Complex.prototype.minus = function(complex){
+      let real = this.real - complex.real
+      let imag = this.imag - complex.imag
+      return new Complex(real, imag)
+    }
+
+    Complex.prototype.mul = function(complex) {
+      let real = this.real * complex.real - this.imag * complex.imag
+      let imag = this.real * complex.imag + this.imag * complex.real
+      return new Complex(real, imag)
+    }
+    Complex.prototype.div = function(complex) {
+      let helper = new Complex(complex.real, -complex.imag)
+      let up = this.mul(helper)
+      let down = complex.mul(helper)
+      let real = up.real / down.real
+      let imag = up.imag / down.real
+      return new Complex(real, imag)
+    }
+
+
+
+
+    /*
+    *
+    *
+    *
+    *
+    * 链表
+    *
+    *
+    *
+    */
+
+    function LinkedList(...initVals) {
+      this.head = null
+      this.tail = null
+      this.nodeCount = 0
+      for(let it of initVals) {
+        this.append(it)
+      }
+
+    }
+    // 队尾增加元素
+    LinkedList.prototype.append = function(val) {
+      let node = {
+        val, // 等价于val:val
+        next: null,
+      }
+
+      if (this.head === null) {
+        this.head = this.tail = node
+        this.nodeCount++
+        return
+      } else {
+        this.tail.next = node
+        this.tail = node
+        this.nodeCount++
+        return
+      }
+    }
+
+    //队首增加元素
+    LinkedList.prototype.prepend = function(val) {
+      let node = {
+        val,
+        next : null
+      }
+      if (this.head === null) {
+        this.head = this.tail = node
+        this.nodeCount++
+        return
+      } else {
+        node.next = this.head
+        this.head = node
+        this.nodeCount++
+        return
+      }
+    }
+
+    LinkedList.prototype.at = function(idx) {
+      let node = this.head
+
+      for (let i = 1; i < idx; i++) {
+        node = node.next
+      }
+      return node.val
+    }
+
+    Object.defineProperty(LinkedList.prototype, 'length', {
+      get: function(){
+        return this.nodeCount
+      }
+    })
+
+
+    /*
+    *
+    *  用链表实现队列
+    *
+    */
+
+    function Queue(...initVals){
+      this.head = null
+      this.tail = null
+      this.nodeCount = 0
+      for(let it of initVals) {
+        this.push(it)
+      }
+    }
+
+    Queue.prototype.push = function(val){
+      let queueNode = {
+        val:val,
+        next: null,
+
+      }
+      if(this.head === null) {
+        this.head = this.tail = queueNode
+        this.nodeCount++
+        return
+      } else {
+        this.tail.next = queueNode
+        this.tail = queueNode
+        this.nodeCount++
+        return
+      }
+    }
+
+    Queue.prototype.pop = function(){
+      if (this.head === null) return
+      if(this.head === this.tail) {
+        let val = this.head.val
+        this.head = this.tail = null
+        this.nodeCount--
+        return val
+      }
+      else {
+        let val = this.head.val
+        this.head = this.head.next
+        this.nodeCount--
+        return val
+      }
+    }
+
+    Object.defineProperty(Queue.prototype, 'length',{
+      get: function(){
+        return this.nodeCount
+      }
+    })
+    /*
+    *
+    * 实现一个栈
+    *
+    */
+
+    function Stack(...initVals){
+      this.head = null
+      this.nodeCount = 0
+      for (let it of initVals) {
+        this.push(it)
+      }
+
+    }
+    Stack.prototype.push = function(val){
+      let stackNode = {
+        val,
+        next: null
+      }
+      if(this.head === null) {
+        this.head = stackNode
+        this.nodeCount++
+        return
+      } else {
+        stackNode.next = this.head
+        this.head = stackNode
+        this.nodeCount++
+        return
+      }
+    }
+
+    Stack.prototype.pop = function(){
+      if(this.head === null) return
+      else if(this.head === this.tail) return
+      let val = this.head.val
+      this.head = this.head.next
+      this.nodeCount--
+      return val
+    }
+
+    Object.defineProperty(Stack.prototype, 'length',{
+      get: function(){
+        return this.nodeCount
+      }
+    })
+
+    /*
+    *
+    *
+    * 集合
+    *
+    */
+
+    function Set(...initVals){
+      this.elements = []
+      for (let i = 0; i < initVals.length;i++) {
+        this.elements[i] = initVals[i]
+      }
+    }
+
+    Set.prototype.has = function(val) {
+      return this.elements.includes(val)
+    }
+
+    Set.prototype.push = function (val) {
+      if(this.has(val)) return
+      else {
+        this.elements.push(val)
+      }
+    }
+
+    Set.prototype.delete = function(val) {
+      if(this.has(val)) {
+        let index = this.elements.indexOf(val)
+        this.elements.splice(index,1)
+        return
+      } else {
+        return
+      }
+    }
+
+    Set.prototype.erase = function(){
+      this.elements = []
+      return
+    }
+
+    // Object.defineProperty(Set.prototype, 'erase', {
+    //   set: function(){
+    //     for(let i in this.item) {
+    //       this.delete(this.item[i])
+    //     }
+    //     return this
+    //   }
+    // })
+    Object.defineProperty(Set.prototype, 'size', {
+      get: function(){
+        return this.elements.length
+      }
+    })
+    /*
+    *
+    *
+    *
+    *
+    *
+    *
+    */
+
+    function ArrayList() {
+      this.elements = new Array(16)
+
+    }
+    ArrayList.prototype.push = function(val){
+      if (this.elements.length === 0) {
+        this.elements[0] = val
+      } else {
+        this.elements[this.elements.length] = val
+      }
+      return
+    }
+    ArrayList.prototype.pop = function(){
+
+    }
+    ArrayList.prototype.push = function(){
+
+    }
+    ArrayList.prototype.push = function(){
+
+    }
+    ArrayList.prototype.push = function(){
+
+    }
+    ArrayList.prototype.push = function(){
+
+    }
+    ArrayList.prototype.push = function(){
+
+    }
+    ArrayList.prototype.push = function(){
+
+    }
+
+
+
+
+
+  </script>
+</body>
+</html>

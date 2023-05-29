@@ -1,0 +1,71 @@
+<script>
+  function randomArray(n, start = 0, end = n) {
+    let res = []
+    for (let i = 0; i < n; i++) {
+      res.push(Math.random() * (end - start) + start ^ 0)
+    }
+    return res
+  }
+
+  let nums = randomArray(10)
+  let sum = 0
+  function forEach(nums, action) {
+    for (let i = 0; i < nums.length; i++) {
+      action(nums[i])
+    }
+  }
+  forEach(nums, function(num){return sum = sum + num})
+  //console.log(sum)
+
+  function greaterthan(n) {
+    return function(m) {
+      return m > n
+    }
+  }
+  //console.log(greaterthan(10)(9))
+
+  function greaterthan(n) {
+    return function(m) {
+      return m > n
+    }
+  }
+  let greaterthan100 = greaterthan(100)
+  // console.log(greaterthan100(101))
+
+  function unless(test, then) {
+    if(!test) then()
+  }
+  function repeat(times, body) {
+    for(let i = 0; i < times; i++) {
+      body(i)
+    }
+  }
+
+  repeat(10, function(n){
+    unless(n % 2, function(){
+      //console.log(n,'is even')
+    })
+  })
+
+  function noisy(f) {
+    return function(arg) {
+      console.log('calling with', arg);
+      let val = f(arg);
+      console.log('called with', arg, '- got', val);
+      return val
+    }
+  }
+
+  let person = {
+    fullName: function(){
+      return this.firstName + ' ' + this.lastName;
+    }
+  }
+  let person1 = {
+    firstName: 'bill',
+    lastName : 'Gates',
+  }
+  console.log(person.fullName.apply(person1))
+
+
+</script>

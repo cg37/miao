@@ -1,14 +1,16 @@
+<div>
 
-
-{/* 将MyMap，MySet，Stack，Queue，LinkedList
+将MyMap，MySet，Stack，Queue，LinkedList
 全部使用class语法重写
 /miao/oop.js
 
 
 |充电大喵| 11:11:51
-LinkedList实现前后增删以及at以及length */}
+LinkedList实现前后增删以及at以及length
 
 
+</div>
+<script>
 class Vector{
   static plus(vec1, vec2) {
     let x = vec1.x + vec2.x
@@ -33,7 +35,9 @@ class Vector{
     return Math.sqrt(this.x * this.x + this.y * this.y)
   }
 }
+</script>
 
+<script>
 class Complex{
   static plus(complex1, complex2){
     let real = complex1.real + complex2.real
@@ -97,7 +101,9 @@ class Complex{
 // console.log('a.div1(b) = ', a.div1(b))
 // console.log('Complex.div(a,b) = ', Complex.div(a,b))
 //2.8 - 0.6i
+</script>
 
+<script>
   class LinkedList{
     constructor(...initVals){
       this.head = null
@@ -154,6 +160,8 @@ class Complex{
       return this.nodeCount
     }
   }
+</script>
+<script>
   class Queue{
     constructor(...initVals){
       this.head = null
@@ -179,18 +187,35 @@ class Complex{
         return this.nodeCount
       }
     }
-    get pop(){
-      let val = this.head.val
-      this.head = this.head.next
-      this.nodeCount--
-      return val
+    pop(){
+      if(this.head === null) {
+        return
+      } else if (this.head === this.tail) {
+        let val = this.head.val
+        this.head = this.tail = null
+        this.nodeCount--
+        return val
+      } else {
+        let val = this.head.val
+        this.head = this.head.next
+        this.nodeCount--
+        return val
+      }
     }
-    get length(){
-      return this.nodeCount
+    get size(){
+      return this.nodeCount--
     }
   }
+</script>
 
+
+
+
+
+
+<script>
 class Stack {
 
 }
+</script>
 

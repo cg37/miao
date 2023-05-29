@@ -1,0 +1,68 @@
+<script>
+  [1,2,3,4,5,6,7]
+function numsToTree(nums, rootPosition = 0) {
+  if(nums[rootPosition] === null) {
+    return null
+  }
+  let root = {
+    val: nums[rootPosition],
+    left: null,
+    right: null,
+  }
+
+  root.left = numsToTree(nums, 2 * rootPosition + 1)
+  root.right = numsToTree(nums, 2 * rootPosition + 2)
+  return root
+}
+
+function treeToNums(root, numsPosition = 0, nums = []) {
+  res[numsPosition] = root.val
+  if(root === null) {
+    return null
+  }
+
+
+  treeToNums(root, numsPosition * 2 + 1, nums)
+  treeToNums(root, numsPosition * 2 + 2, nums)
+
+  return nums
+}
+
+function numsToTree2(nums) {
+  let Node = []
+  for (let val of nums) {
+    if (val == null){
+
+    }else {
+    let node = {
+      val : val
+
+    }
+  }
+}
+}
+
+function preorderTraverse(root) {
+  if (root === null) return
+
+  console.log(root.val)
+  preorderTraverse(root.left)
+  preorderTraverse(root.right)
+}
+
+function inorderTraverse(root) {
+  if (root === null) return
+
+  inorderTraverse(root.left)
+  console.log(root.val)
+  inorderTraverse(root.right)
+}
+
+function aftorderTraverse(root) {
+  if (root == null) return
+
+  aftorderTraverse(root.left)
+  aftorderTraverse(root.right)
+  console.log(root.val)
+}
+</script>

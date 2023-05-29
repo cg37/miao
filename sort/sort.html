@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function randomArray(size) {
+      let res = []
+      for (let i = 0; i < size; i++) {
+        res.push(Math.random() * size ^ 0) // (* size):random的范围在0~size之间; (^ 0) 位运算将结果取为整数
+      }
+      return res
+    }
+
+    function isSorted(nums) {
+      for (let i = 0; i < nums.length - 1; i++) {
+        if (nums[i + 1] < nums[i]) return false
+      }
+      return true
+    }
+
+    function swap(nums, i, j) {
+      let temp = nums[i]
+      nums[i] = nums[j]
+      nums[j] = temp
+      return nums
+    }
+
+  </script>
+
+  <script>
+    function bubbleSort(nums) {
+      for (let stop = nums.length - 1; stop >= 0; stop--) {
+        let flag = true
+        for (let i = 0; i <= stop; i++) {
+          if (nums[i] > nums[i + 1]) {
+            flag = false
+            swap(nums, i, i + 1 )
+          }
+        }
+        if (flag) {
+          break
+        }
+      }
+      return nums
+    }
+  </script>
+
+  <script>
+
+  </script>
+</body>
+</html>
