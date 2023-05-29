@@ -54,7 +54,7 @@ class Complex{
     let imag = complex1.real * complex2.imag + complex1.imag * complex2.real
     return new Complex(real, imag)
   }
-  static div(complex1, complex2) {
+  static div1(complex1, complex2) {
     let helper = new Complex(complex2.real, -complex2.imag)
     let up = Complex.mul(complex1, helper)
     let down = Complex.mul(complex2, helper)
@@ -86,7 +86,7 @@ class Complex{
     return new Complex(real, imag)
   }
 
-  div1(complex) {
+  div(complex) {
     let helper = new Complex(complex.real, -complex.imag)
     let up = this.mul1(helper)
     let down = complex.mul1(helper)
@@ -168,10 +168,10 @@ class Complex{
       this.tail = null
       this.nodeCount = 0
       for(let it of initVals) {
-        this.push(it)
+        this.add(it)
       }
     }
-    push(val){ //队尾push
+    add(val){ //队尾push
       let node = {
         val: val,
         next: null
@@ -207,10 +207,6 @@ class Complex{
     }
   }
 </script>
-
-
-
-
 
 
 <script>
