@@ -1,4 +1,4 @@
-let cg37 = {
+var cg37 = {
   compact:function (array, size) {
     for (let i = 0; i < array.length; i++) {
       if(!Boolean(array[i])) {
