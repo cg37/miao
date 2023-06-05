@@ -2,7 +2,7 @@ var cg37 = {
   compact:function (array) {
     let res = []
     for (let i of array) {
-      if (!i) {
+      if (i) {
         res.push(i)
       }
     }
@@ -13,7 +13,7 @@ var cg37 = {
     let res = []
     let len = array.length
     let start = 0
-    while (start <= len) {
+    while (start < len) {
       res.push(array.slice(start, start + size))
       start = start + size
     }
