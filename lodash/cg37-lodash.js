@@ -32,6 +32,7 @@ var cg37 = {
   },
 
   findIndex:function(array, predicate, fromIndex = 0) {
+
   },
 
   findLastIndex:function(array) {},
@@ -49,16 +50,15 @@ var cg37 = {
   },
 
   flattenDeep:function(array) {
-    let flatten = []
-    for (let i of array){
-      if(Array.isArray(i)) {
-        let flatitem = this.flattenDeep(i)
-        flatten.push(flatitem)
+    let res = []
+    for (let i = 0; i < array.length; i++){
+      if(Array.isArray(array[i])) {
+        res = res.concat(this.flattenDeep(array[i]))
       } else {
-        flatten.push(i)
+        res.push(i)
       }
     }
-    return flatten
+    return res
   },
 
   flattenDepth:function(array, depth = 1) {
@@ -66,7 +66,7 @@ var cg37 = {
     let flatted = []
     for (let i of array) {
       if(Array.isArray(i)) {
-        let nested = flattenDepth(i, depth - 1)
+        let nested = this.flattenDepth(i, depth - 1)
         flatted.push(...nested)
       } else {
         flatted.push(i)
