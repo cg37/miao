@@ -58,7 +58,19 @@ var cg37 = {
     return flatten
   },
 
-  flattenDepth:function(array) {},
+  flattenDepth:function(array, depth = 1) {
+    if (depth === 0) return array.slice()
+    let flatted = []
+    for (let i of array) {
+      if(Array.isArray(i)) {
+        let nested = flattenDepth(i, depth - 1)
+        flatted.push(...nested)
+      } else {
+        flatted.push(i)
+      }
+    }
+    return flatted
+  },
 
         // fromPairs,toPairs,head,indexOf,lastIndexOf,initial,join,last,pull,reverse,every,some
         // countBy,groupBy,keyBy,forEach,map,filter,reduce,reduceRight,size,sortBy,sample,
