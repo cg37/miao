@@ -1,18 +1,21 @@
 var cg37 = {
   compact:function (array) {
-    for (let i = 0; i < array.length; i++) {
-      if(!Boolean(array[i])) {
-        array.splice(i,1)
+    let res = []
+    for (let i of array) {
+      if (!i) {
+        res.push(i)
       }
     }
-    return array
+    return i
   },
 
   chunk:function(array, size) {
     let res = []
-    for (let i = 0; i < array.length + size; i = i + size) {
-      res.push(array.slice(0, size))
-      array.splice(i, size)
+    let len = array.length
+    let start = 0
+    while (start < len) {
+      res.push(array.slice(start, size))
+      start = start + size
     }
     return res
   },
@@ -72,8 +75,78 @@ var cg37 = {
     return flatted
   },
 
-        // fromPairs,toPairs,head,indexOf,lastIndexOf,initial,join,last,pull,reverse,every,some
-        // countBy,groupBy,keyBy,forEach,map,filter,reduce,reduceRight,size,sortBy,sample,
+  fromPairs: function (array) {
+    let res = new Map()
+    for (let i = 0; i < array.length; i++) {
+      res.set(array[i][0], array[i][1])
+    }
+    return res
+  },
+  toPairs: function (array) {
+
+  },
+  head: function (array) {
+    if (array.length === 0) return
+    else return array[0]
+  },
+  indexOf: function (array, target, fromIndex) {
+    let len = array == null ? 0 : array.length
+    if (!len) return -1
+    let index = fromIndex
+    if (fromIndex < 0) {
+      index = array.length + fromIndex
+    }
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] === target) {
+        if (i >= index) {
+          return i
+        }
+      }
+    }
+    return -1
+  },
+  lastIndexOf: function (array) {
+    let len = array == null ? 0 : array.length
+    if (!len) return -1
+    let index = fromIndex
+    if (fromIndex < 0) {
+      index = array.length + fromIndex
+    }
+    for (let i = array.length - 1; i >= 0; i--) {
+      if (array[i] === target) {
+        if (i >= index) {
+          return i
+        }
+      }
+    }
+    return -1
+  },
+  initial: function (array) {
+    if (array.length === 0) {
+      return
+    }
+
+    return array
+  },
+  join: function (array) {
+
+  },
+  last: function (array) {
+
+  },
+  pull: function (array) {
+
+  },
+  reverse: function (array) {
+
+  },
+  every: function (array) {
+
+  },
+  some: function (array) {
+
+  },
+          // countBy,groupBy,keyBy,forEach,map,filter,reduce,reduceRight,size,sortBy,sample,
         // isUndefined,isNull,isNil,max,min,maxBy,minBy,round,sumBy
         // flagMap,flatMapDepth,get,has,mapKeys,mapValues
         // range,stringifyJSON,concat,isEqual,repeat,padStart,padEnd,pad,keys,values,random,
