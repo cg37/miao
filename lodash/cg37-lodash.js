@@ -50,11 +50,18 @@ var cg37 = {
   },
 
   flattenDeep:function(array) {
-    let len = array == null? 0: array.length
-    return length ? this.flattenDepth(Infinity) : []
+    let res = []
+    for (let i = 0; i < array.length; i++) {
+      if (Array.isArray(array[i])) {
+        res = res.concat(array[i])
+      } else {
+        res.push(i)
+      }
+    }
+    return res
   },
 
-  flattenDepth:function(array, depth = 1) {
+  flattenDepth: function (array, depth = 1) {
     if (depth === 0) return array.slice()
     let flatted = []
     for (let i of array) {
