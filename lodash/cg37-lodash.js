@@ -14,7 +14,7 @@ var cg37 = {
     let len = array.length
     let start = 0
     while (start <= len) {
-      res.push(array.slice(start, size))
+      res.push(array.slice(start, start + size))
       start = start + size
     }
     return res
