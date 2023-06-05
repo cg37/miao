@@ -6,14 +6,14 @@ var cg37 = {
         res.push(i)
       }
     }
-    return i
+    return res
   },
 
   chunk:function(array, size) {
     let res = []
     let len = array.length
     let start = 0
-    while (start < len) {
+    while (start <= len) {
       res.push(array.slice(start, size))
       start = start + size
     }
@@ -155,12 +155,6 @@ var cg37 = {
 
 }
 
-var users = [
-  { 'user': 'barney',  'active': false },
-  { 'user': 'fred',    'active': false },
-  { 'user': 'pebbles', 'active': true }
-]
-cg37.findIndex(users, function(o) { return o.user == 'barney'; });
 
 
 
