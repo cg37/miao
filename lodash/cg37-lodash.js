@@ -76,12 +76,14 @@ var cg37 = {
   },
 
   fromPairs: function (array) {
-    let res = new Map()
+    let res = {}
     for (let i = 0; i < array.length; i++) {
-      res.set(array[i][0], array[i][1])
+      let pairs = array[i]
+      res[pairs[0]] = pairs[1]
     }
     return res
   },
+
   toPairs: function (array) {
 
   },
@@ -125,20 +127,39 @@ var cg37 = {
     if (array.length === 0) {
       return
     }
-
-    return array
+    return array.slice(0, array.length - 1)
   },
-  join: function (array) {
 
+  join: function (array, separator=',') {
+    let res = ''
+    let len = array.length
+    for(let i = 0; i < len - 1; i++) {
+      res = res + array[i] + separator
+    }
+    res = res + array[len - 1]
+    return res
   },
   last: function (array) {
-
+    let length = array == null ? 0 : array.length
+    return length ? array[array.length - 1] : undefined
   },
-  pull: function (array) {
-
+  pull: function (array, ...val) {
+    let res = []
+    for (let it of array) {
+      if (!(val.includes(it))) {
+        res.push(it)
+      }
+    }
+    return res
   },
   reverse: function (array) {
-
+    let res = []
+    let len = array.length
+    if (len < 1) return
+    for (let i = len - 1; len >=0; i--) {
+      res.push(array[i])
+    }
+    return res
   },
   every: function (array) {
 
@@ -146,8 +167,43 @@ var cg37 = {
   some: function (array) {
 
   },
-          // countBy,groupBy,keyBy,forEach,map,filter,reduce,reduceRight,size,sortBy,sample,
-        // isUndefined,isNull,isNil,max,min,maxBy,minBy,round,sumBy
+
+
+  countBy: function (array) {
+
+  },
+  groupBy: function (array) {
+
+  },
+  keyBy: function (array) {
+
+  },
+  forEach: function (array) {
+
+  },
+  map: function (array) {
+
+  },
+  filter: function (array) {
+
+  },
+  reduce: function (array) {
+
+  },
+  reduceRight: function (array) {
+
+  },
+  size: function (array) {
+
+  },
+  sortBy: function (array) {
+
+  },
+  sample: function (array) {
+
+  },
+
+          // isUndefined,isNull,isNil,max,min,maxBy,minBy,round,sumBy
         // flagMap,flatMapDepth,get,has,mapKeys,mapValues
         // range,stringifyJSON,concat,isEqual,repeat,padStart,padEnd,pad,keys,values,random,
         // round,ceil,floor,cloneDeep
