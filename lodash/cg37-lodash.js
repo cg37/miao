@@ -91,10 +91,10 @@ var cg37 = {
     if (array.length === 0) return
     else return array[0]
   },
-  indexOf: function (array, target, fromIndex) {
-    let len = array == null ? 0 : array.length
+  indexOf: function (array, target, fromIndex = 0) {
+    let len = array === null ? 0 : array.length
     if (!len) return -1
-    let index = fromIndex
+    let index = fromIndex === undefined ? 0 : fromIndex
     if (fromIndex < 0) {
       index = array.length + fromIndex
     }
