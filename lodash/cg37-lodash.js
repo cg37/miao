@@ -110,21 +110,15 @@ var cg37 = {
     return -1
   },
 
-  lastIndexOf: function (array, target, fromIndex = 0) {
-    let len = array == null ? 0 : array.length
-    if (!len) return -1
-    let index = fromIndex
-    if (fromIndex < 0) {
-      index = array.length + fromIndex
-    }
-    for (let i = array.length - 1; i >= 0; i--) {
+  lastIndexOf: function (array, target, fromIndex = array.length - 1) {
+    let res = -1
+    for (let i = fromIndex; i >= 0; i--) {
       if (array[i] === target) {
-        if (i >= index) {
-          return i
-        }
+        res = i
+        break
       }
     }
-    return -1
+    return res
   },
   initial: function (array) {
     if (array.length === 0) {
