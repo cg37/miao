@@ -87,10 +87,12 @@ var cg37 = {
   toPairs: function (array) {
 
   },
+
   head: function (array) {
     if (array.length === 0) return
     else return array[0]
   },
+
   indexOf: function (array, target, fromIndex = 0) {
     let len = array === null ? 0 : array.length
     if (!len) return -1
@@ -107,7 +109,8 @@ var cg37 = {
     }
     return -1
   },
-  lastIndexOf: function (array) {
+
+  lastIndexOf: function (array, target, fromIndex = 0) {
     let len = array == null ? 0 : array.length
     if (!len) return -1
     let index = fromIndex
