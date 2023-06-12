@@ -1,0 +1,258 @@
+<script>
+  let a = '{"a":1,"b":true,"c":[1,[2,2],{"x":3,"y":[1,2,3]}],"d":{"a":{"b":1}}}'
+
+function parseJSON(str) {
+  let i = 0
+  return parseVal(str)
+
+  function parseVal() {
+    let char = str[i]
+    if (char === '"') {
+      return parseStr()
+    }
+
+    if (char === '{') {
+      return parseObj()
+    }
+
+    if (char === '[') {
+      return parseArr()
+    }
+
+    if (char === 't') {
+      let token = str.slice(i, i + 4)
+      if (token === 'true') {
+        i = i + 4
+        return true
+      } else {
+        throw new SyntaxError('wrong boolean')
+      }
+    }
+    if (char === 'f') {
+      let token = str.slice(i, i + 5)
+      if (token === 'false') {
+        i = i + 5
+        return false
+      } else {
+        throw new SyntaxError('worong boolean')
+      }
+    }
+    if (char === 'n') {
+      let token = str.slice(i, i + 4)
+      if (token === 'null') {
+        i = i + 4
+        return true
+      } else {
+        throw new SyntaxError('wrong null')
+      }
+    }
+    return parseNumber()
+  }
+  function parseNumber(){
+    let start = i
+    while (str[i] >='0' && str[i] <='9') {
+      i++
+    }
+    return Number(str.slice(start, i))
+  }
+  function parseStr(){
+    i++      //跳过i指向的'"'
+    let start = i
+    while(str[i] !== '"' && i < str.length) {
+      i++
+    }
+    if (str[i] !== '"') {
+      throw new SyntaxError('no `"`')
+    }
+    let end = i //此时i指向string结尾的'"'
+    i++ //跳过字符串结尾的'"'
+    return str.slice(start,end)
+  }
+  function parseArr(){
+    let res = []
+    i++
+    if (str[i] === ']') {
+      i++
+      return res
+    }
+    while (i < str.length) {
+      let val = parseVal()
+      res.push(val)
+      if (str[i] === ',') {
+        i++
+        continue
+      }
+      if (str[i] === ']') {
+        i++
+        break
+      }
+    }
+    return res
+  }
+  function parseObj(){
+    let res = {}
+    i++
+    if (str[i] === '}') {
+      i++
+      return res
+    }
+    while (i < str.length) {
+      let key = parseStr()
+      i++       //跳过':'
+      let val = parseVal()
+      res[key] = val
+      if (str[i] === ',') {
+        i++
+        continue
+      }
+      if (str[i] === '}') {
+        i++
+        break
+      }
+    }
+    return res
+  }
+  function skipSpace() {
+    while (str[i] == ' '|| str[i] === '\n' || str[i] === '\t' || str[i] === '\r') {
+      i++
+    }
+    return
+  }
+}
+parseJSON(a)
+</script>
+<script>
+  function parseMathExpression(str) {
+    str = `(${str})`
+    let i = 0
+
+  }
+</script>
+
+<script>
+// 递归下降法实现
+// https://leetcode.com/problems/construct-binary-tree-from-string/
+function buildTree(str) {
+  str = `${str}`
+  let i = 0
+
+  return parseTree()
+
+  function parseTree(){
+    i++ //skip ()
+    if (str[i] === ')') {
+      i++  //slip')''
+      return null
+    }
+
+    let val = parseNumber()
+    let node = {
+      val: val,
+      left: null,
+      right: null
+    }
+
+    if (str[i] === ')') {
+      i++
+      return node
+    }
+
+    node.left = parseTree()
+    if (str[i] === ')') {
+      i++
+      return node
+    }
+
+    node.right = parseTree()
+    if (str[i] === ')') {
+      i++
+      return node
+    }
+  }
+  function parseNumber() {
+    let start = i
+    while(str[i] >='0' && str[i] <= '9') {
+      i++
+    }
+    return Number(str.slice(start, i))
+  }
+}
+</script>
+
+
+<script>
+  (div(1,add(2,3,4),sum(1,2,3)))
+  //div
+  // sum
+  // minus
+  //  mul
+
+
+  function parseFunctionCall(str) {
+    let i = 0
+    return parseExp()
+
+    function parseExp(){
+      let start = i
+      if (str[i] === 'd') {
+        let token = str.slice(i, i+3)
+        if (token === 'div') {
+          i = i + 3
+          let exp = {
+            operator: div
+          }
+        }
+        i++
+      }
+
+      if (str[i] )
+    }
+
+    function parseNumber(){
+      let start = i
+      while (str[i] >='0' && str[i] <='9') {
+        i++
+      }
+      return Number(str.slice(start, i))
+    }
+    let exp = {
+          operator: 'div'
+
+        }
+
+    i++
+    start = i
+    if (str[i] === 'd') {
+      i = i + 3
+      if (str.slice(start, i) === 'div') {
+        let exp = {
+          operator: 'div'
+        }
+      }
+
+    }
+    let res = {
+
+    }
+
+  }
+</script>
+
+<script>
+  function toMathString(obj){
+    if (obj.type === '函数调用') {
+      if (obj.name === 'div') {
+        let res = obj.args[1] + '/' + obj.args[2]
+      }
+      if (obj.name === 'add') {
+        let res = obj.args.join('+')
+      }
+      if (obj.name === '')
+    }
+
+
+    if (obj.type === '数值') {
+      return String(tree.value)
+    }
+  }
+</script>

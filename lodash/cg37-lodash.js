@@ -51,9 +51,9 @@ var cg37 = {
 
   flattenDeep:function(array) {
     let res = []
-    for (let i = 0; i < array.length; i++) {
-      if (Array.isArray(array[i])) {
-        res = res.concat(array[i])
+    for (let i of array) {
+      if (Array.isArray(i)) {
+        res = res.concat(flattenDeep(i))
       } else {
         res.push(i)
       }
