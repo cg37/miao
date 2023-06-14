@@ -200,7 +200,7 @@ var cg37 = {
 
   },
 
-          // isUndefined,isNull,isNil,max,min,maxBy,minBy,round,sumBy
+        // isUndefined,isNull,isNil,max,min,maxBy,minBy,round,sumBy
         // flagMap,flatMapDepth,get,has,mapKeys,mapValues
         // range,stringifyJSON,concat,isEqual,repeat,padStart,padEnd,pad,keys,values,random,
         // round,ceil,floor,cloneDeep

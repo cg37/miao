@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dom</title>
+</head>
+<body id="body">
+
+  <!-- <div class="main first divd">
+    <div class="test child" id="fistdiv">
+      test
+      this is comment
+      <div class="grandchild divd" id="grandchilddiv">
+        <div class="lastdiv" id="grandchilddiv">
+          test
+          <div>
+            blank
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="div_2">
+      second div
+    </div>
+  </div> -->
+
+<div>
+
+</div>
+<span>作业1</span>
+  <script>
+    const MOUNTAINS = [
+      {name: "Kilimanjaro", height: 5895, place: "Tanzania"},
+      {name: "Everest", height: 8848, place: "Nepal"},
+      {name: "Mount Fuji", height: 3776, place: "Japan"},
+      {name: "Vaalserberg", height: 323, place: "Netherlands"},
+      {name: "Denali", height: 6168, place: "United States"},
+      {name: "Popocatepetl", height: 5465, place: "Mexico"},
+      {name: "Mont Blanc", height: 4808, place: "Italy/France"}
+      ]
+    function makeTable(data) {
+      let table = document.createElement('table')
+      table.border = '1px'
+      table.cellSpacing = '0'
+      let tr = document.createElement('tr') //tablerow
+      for (let i in data[0]) {
+
+        let th = document.createElement('th')
+        th.className = 'tablehead'
+        th.append(i)
+        tr.append(th)
+      }
+      table.append(tr)
+      for (let mount = 0; mount < MOUNTAINS.length; mount++) {
+        let tdr = document.createElement('tr')
+        tdr.classList.add('tdr')
+        for (let mountinfo in data[0]) {
+          let td = document.createElement('td')
+          td.classList.add(mountinfo)
+          td.append(MOUNTAINS[mount][mountinfo])
+          tdr.append(td)
+        }
+        table.append(tdr)
+      }
+      return table
+    }
+    let table = makeTable(MOUNTAINS)
+    document.body.append(table)
+  </script>
+</body>
+
+<style>
+  .tablehead {
+    height: 30px;
+    width: 150px;
+    text-align: center;
+    background-color: #537FE7;
+  }
+
+  .name {
+    background-color: aqua;
+  }
+  .height {
+    background-color: bisque;
+  }
+  .place {
+    background-color:cadetblue
+  }
+  .tdr:nth-child(odd) {
+    background-color: gray;
+  }
+</style>
+
+<script>
+  //实现el.textContent
+  function getTextContent(node) {
+    if (node.nodeType === document.TEXT_NODE) {
+      return node.nodeValue
+    } else if (node.nodeType === document.ELEMENT_NODE) {
+      let res = ''
+      for (let child of node.childNodes) {
+        res = res + getTextContent(child)
+      }
+      return res
+    } else {
+      return ''
+    }
+  }
+
+</script>
+
+<script>
+  /**
+  * @param {string} tagName
+  *
+  *
+  *
+  */
+  function getElementByTagName(node, tagName) {
+    let found = []
+    tagName = tagName.toUpperCase()
+    explore(node)
+    return found;
+    function explore(node) {
+      for (let child of node.childNodes) {
+        if (child.tagName === tagName) {
+          found.push(child)
+        }
+        explore(child)
+      }
+    }
+  }
+
+  // 实现getElementsByClassName(node, className)
+
+  function getElementsByClassName(node, className) {
+    let found = []
+    traverse(node)
+    return found
+
+    function traverse(node) {
+      for (let child of node.childNodes) {
+        if (child.className && child.className.includes(className)) {
+          found.push(child)
+        }
+        traverse(child)
+      }
+    }
+  }
+  function getElementByClassName2(node, className) {
+    let res = []
+    traverse(node)
+    return res
+
+    function traverse(node) {
+      for (let child of node.childNodes) {
+        if (child.className && child.className.includes(className)) {
+          res.push(child)
+        }
+        traverse(child)
+      }
+    }
+  }
+
+</script>
+
+<div id="className">
+<script>
+  function getElementsByClassName(node, className) {
+      let found = []
+      traverse(node)
+      return found
+
+      function traverse(node) {
+        for (let child of node.childNodes) {
+          if (child.className && child.className.includes(className)) {
+            found.push(child)
+          }
+          traverse(child)
+        }
+      }
+    }
+    function getElementsByClassName2(node, className) {
+      let res = []
+      traverse(node)
+      return res
+
+      function traverse(node) {
+        for (let child of node.childNodes) {
+          if (child.className && child.className.includes(className)) {
+            res.push(child)
+          }
+          traverse(child)
+        }
+      }
+    }
+</script>
+</div>
+
+<div id="id">
+  <script>
+    function getElementById(node = document.documentElement, id) {
+      if (node.id === id) {
+        return node
+      }
+      for (let child of node.children) {
+
+      }
+
+
+      return res
+      // let node = document.documentElement
+      // traverse(node)
+      // return null
+
+      // function traverse(node) {
+      //   for (let child of node.childNodes) {
+      //     if (child.id && child.id == id) {
+      //       return child
+      //     }
+      //     traverse(child)
+      //   }
+      // }
+    }
+  </script>
+</div>
+
+</html>
