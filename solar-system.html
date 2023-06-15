@@ -3,120 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>solar-system</title>
+  <style>
+    div#main{
+      position: fixed;
+      width: 1000px;
+      top: 500px;
+      left: 500px;
+      aspect-ratio: 1/1;
+      border: 1px solid;
+      box-sizing: border-box;
+    }
+    div#sun,div#ear,div#moon{
+      position: relative;
+      aspect-ratio: 1/1;
+      border: 1px solid;
+      border-radius: 999px;
+    }
+    div#sun{
+      width: 200px;
+      margin-top: -100px;
+      margin-left: -100px;
+    }
+    div#ear{
+      width: 100px;
+      margin-top: -50px;
+      margin-left: -50px;
+    }
+    div#moon{
+      width: 50px;
+      margin-top: -25px;
+      margin-left: -25px;
+    }
+
+  </style>
 </head>
-<body onload="onload=rotate()">
-  <div class="main">
-    <div class="contrl">
-      <button id='startbuttom'>start rotate</button>
-    </div>
-    <div class="sun" id="sundiv">
-        日
-        <div class="earth" id="earthdiv">
-          球
-          <div class="moon" id="moondiv">
-            月
-          </div>
-        </div>
-
-    </div>
-
+<body>
+  <div id="main">
+    <div id="sun"></div>
+    <div id="ear"></div>
+    <div id="moon"></div>
   </div>
+
   <script>
-    function rotate() {
-      setInterval(sunfun, 100)
-      setInterval(earthfun, 100)
-    }
-    let sunangel = 0
-    let earthangel = 0
-    let moonangel = 0
-    function sunfun(){
-      let sundiv = document.getElementById('sundiv')
-      sunangel = sunangel + 1
+    let sun = document.querySelector('#sun')
+    let ear = document.querySelector('#ear')
+    let moon = document.querySelector('#moon')
+    requestAnimationFrame(function solarMove(time) {
+      let sunAngel = time / 2000
+      let sunX = `${Math.cos(sunAngel)*100}px`
+      let sunY = `${Math.sin(sunAngel)*100}px`
+      sun.style.top = sunY
+      sun.style.left = sunX
 
-      sundiv.style.transform = `rotate(${sunangel}deg)`
-    }
-    function earthfun(){
-      let earthdiv = document.getElementById('earthdiv')
-      earthangel = earthangel + 10
 
-      earthdiv.style.transform = `translate(100px,100px)rotate(${earthangel}deg)`
-    }
-    function moonfun(){
-      let moondiv = document.getElementById('moondiv')
-      moonangel = moonangel + 10
-
-      moondiv.style.transform = `translate(30px,30px)rotate(${moonangel}deg)`
-    }
+      requestAnimationFrame(solarMove)
+    })
 
   </script>
 </body>
 </html>
-<style>
-  body, html{
-    width: 100%;
-    height: 100%;
-    margin: 0px
-  }
-  div.contrl{
-    position: absolute;
-    left: 0px;
-    top: 0px
-  }
-  div.main {
-    font-size: 30px;
-    box-sizing: border-box;
-    position: absolute;
-    margin: auto;
-    top: 1px;
-    left: 1px;
-    right: 1px;
-    bottom: 1px;
-    transform-origin: center;
-  }
-  div.sun{
-    font-size: 40px;
-    height: 50px;
-    width: 50px;
-    position: absolute;
-    margin: auto;
-    top: 1px;
-    left: 1px;
-    right: 1px;
-    bottom: 1px;
-    transform-origin: center;
-    text-align: center;
-    vertical-align: middle;
-  }
-  div.earth{
-    font-size: 30px;
-    height: 50px;
-    width: 50px;
-    position: absolute;
-    margin: auto;
-    top: 1px;
-    left: 1px;
-    right: 1px;
-    bottom: 1px;
-    transform-origin: center;
-    text-align: center;
-    vertical-align: middle;
-    transform-origin:-100px -100px;;
-  }
-  div.moon{
-    font-size: 25;
-    height: 50px;
-    width: 50px;
-    position: absolute;
-    margin: auto;
-    top: 1px;
-    left: 1px;
-    right: 1px;
-    bottom: 1px;
-    transform-origin: center;
-    text-align: center;
-    vertical-align: middle;
-    transform-origin:-30px -30px;;
-  }
-
-</style>

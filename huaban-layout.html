@@ -7,6 +7,7 @@
   <style>
     html {
       background-color: black;
+      overflow-y: scroll;
     }
     body {
       margin: 10px
@@ -15,7 +16,7 @@
       display: flex;
       gap: 10px;
       align-items: flex-start;
-      width: 600px;
+      width: 100%;
       margin: auto;
     }
 
@@ -363,67 +364,97 @@
         "height": 1170
       }
     ]
+    cats = [...cats, ...cats]
+    cats = [...cats, ...cats]
+    cats = [...cats, ...cats]
+    cats = [...cats, ...cats]
+    cats = [...cats, ...cats]
+    cats = [...cats, ...cats]
+    let section = document.querySelector('section')
+    let preWindowWidth = 0
 
-    //计算能显示多少列
+
     function run() {
-      let columns = Math.floor((window.innerWidth - 150) / 200)
+      console.time('runTime')
 
-      //选择section
-      let section = document.querySelector('section')
+      if (preWindowWidth === window.innerWidth ) {
+        return
+      } else {
+        preWindowWidth = window.innerHeight
+      }
 
-      //计算section 所需要的宽度
-      section.style.width = `'${columns * 200 + (columns - 1) * 10}px'`
+      //计算能放下的列数
+      let columns = Math.floor(window.innerWidth/ 200)
+
+      //清空section元素
       section.innerHTML = ''
 
       for(let i = 0; i < columns; i++) {
         section.append(document.createElement('div'))
       }
 
-      let divs = [...section.querySelectorAll('div')]
+      let divGroup = [...document.querySelectorAll('div')]
+      let columnWidth = divGroup[0].offsetWidth
+
+      //每一个照片列目前的高度
+      let divHeights = Array(columns).fill(0)
+
+      //填充imags的二维数组
+      let imgDivs = Array(columns).fill(0).map(it=>[])
 
       for (let cat of cats) {
-        let div = divs.reduce((min, div)=>{
-          if (div.offsetHeight < min.offsetHeight){
-            return div
-          } else {
-            return min
-          }
-        })
+        let minHeight = Math.min(...divHeights)
+        let minHeightIdx = divHeights.indexOf(minHeight)
 
         let img = document.createElement('img')
         img.src = cat.fullUrl
-        img.width = div.offsetWidth
-        img.height = img.width * cat.height / cat.width
+        img.width = columnWidth
+        img.style.aspectRatio = 'auto'
 
-        div.append(img)
+        divHeights[minHeightIdx] = divHeights[minHeightIdx] + img.height + 10
+        imgDivs[minHeightIdx].push(img)
       }
-    }
 
+      imgDivs.forEach((img, idx) => {
+        divGroup[idx].append(...img)
+      })
+
+      console.timeEnd('runTime')
+    }
     run()
-    window.onresize = run()
-    var section = document.querySelector('section')
-    var z = 5
-    section.onclick = function(e) {
+    window.onresize = run
+
+    let z = 5
+    section.addEventListener('click', function(e) {
       if (e.target.matches('img')) {
-        var img = e.target
-        var box = img.getBoundingClientRect()
-        var cx = box.left + box.width / 2
-        var cy = box.top + box.height / 2
-        var vx = window.innerWidth / 2
-        var vy = window.innerHeight / 2
-        var movex = vx - cx
-        var movey = vy - cy
-        var zoomx = window.innerWidth / box.width
-        var zoomy = window.innerHeight / box.height
-        img.style.zIndex = z++
-        img.style.position = 'relative'
-        img.style.transition = '0.3s'
-        img.style.transform = `translate(${movex}px, ${movey}px) scale(${Math.min(zoomx, zoomy)})`
+        let img = e.target
+
+        if (!img.style.transform) {
+          let box = img.getBoundingClientRect()
+
+          let imgPosX = box.left + box.width / 2
+          let imgPosY = box.top + box.height / 2
+
+          let windowCenterX = window.innerWidth / 2
+          let windowCenterY = window.innerHeight / 2
+
+          moveX = windowCenterX - imgPosX
+          moveY = windowCenterY - imgPosY
+
+          let scaleX = window.innerWidth / box.width
+          let scaleY = window.innerHeight / box.height
+
+          img.style.zIndex = z++
+          img.style.position = 'relative'
+          img.style.transition = '0.5s'
+          img.style.transform = `translate(${moveX}px, ${moveY}px) scale(${Math.min(scaleX, scaleY)})`
+          img.style.boxShadow = '0 0 10000px'
+        } else {
+          img.style.zIndex = 4
+          img.style.transform = ''
+        }
       }
-    }
-
-
-
+    })
   </script>
 </body>
 </html>
