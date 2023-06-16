@@ -5,20 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>solar-system</title>
   <style>
+    html, body {
+      box-sizing: border-box;
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      overflow: hidden;
+    }
     div#main{
-      position: fixed;
-      width: 1000px;
+      position: absolute;
+      margin:auto;
       top: 500px;
       left: 500px;
+      right: 500px;
+      bottom: 500px;
+      width: 0px;
       aspect-ratio: 1/1;
-      border: 1px solid;
       box-sizing: border-box;
     }
     div#sun,div#ear,div#moon{
-      position: relative;
+      position: absolute;
       aspect-ratio: 1/1;
       border: 1px solid;
       border-radius: 999px;
+      background-color: goldenrod;
     }
     div#sun{
       width: 200px;
@@ -29,11 +39,13 @@
       width: 100px;
       margin-top: -50px;
       margin-left: -50px;
+      background-color: aqua;
     }
     div#moon{
       width: 50px;
       margin-top: -25px;
       margin-left: -25px;
+      background-color: grey;
     }
 
   </style>
@@ -50,11 +62,23 @@
     let ear = document.querySelector('#ear')
     let moon = document.querySelector('#moon')
     requestAnimationFrame(function solarMove(time) {
-      let sunAngel = time / 2000
-      let sunX = `${Math.cos(sunAngel)*100}px`
-      let sunY = `${Math.sin(sunAngel)*100}px`
+      let sunAngel = time / 4000
+      let sunX = `${Math.cos(sunAngel)*200}px`
+      let sunY = `${Math.sin(sunAngel)*200}px`
       sun.style.top = sunY
       sun.style.left = sunX
+
+      let earAngel = time / 1000
+      let earX = `${parseFloat(sunX) + Math.cos(earAngel)*500}px`
+      let earY = `${parseFloat(sunY) + Math.sin(earAngel)*500}px`
+      ear.style.top = earY
+      ear.style.left = earX
+
+      let moonAngel = time / 500
+      let moonX = `${parseFloat(earX) + Math.cos(moonAngel)*100}px`
+      let moonY = `${parseFloat(earY) + Math.sin(moonAngel)*100}px`
+      moon.style.top = moonY
+      moon.style.left = moonX
 
 
       requestAnimationFrame(solarMove)
