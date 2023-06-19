@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>窗口拖拽</title>
+  <style>
+    html, body {
+      margin: 0px
+    }
+    div.drag{
+      display: inline-block;
+      position: fixed;
+      width: 300px;
+      height: 200px;
+      border: 1px solid;
+      border-radius: 3px;
+      background-color: beige;
+    }
+    h1.tab{
+      margin: 0px;
+      justify-content: center;
+      position: relative;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 50px;
+      background-color: grey;
+    }
+  </style>
+</head>
+<body>
+  <div class="drag" style="left:0px; top:0px">
+    <h1 class="tab">
+      &nbsp;标签1
+    </h1>
+  </div>
+  <div class="drag" style="left:0px; top:0px">
+    <h1 class="tab">
+      &nbsp;标签2
+    </h1>
+  </div>
+  <div class="drag" style="left:0px; top:0px">
+    <h1 class="tab">
+      &nbsp;标签3
+    </h1>
+  </div>
+
+  <script>
+    let z = 3
+
+    //鼠标起始高度
+    let mStartX = 0
+    let mStartY = 0
+
+    //窗口起始位置
+    let el = null
+    let elStartX = 0
+    let elStartY = 0
+
+
+    window.addEventListener('mousedown', e=>{
+      if(e.target.matches('h1.tab')) {
+        e.target.closest('div.drag').style.zIndex = z++
+      }
+
+      if (e.target.matches('h1,tab')) {
+        e.preventDefault()
+        el = e.target.closest('div.drag')
+
+        mStartX = e.clientX
+        mStartY = e.clientY
+
+        elStartX = parseFloat(el.style.left)
+        elStartY = parseFloat(el.style.top)
+
+        window.addEventListener('mousemove', onMove)
+        console.log('bind')
+      }
+    })
+
+    function onMove(e) {
+      if (e.which == 0 || e.buttons == 0) {
+        window.removeEventListener('mousemove', onMove)
+        console.log('unbind')
+      } else {
+        let moveX = e.clientX - mStartX
+        let moveY = e.clientY - mStartY
+
+        let left = moveX + elStartX
+        let top = moveY + elStartY
+
+        if (left < 0) {
+          left = 0
+        }
+        if (top < 0) {
+          top = 0
+        }
+        if (left > window.innerWidth - el.offsetWidth) {
+          left = window.innerWidth - el.offsetWidth
+        }
+        if (top > window.innerHeight - el.offsetHeight) {
+          top = window.innerHeight - el.offsetHeight
+        }
+        el.style.left = left + 'px'
+        el.style.top = top + 'px'
+      }
+    }
+  </script>
+</body>
+</html>
