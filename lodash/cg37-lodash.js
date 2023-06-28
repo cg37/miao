@@ -35,10 +35,6 @@ var cg37 = {
     if (inspectArray.length === 0) return []
     if (excludeArray.length === 0) return inspectArray
 
-    // return inspectArray.filter(function(it){
-    //   return excludeArray.indexOf(it) < 0
-    // })
-
     return inspectArray.filter(it=>excludeArray.indexOf(it) < 0)
   },
 
@@ -193,13 +189,20 @@ var cg37 = {
     let res = []
     let len = array.length
     if (len < 1) return
-    for (let i = len - 1; len >=0; i--) {
+    for (let i = len - 1; i >= 0; i--) {
       res.push(array[i])
     }
     return res
   },
-  every: function (array) {
+  every: function (array, predicate) {
+    let func = iteratee(predicate)
 
+    for (let item of array){
+      if(!func(item)){
+        return false
+      }
+    }
+    return true
   },
   some: function (array) {
 
