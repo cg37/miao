@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>电子生态系统</title>
+</head>
+<body>
+	<script>
+		function Vector(x, y) {
+			this.x = x
+			this.y = y
+		}
+		Vector.prototype.plus = function (other){
+      return new Vector(this.x + other.x, this.y + other.y)
+		}
+	</script>
+</body>
+</html>

@@ -11,11 +11,10 @@
     div.drag{
       display: inline-block;
       position: fixed;
-      width: 300px;
-      height: 200px;
       border: 1px solid;
       border-radius: 3px;
       background-color: beige;
+      overflow: hidden;
     }
     h1.tab{
       margin: 0px;
@@ -27,23 +26,40 @@
       height: 50px;
       background-color: grey;
     }
+    span.resize{
+      width: 15px;
+      height: 15px;
+      margin: 0px;
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+      background-color: aqua;
+      transform: rotate(45deg) translate(10px);
+
+    }
+    span.resize:hover{
+      cursor: nwse-resize;
+    }
   </style>
 </head>
 <body>
-  <div class="drag" style="left:0px; top:0px">
+  <div class="drag" style="left:0px; top:0px;width: 300px; height: 200px;">
     <h1 class="tab">
       &nbsp;标签1
     </h1>
+    <span class="resize"></span>
   </div>
-  <div class="drag" style="left:0px; top:0px">
+  <div class="drag" style="left:0px; top:0px;width: 300px; height: 200px;">
     <h1 class="tab">
       &nbsp;标签2
     </h1>
+    <span class="resize"></span>
   </div>
-  <div class="drag" style="left:0px; top:0px">
+  <div class="drag" style="left:0px; top:0px;width: 300px; height: 200px;">
     <h1 class="tab">
       &nbsp;标签3
     </h1>
+    <span class="resize"></span>
   </div>
 
   <script>
@@ -61,10 +77,11 @@
 
     window.addEventListener('mousedown', e=>{
       if(e.target.matches('h1.tab')) {
+        e.preventDefault()
         e.target.closest('div.drag').style.zIndex = z++
       }
 
-      if (e.target.matches('h1,tab')) {
+      if (e.target.matches('h1.tab')) {
         e.preventDefault()
         el = e.target.closest('div.drag')
 
@@ -76,6 +93,19 @@
 
         window.addEventListener('mousemove', onMove)
         console.log('bind')
+      }
+
+      if (e.target.matches('span.resize')) {
+        e.preventDefault()
+        el = e.target.closest('div.drag')
+
+        mStartX = e.clientX
+        mStartY = e.clientY
+
+        elWidth = parseFloat(el.style.width)
+        elHeight = parseFloat(el.style.height)
+
+        window.addEventListener('mousemove', onResize)
       }
     })
 
@@ -90,20 +120,37 @@
         let left = moveX + elStartX
         let top = moveY + elStartY
 
-        if (left < 0) {
+        if (left < 0 || left < 30) {
           left = 0
         }
-        if (top < 0) {
+        if (top < 0 || top < 30) {
           top = 0
         }
-        if (left > window.innerWidth - el.offsetWidth) {
+        if (left > window.innerWidth - el.offsetWidth || left > window.innerWidth - el.offsetWidth - 30) {
           left = window.innerWidth - el.offsetWidth
         }
-        if (top > window.innerHeight - el.offsetHeight) {
+        if (top > window.innerHeight - el.offsetHeight || top > window.innerHeight - el.offsetHeight - 30) {
           top = window.innerHeight - el.offsetHeight
         }
         el.style.left = left + 'px'
         el.style.top = top + 'px'
+
+      }
+    }
+
+    function onResize(e) {
+      if (e.wihch === 0 || e.buttons === 0) {
+        window.removeEventListener('mousemove', onResize)
+      } else {
+        let resizeX = e.clientX - mStartX
+        let resizeY = e.clientY - mStartY
+
+        let width = resizeX + elWidth + 'px'
+        let height = resizeY + elHeight + 'px'
+
+        el.style.width = width
+        el.style.height = height
+
       }
     }
   </script>

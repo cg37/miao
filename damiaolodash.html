@@ -1,0 +1,657 @@
+<script>
+
+
+  obj = {
+    "a": 1,
+    "b": {
+      "q": 1,
+      "w": 2,
+      "i": 3,
+    },
+    "c": {
+      "x": 1,
+      "y": {
+        "z": 5,
+        "ooo": 2,
+      },
+    },
+  }
+  obj.c.y.ooo = obj
+
+
+  // 先序遍历一个可能带环的对象
+  // 遍历过程中将遇到的属性名，属性值，以及这对名值对所属的对象都传给action函数
+  // seen表示已经遇见过的对象，将不会重复遍历
+  function traverse(obj, action, key = '', belongingObject = null, seen = new Set()) {
+    if (seen.has(obj)) {
+      return
+    }
+    seen.add(obj)
+
+    action(key, obj, belongingObject)
+
+    if (obj && typeof obj == 'object') {
+      for (var key in obj) {
+        var val = obj[key]
+        traverse(val, action, key, obj, seen)
+      }
+    }
+  }
+
+
+  // 解析出一个可能带环的对象
+  function parseCircularObject(string) {
+    var parsed = JSON.parse(string)
+    var map = {} // id映射到对应的对象
+
+    traverse(parsed, (key, val, belongingObject) => {
+      if (val && typeof val == 'object' && val.$$id) {
+        map[val.$$id]  =  val
+        delete val.$$id
+      }
+      if (typeof val == 'string' && val.startsWith('$$')) {
+        var id = val.slice(2)
+        var obj = map[id]
+        belongingObject[key] = obj
+      }
+    })
+
+    return parsed
+  }
+
+
+  // 序列化一个可能带环的对象
+  function stringifyCircularObject2(obj) {
+    var id = 1
+    var seenObj = new Set()
+    var a = JSON.stringify(obj, function (key, val) {
+      if (val && seenObj.has(val)) { // 满足此条件意味着val已经出现过
+        val.$$id = id++
+        return '$$' + val.$$id
+      }
+      if (val && typeof val == 'object') {
+        seenObj.add(val)
+      }
+      return val
+    }, 2)
+
+    return a
+  }
+
+  // 序列化一个可能带环的对象
+  function stringifyCircularObject(obj) {
+    var id = 1
+    // var objMap = {}
+    var a = JSON.stringify(obj, function (key, val) {
+      if (val && val.$$id) { // 满足此条件意味着val已经出现过
+        return '$$' + val.$$id
+      }
+      if (val && typeof val == 'object') {
+
+        val.$$id = id++
+        // objMap[val.$$id]    =    val
+
+      }
+      return val
+    }, 2)
+
+    traverse(obj, (key, val, belongs) => {
+      if (key.startsWith('$$')) {
+        delete belongs[key]
+      }
+      if (val && typeof val == 'object') {
+        delete val.$$id
+      }
+    })
+
+    return a
+  }
+
+  // 序列化一个可能带环的对象
+  function stringifyCircularObject3(obj) {
+    var id = 1
+    var objMap = new Map() //    {    对象1 => 1,    对象2 => 2  }
+    var a = JSON.stringify(obj, function (key, val) {
+      if (objMap.has(val)) { // 满足此条件意味着val已经出现过
+        return '$$' + objMap.get(val)
+      }
+      if (val && typeof val == 'object') {
+
+        // val.$$id = id++
+        objMap.set(val, id++)
+      }
+      return val
+    }, 2)
+
+    return a
+  }
+
+
+  obj1 = `{
+    "$$id": 1,
+    "a": 1,
+    "b": {
+      "q": 1,
+      "w": 2,
+      "i": 3
+    }, "c": {
+      "x": 1,
+      "y": {
+        "z": 5,
+        "ooo": "$$1"
+      }
+    }
+  }`
+
+
+  JSON.stringify({
+    a: 2,
+    b: NaN,
+    x: 234234235234n,
+    c: undefined,
+    d: [1,2,3,4],
+    e: function (params) {
+      return 8
+    }
+  }, function (key, val) {
+    console.log(key, val)
+    if (Number.isNaN(val)) {
+      return 'NaN'
+    }
+    if (typeof val === 'function') {
+      return {
+        type: 'function',
+        source: val.toString(),
+      }
+    }
+    if (val === undefined) {
+      return '[[undefined]]'
+    }
+    if (typeof val === 'bigint') {
+      return '[[bigint]]' + val.toString()
+    }
+    return val
+  }, 2 )
+
+  JSON.parse(`{
+    "a": 2,
+    "b": "NaN",
+    "x": "[[bigint]]234234235234",
+    "c": "[[undefined]]",
+    "d": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "e": {
+      "type": "function",
+      "source": "function (params) {\\n    return 8\\n  }"
+    }
+  }`, function(key, val, source) {
+    if (typeof val === 'string' && val.startsWith('[[bigint]]')) {
+      return BigInt(val.slice(10))
+    }
+    if (val === '[[undefined]]') {
+      return undefined
+    }
+    if (val === 'NaN') {
+      return NaN
+    }
+    if (val && typeof val == 'object' && val.type == 'function') {
+      return eval('(' + val.source + ')'  )
+    }
+    return val
+  })
+
+    // cloneMap里记录的是obj中的每个对象与其复本的映射
+    // 如何克隆带环对象？答：建立映射
+    // 如何克隆函数？答：函数不需要克隆
+    // 如果里面有不认识的对象怎么办？应该增加相应的逻辑去处理每一种类型的对象
+    // 如果就是遇到了不认识/没有处理到的类型的对象怎么办？提供一个函数给调用者，让他来实现对“我们不认识的对象的克隆”
+    function cloneDeep(obj, cloneMap = new Map()) {
+      if (typeof obj == 'object') {
+        if (cloneMap.has(obj)) {
+          return cloneMap.get(obj) // 获取obj的复本
+        }
+        var copy
+        if (Array.isArray(obj)) {
+          copy = []
+        } else {
+          copy = {}
+        }
+        cloneMap.set(obj, copy)
+        for (var key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            copy[key] = cloneDeep(obj[key], cloneMap)
+          }
+        }
+        return copy
+      }
+      return obj
+    }
+
+
+    function once(func) {
+      var result
+      var called = false
+
+      return function(...args) {
+        if (called) {
+          return result
+        } else {
+          called = true
+          result = func.call(this, ...args)
+          return result
+        }
+      }
+    }
+
+    function before(n, func) {
+      var result
+      var called = 0
+
+      return function(...args) {
+        if (called === n) {
+          return result
+        } else {
+          called++
+          result = func.call(this, ...args)
+          return result
+        }
+      }
+    }
+
+    function after(n, func) {
+      var called = 0
+      return function(...args) {
+        called++
+        if (called > n) {
+          return func.call(this, ...args)
+        }
+      }
+    }
+
+    function negate(func) {
+      return function(...args) {
+        return !func.call(this, ...args)
+      }
+    }
+
+    function unary(func) {
+      return function(...args) {
+        return func(...args.slice(0, 1))
+      }
+    }
+
+    function ary(func, [n = func.length]) {
+      return function(...args) {
+        return func(...args.slice(0, n))
+      }
+    }
+
+    function flip(func) {
+      return function(...args) {
+        return func(...args.reverse())
+      }
+    }
+
+    function rest(func, start = func.length - 1) {
+      return function() {
+        var args = Array.from(arguments) // [1,2,3,4,5,6]
+        var normalArgs = args.slice(0, start) // [1,2]
+        var restArgs = args.slice(start)      // [3,4,5,6,7]
+        normalArgs.push(restArgs)  // [1,2, [3,4,5,6,7]]
+        return func.apply(this, normalArgs)
+      }
+    }
+
+    function spread(func) {
+      return function(array) {
+        return func.apply(this, array)
+      }
+    }
+
+    function memoize(func) {
+      var cache = new Map()
+
+      return function(arg) {
+        if (cache.has(arg)) {
+          return cache.get(arg)
+        } else {
+          var result = func(arg)
+          cache.set(arg, result)
+          return result
+        }
+      }
+    }
+    function memoize(func, resolver = it => it) {
+      var cache = new memoize.Cache()
+
+      function memoized(...args) {
+        var cacheKey = resolver(...args)
+        if (cache.has(cacheKey)) {
+          return cache.get(cacheKey)
+        } else {
+          var result = func.call(this, ...args)
+          cache.set(cacheKey, result)
+          return result
+        }
+      }
+      memoized.cache = cache
+
+      return memoized
+    }
+    memoize.Cache = Map
+
+
+    function mapValues(object, mapper = it => it) {
+      var result = {}
+      for (var key in object) {
+        var val = object[key]
+        var mappedVal = mapper(val, key, object)
+        result[key] = mappedVal
+      }
+      return result
+    }
+
+
+    // every(array, f)
+    // 等价于
+    // !some(array, negate(f))
+
+    // some(array, f)
+    // 等价于
+    // !every(array, negate(f))
+
+
+
+    // 有序集合的去重
+    // 单次扫描即可完成
+    function sortedUniq(array) {
+      if (array.length == 0) {
+        return []
+      }
+      var result = [array[0]]
+      for (var i = 1; i < array.length; i++) {
+        if (array[i] !== array[i - 1]) {
+          result.push(array[i])
+        }
+      }
+      return result
+    }
+
+    function sortedUniqBy(array, iterator = identity) {
+      if (array.length == 0) {
+        return []
+      }
+
+      var result = [array[0]]
+      var seenKey = [ iterator(array[0]) ]
+
+      for (var i = 1; i < array.length; i++) {
+        var key = iterator(array[i])
+        if (key !== seenKey.at(-1)) {
+          result.push(array[i])
+        }
+      }
+
+      return result
+    }
+
+    function isPlainObject(obj) {
+      var proto = Object.getPrototypeOf(obj)
+      return proto == null || proto == Object.prototype
+    }
+
+    // 能否用O(n)的算法来实现数组去重？
+    function uniq(array) {
+      return Array.from(new Set(array))
+    }
+
+    // 如果元素传给predicate后返回相同的值，则被认为是相同的
+    function uniqBy(array, predicate) {
+      var result = []
+      var set = new Set()
+      for (var item of array) {
+        var key = predicate(item)
+        if (!set.has(key)) {
+          result.push(item)
+          set.add(key)
+        }
+      }
+      return result
+    }
+
+    // 通过comparator函数来判定两个元素是否相同，相同返回true不同返回false
+    function uniqWith(array, comparator) {
+      var result = []
+      for (var item of array) {
+        var keep = true
+        for (var seen of result) {
+          if (comparator(item, seen)) {// 如果遇到相同的，则不保留
+            keep = false
+            break
+          }
+        }
+        if (keep) {
+          result.push(item)
+        }
+      }
+      return result
+    }
+
+    function uniq(array) {
+      var result = []
+      for (var item of array) {
+        if (!result.includes(item)) {
+          result.push(item)
+        }
+      }
+      return result
+    }
+
+    function uniq(array) {
+      // 用对象的key来存储，由于key不能重复，也就实现了去重
+      // 但是只能对字符串数组去重
+    }
+
+    function differenceBy(array, ...values) {
+      var predicate = values.pop()
+      var result = []
+      values = values.flat()
+      for (var item of array) {
+        var keep = true // 是否保留当前item元素
+        for (var value of values) {
+          if (predicate(item) === predicate(value)) { // 由两个值通过predicate后返回的值是否相等来判断两个值是否重复
+            keep = false
+            break
+          }
+        }
+        if (keep) {
+          result.push(item)
+        }
+      }
+      return result
+    }
+
+
+    function differenceWith(array, ...values) {
+      var comparator = values.pop()
+      var result = []
+      values = values.flat()
+      for (var item of array) {
+        var keep = true // 是否保留当前item元素
+        for (var value of values) {
+          if ( comparator(item, value) ) { // 由comparator来判断两个值的相等性
+            keep = false
+            break
+          }
+        }
+        if (keep) {
+          result.push(item)
+        }
+      }
+      return result
+    }
+
+    function sum(array) {
+      return sumBy(array)
+    }
+
+    function sumBy(array, iterator = identity) {
+      var result = 0
+      iterator = iteratee(iterator)
+      for (var i = 0; i < array.length; i++) {
+        result += iterator(array[i])
+      }
+      return result
+    }
+
+    function identity(arg) {
+      return arg
+    }
+
+
+
+    function toPath(pathString) {
+      if (typeof pathString == 'string') {
+        var result = pathString.split(/\.|\[|\]\.|\]\[|\]/)
+        if (result.at(-1) == '') {
+          result.pop()
+        }
+        if (result.at(0) == '') {
+          result.shift()
+        }
+        return result
+      }
+      return pathString
+    }
+
+    function get(obj, path, defaultValue) {
+      path = toPath(path)
+      for (var key of path) {
+        if (obj != undefined) {
+          obj = obj[key]
+        } else {
+          return defaultValue
+        }
+      }
+      return obj ?? defaultValue
+    }
+
+    function get(obj, path, defaultValue) {
+      if (obj == undefined) {
+        return defaultValue
+      }
+      if (path.length == 0) {
+        return obj
+      }
+      return get(obj[path[0]], path.slice(1))
+    }
+
+    function get(obj, path, defaultValue) {
+      return path.reduce((obj, key) => {
+        if (obj == undefined) {
+          return undefined
+        }
+        return obj[key]
+      }, obj) ?? defaultValue
+    }
+
+
+    function property(path) {
+      return function(obj) {
+        return get(obj, path)
+      }
+    }
+
+    function matchesProperty(path, srcValue) {
+      return function(object) {
+        return isMatch(object[path], srcValue)
+      }
+    }
+
+    function matches(src) {
+      return function(object) {
+        return isMatch(object, src)
+      }
+    }
+
+    function matches(src) {
+      return bind(isMatch, null, undefined, src)
+    }
+
+    // 带跳参数的功能的函数绑定功能
+    function bind(f, thisArgs, ...fixedArgs) { //[undefined, 2, undefined, 3]
+      return function(...args) {//[1,0,4,5,6,]
+        var copy = fixedArgs.slice()
+        // 填空前面的跳过的参数
+        for (var i = 0, j = 0; i < copy.length; i++) {
+          if (copy[i] === undefined) {
+            copy[i] = args[j++]
+          }
+        }
+        // 后续参数正常放到最后
+        while(j < args.length) {
+          copy.push(args[j++])
+        }
+        return f.call(thisArgs, ...copy)
+      }
+    }
+
+
+
+    // 判断src是否是object的一部分
+    function isMatch(object, src) {
+      for (var key in src) {
+        if (typeof src[key] === 'object') {
+          if (!isMatch(object[key],src[key])) {
+            return false
+          }
+        } else {
+          if (object[key] !== src[key]) {
+            return false
+          }
+        }
+      }
+      return true
+    }
+
+    function iteratee(predicate) {
+      var func = predicate
+      if (typeof predicate === 'string') {
+        func = property(predicate)
+      } else if (Array.isArray(predicate)) {
+        func = matchesProperty(predicate)
+      } else if (typeof predicate === 'object') {
+        func = matches(predicate)
+      }
+      return func
+    }
+
+    function map(array, predicate = identity) {
+      var func = iteratee(predicate)
+      var result = []
+      for (var i = 0; i < array.length; i++) {
+        result.push(func(array[i], i, array))
+      }
+      return result
+    }
+
+
+    function filter(array, predicate = identity) {
+      var func = iteratee(predicate)
+
+      var result = []
+      for (var i = 0; i < array.length; i++) {
+        if (func(array[i], i, array)) {
+          result.push(array[i])
+        }
+      }
+      return result
+    }
+
+
+
+  </script>

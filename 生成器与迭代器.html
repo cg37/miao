@@ -1,0 +1,12 @@
+<script>
+  function * getFibs(n) {
+    let a = 0
+    let b = 1
+
+    while (n--) {
+      b = a + b
+      a = b - a
+      yield a
+    }
+  }
+</script>

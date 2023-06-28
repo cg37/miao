@@ -1,6 +1,6 @@
 <style>
     input, textarea, label, pre {
-        font-family: consolas;
+        font-family: consolas,serif;
     }
     pre > b:nth-child(odd) {
         background-color: #d5ebff;
@@ -71,13 +71,13 @@
         return flags
     }
     function run() {
-        var reSource = reInput.value
-        var flags = getFlags()
-        var re = new RegExp(reSource, flags)
-        var string = stringInput.value
-        var match
-        var html = ''
-        var lastLastIndex = 0
+        let reSource = reInput.value
+        let flags = getFlags()
+        let re = new RegExp(reSource, flags)
+        let string = stringInput.value
+        let match
+        let html = ''
+        let lastLastIndex = 0
 
         while (match = re.exec(string)) {
             html += string.slice(lastLastIndex, match.index)

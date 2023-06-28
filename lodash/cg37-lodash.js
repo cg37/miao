@@ -32,6 +32,33 @@ var cg37 = {
   },
 
   findIndex:function(array, predicate, fromIndex = 0) {
+    let length = array == null ? 0 : array.length
+    if (!length) {
+      return -1
+    }
+
+    let index = fromIndex == null ? 0 : parseInt(fromIndex);
+    if (index < 0) {
+      index = Math.max(length + index, 0)
+    }
+    return baseFindIndex(array, getIteratee(predicate, 3), index)
+  },
+
+  baseFindIndex: function(array, predicate, fromIndex, fromRight) {
+    const{length } = array
+    let index =fromIndex + (fromIndex ? 1 : -1)
+
+    while((fromRight ? index-- : ++index < length)) {
+      if (predicate(array[index], index, array)) {
+        return index
+      }
+    }
+    return -1
+  },
+
+
+
+  toInteger: function(value) {
 
   },
 

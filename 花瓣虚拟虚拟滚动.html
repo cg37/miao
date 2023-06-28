@@ -5,38 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    * {
-      xbackground-color: rgba(0,0,0,0.1);
+    *{
+      background-color: rgba(0,0,0,0.1);
     }
-    html {
-      background-color: black;
+    html{
       overflow-y: scroll;
+      background-color: black;
     }
-    body {
-      margin: 10px;
+    body{
+      margin: 10px
     }
     section {
-      xdisplay: flex;
-      xgap: 10px;
-      xalign-items: flex-start;
       margin: auto;
       position: relative;
     }
-    img {
+    img{
       display: block;
-      /* box-shadow: 0 0 20px #999; */
       outline: 1px solid white;
       outline-offset: 1px;
       position: absolute;
-      transition: 0.3s;
+      transition: 0.3s
     }
   </style>
 </head>
 <body>
   <section>
+
   </section>
   <script src="https://unpkg.com/lodash"></script>
   <script>
+    let px = 'px'
     var cats = [
       {
         "url": "photo-103450229.jpg",
@@ -364,27 +362,24 @@
       }
     ]
 
-    cats = [..._.cloneDeep(cats), ..._.cloneDeep(cats)]
-    cats = [..._.cloneDeep(cats), ..._.cloneDeep(cats)]
-    cats = [..._.cloneDeep(cats), ..._.cloneDeep(cats)]
-    cats = [..._.cloneDeep(cats), ..._.cloneDeep(cats)]
-    cats = [..._.cloneDeep(cats), ..._.cloneDeep(cats)]
-    cats = [..._.cloneDeep(cats), ..._.cloneDeep(cats)]
-    cats = [..._.cloneDeep(cats), ..._.cloneDeep(cats)]
-    cats = [..._.cloneDeep(cats), ..._.cloneDeep(cats)]
-
     cats.forEach((it, idx) => {
       it.idx = idx
     })
 
+    cats = [..._.cloneDeep(cats), ..._.cloneDeep(cats)]
+    cats = [..._.cloneDeep(cats), ..._.cloneDeep(cats)]
+    cats = [..._.cloneDeep(cats), ..._.cloneDeep(cats)]
+    cats = [..._.cloneDeep(cats), ..._.cloneDeep(cats)]
+    cats = [..._.cloneDeep(cats), ..._.cloneDeep(cats)]
+    cats = [..._.cloneDeep(cats), ..._.cloneDeep(cats)]
+    cats = [..._.cloneDeep(cats), ..._.cloneDeep(cats)]
 
-    var section = document.querySelector('section')
-    var prevWidth = 0
-    var prevColumns = 0
-    var 余量 = -100
-    var gap = 10
-    var colWidth = 180
-
+    let section = document.querySelector('section')
+    let prevWidth = 0
+    let prevColumns = 0
+    let allowance = -100 //余量
+    let gap = 10
+    let colWidth = 180
 
     function run() {
       console.time('layout')
@@ -395,9 +390,7 @@
         prevWidth = window.innerWidth
       }
 
-
-      // 计算能够显示多少列
-      var columns = Math.floor((window.innerWidth - 30) / (colWidth + gap))
+      let columns = Math.floor((window.innerWidth - 30) / (colWidth + gap))
 
       if (columns == prevColumns) {
         return
@@ -405,43 +398,39 @@
         prevColumns = columns
       }
 
-      cats.forEach(it => {
-        it.show = false
-      })
-      section.innerHTML = '' // 清空section元素
-      var containerWidth = columns * colWidth + (columns - 1) * gap
+      cats.forEach(it => {it.show = false})
+
+      section.innerHTML = '' //清空section元素
+      let containerWidth = columns * colWidth + (columns - 1) * gap
       section.style.width = containerWidth + 'px'
 
-      var colHeights = Array(columns).fill(0) // 记录每列的高度
+      let colHeights = Array(columns).fill(0)
 
-      for (var cat of cats) {
-        // 得到最"矮"的div元素,以往里面添加一张图片
-        var minColHeight = Math.min(...colHeights)
-        var minColIdx = colHeights.indexOf(minColHeight)
+      for (let cat of cats) {
+        let minColHeight = Math.min(...colHeights)
+        let minColIdx = colHeights.indexOf(minColHeight)
 
         cat.left = minColIdx * (colWidth + gap)
         cat.top = minColHeight
         cat.displayWidth = colWidth
         cat.displayHeight = Math.round(colWidth * cat.height / cat.width)
 
-        // 记录对应div的累计高度
-        colHeights[minColIdx] += cat.displayHeight + gap
+        colHeights[minColIdx] = colHeights[minColIdx] + cat.displayHeight + gap
       }
 
       section.style.height = Math.max(...colHeights) + 'px'
 
-
-      cats.filter(cat => {
-        return cat.top + cat.displayHeight + gap >= window.pageYOffset - 余量
-          && cat.top + gap <= window.pageYOffset + window.innerHeight + 余量
+      cats.filter(cat=>{
+        return cat.top + cat.displayHeight + gap >= window.pageYOffset - allowance //
+                && cat.top + gap <= window.scrollY + window.innerHeight + allowance
       }).forEach(cat => {
         cat.show = true
 
-        var img = document.createElement('img')
+        let img = document.createElement('img')
         img.dataset.idx = cat.idx
         img.src = cat.fullUrl
-        img.style.width = cat.displayWidth + 'px'
-        img.style.height = cat.displayHeight + 'px'
+        img.style.width = cat.displayWidth + px
+        img.style.height = cat.displayHeight + px
         img.style.transform = `translate(${cat.left}px, ${cat.top}px)`
         img.style.opacity = '0'
         img.onload = () => {
@@ -450,116 +439,78 @@
 
         section.append(img)
       })
-
-
 
       console.timeEnd('layout')
     }
 
     run()
-
     window.onresize = debounce(run, 300)
 
-
-
-
-
-
-
-
-
-    var prevPageYOffset = 0
+    let prevPageYOffset = 0
 
     window.onscroll = (e) => {
-      console.log('============', window.pageYOffset)
+      console.log('--------', window.pageYOffset)
 
       if (Math.abs(window.pageYOffset - prevPageYOffset) < 100) {
-        console.log('滚动距离过短,取消')
+        console.log('滚动距离过短')
         return
       }
-      var imgs = section.querySelectorAll('img')
+      let imgs = section.querySelectorAll('img')
 
-      // 把离开屏幕的图片删掉
-      // imgs.forEach(img => {
-      //   var box = img.getBoundingClientRect()
-      //   if (true || window.pageYOffset > prevPageYOffset) {
-      //     if (box.bottom < -余量) {
-      //       section.removeChild(img)
-      //       console.log('从上方删掉了第'+img.dataset.idx+'张')
-      //     }
-      //   }
-      //   if (true || window.pageYOffset < prevPageYOffset) {
-      //     if (box.top > window.innerHeight + 余量) {
-      //       section.removeChild(img)
-      //       console.log('从下方删掉了第'+img.dataset.idx+'张')
-      //     }
-      //   }
-      // })
+      let shownCats = cats.filter(cat => cat.show == true)
 
-      // 计算已经显示的图片
-      var shownCats = cats.filter(cat => cat.show == true)
-
-      // 计算新的滚动位置应该显示的图片
-      var toBeShow = cats.filter(cat => {
-        return cat.top + cat.displayHeight + gap >= window.pageYOffset - 余量
-          && cat.top + gap <= window.pageYOffset + window.innerHeight + 余量
+      let toBeShow = cats.filter (cat=>{
+        return cat.top + cat.displayHeight + gap >= window.scrollY - allowance
+        && cat.top + gap <= window.scrollY + window.innerHeight + allowance
       })
 
-      // 计算需要离开的图片
-      var leaveCats = _.difference(shownCats, toBeShow)
+      let leaveCats = _.difference(shownCats, toBeShow)
 
-      console.log('离开的图片', leaveCats.map(it => it.idx))
+      console.log('leave pic', leaveCats.map(it=>it.idx))
 
-      // 将它们标记为不再显示
       leaveCats.forEach(it => {
         it.show = false
-        var img = section.querySelector(`[data-idx="${it.idx}"]`)
+        let img = section.querySelector(`[data-idx="${it.idx}"]`)
         img.remove()
       })
 
-      // 计算需要新增dom的图片,因为不是所有的图片都要新增dom对象
-      var newCats = _.difference(toBeShow, shownCats)
+      let newCats = _.difference(toBeShow, shownCats)
 
-      console.log('新增的图片', newCats.map(it => it.idx))
+      console.log('new pic', newCats.map(it=>it.idx))
 
-      newCats.forEach(cat => {
+      newCats.forEach(cat=>{
         cat.show = true
 
-        var img = document.createElement('img')
+        let img = document.createElement('img')
         img.dataset.idx = cat.idx
         img.src = cat.fullUrl
-        img.style.width = cat.displayWidth + 'px'
-        img.style.height = cat.displayHeight + 'px'
-        img.style.transform = `translate(${cat.left}px, ${cat.top}px)`
+        img.style.width = cat.displayWidth + px
+        img.style.height = cat.displayHeight + px
+        img.style.transform = `translate(${cat.left}px, ${cat.top})`
         img.style.opacity = '0'
-        img.onload = () => {
+        img.onload = () =>{
           img.style.opacity = '1'
         }
 
         section.append(img)
       })
 
-
       prevPageYOffset = window.pageYOffset
     }
 
-
-
-
-
     function debounce(f, time) {
-      var taskId
+      let taskId
 
       return function(...args) {
         clearTimeout(taskId)
         taskId = setTimeout(() => {
           f.call(this, ...args)
-        }, time)
+        },time)
       }
     }
 
     function throttle(f, time) {
-      var scheduled = false, lastArgs
+      let scheduled = false, lastArgs
       return function(...args) {
         lastArgs = args
         if (!scheduled) {
@@ -572,67 +523,37 @@
       }
     }
 
-
-    var section = document.querySelector('section')
-    var z = 5
+    let z = 5
     section.addEventListener('click', function(e) {
       if (e.target.matches('section > div > img')) {
-        var img = e.target
+        let img = e.target
 
-        // 如果没放大，那么元素的transform为空
         if (img.style.transform == '') {
-          var box = img.getBoundingClientRect()
-          var cx = box.left + box.width / 2
-          var cy = box.top + box.height / 2
-          var vx = window.innerWidth / 2
-          var vy = window.innerHeight / 2
-          var movex = vx - cx
-          var movey = vy - cy
-          var zoomx = window.innerWidth / box.width
-          var zoomy = window.innerHeight / box.height
+          let box = img.getBoundingClientRect()
+          let cx = box.left + box.width / 2
+          let cy = box.top + box.height / 2
+          let vx = window.innerWidth / 2
+          let vy = window.innerHeight / 2
+          let movex = vx - cx
+          let movey = vy - cy
+
+          let zoomx = window.innerWidth / box.width
+          let zoomy = window.innerHeight / box.height
 
           img.style.zIndex = z++
           img.style.transform = `translate(${movex}px, ${movey}px) scale(${Math.min(zoomx, zoomy)})`
-          img.style.boxShadow = '0 0 0 10000px black'
-          document.documentElement.style.overflowY = 'hidden'
+          document.documentElement.style.ouverflowY = 'hidden'
           document.documentElement.style.paddingRight = '14px'
         } else {
           img.style.transform = ''
           img.style.boxShadow = ''
           document.documentElement.style.overflowY = ''
           document.documentElement.style.paddingRight = ''
-        }
 
+        }
       }
     })
 
-    // var imgs = document.querySelectorAll('img')
-    // for (var img of imgs) {
-    //   img.addEventListener('click', e => {
-    //     var img = e.target
-
-    //     // 如果没放大，那么元素的transform为空
-    //     if (img.style.transform == '') {
-    //       var box = img.getBoundingClientRect()
-    //       var cx = box.left + box.width / 2
-    //       var cy = box.top + box.height / 2
-    //       var vx = window.innerWidth / 2
-    //       var vy = window.innerHeight / 2
-    //       var movex = vx - cx
-    //       var movey = vy - cy
-    //       var zoomx = window.innerWidth / box.width
-    //       var zoomy = window.innerHeight / box.height
-
-    //       img.style.zIndex = z++
-    //       img.style.transform = `translate(${movex}px, ${movey}px) scale(${Math.min(zoomx, zoomy)})`
-    //       img.style.boxShadow = '0 0 0 10000px black'
-    //     } else {
-    //       img.style.transform = ''
-    //       img.style.boxShadow = ''
-    //     }
-
-    //   })
-    // }
   </script>
 </body>
 </html>

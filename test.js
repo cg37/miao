@@ -361,3 +361,27 @@ function createNode(val, next = next){
 function insert(val, list, index) {
   let c = 0;
 }
+
+
+// Igor
+// Sandra
+// Grey
+// Hannah
+// Sparrow
+// Humble
+// Heathcliff
+// Lara
+// Fawn
+// Sorrow
+// Loralie
+// Lorena
+// Freda
+// Halbert
+// Shannon
+// Nadine
+// Neal
+// Sloane
+// Griswold
+// Orson
+// Harry
+// Misty
