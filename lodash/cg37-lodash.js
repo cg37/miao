@@ -204,8 +204,13 @@ var cg37 = {
     }
     return true
   },
-  some: function (array) {
+  some: function (array, predicate) {
+    let func = iteratee(predicate)
 
+    for(let item of array){
+      if(func(item)) return true
+    }
+    return false
   },
 
 
