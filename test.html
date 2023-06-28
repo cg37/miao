@@ -1,38 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>circle</title>
-    <style>
-        .circle{
-            margin-top: 50px;
-            margin-left: 50px;
-            width: 200px;
-            height: 200px;
-            background: #000;
-            border-radius: 50%;
-            text-align: center;
-            color: #fff;
-        }
-        .ball2{
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: #eed784;
-            position: relative;
-            top: -30px;
-            animation:spin2 3s infinite linear;
-            transform-origin: 50% 130px;
-        }
-        @keyframes spin2{
-            to{transform: rotate(1turn);}
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .draggable {
+      position: fixed;
+      width: 100px;
+      height: 100px;
+      /* overflow: hidden;
+      resize: both; */
+    }
+    .draggable h1.window-title {
+      margin: 0;
+      font-size: 14px;
+      background-color: #fff8;
+      cursor: move;
+    }
+    .draggable .resizer {
+      cursor: nwse-resize;
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      bottom: 0;
+      right: 0;
+      xxbackground-color:red;
+    }
+  </style>
 </head>
 <body>
-    <div class="circle">
-        <div class="ball2">H</div>
+
+  <div class="draggable" style="width:100px;height:60px;left:0;top:0;background-color: aquamarine">
+    <div>
+      <h1 class="window-title">窗口1</h1>
     </div>
+    <span class="resizer"></span>
+  </div>
+  <div class="draggable" style="width:100px;height:60px;left:0;top:0;background-color: pink">
+    <h1 class="window-title">窗口2</h1>
+    <span class="resizer"></span>
+  </div>
+  <div class="draggable" style="width:100px;height:60px;left:0;top:0;background-color: chocolate">
+    <h1 class="window-title">窗口2</h1>
+    <span class="resizer"></span>
+  </div>
+
+  <script>
+    // 鼠标起始位置
+    var startX = 0
+    var startY = 0
+    var el = null
+    // 元素起始位置
+    var elStartX = 0
+    var elStartY = 0
+    // 元素起始宽高
+    var elStartWidth = 0
+    var elStartHeight = 0
+
+    var z = 10
+    var currentAction = 'resize' // 'move'
+
+    window.addEventListener('mousedown', e => {
+      if (e.target.matches('.draggable, .draggable *')) {
+        e.target.closest('.draggable').style.zIndex = z++
+      }
+
+      if (e.target.matches('.draggable  h1.window-title')) {
+        e.preventDefault()
+
+        el = e.target.closest('.draggable') // 获取到e.target最近的满足.draggable选择器的祖先元素
+        startX = e.clientX
+        startY = e.clientY
+        elStartX = parseFloat(el.style.left)
+        elStartY = parseFloat(el.style.top)
+
+        window.addEventListener('mousemove', onMove)
+        console.log('bind')
+      }
+      if (e.target.matches('.draggable .resizer')) {
+        e.preventDefault()
+
+        el = e.target.closest('.draggable')
+
+        elStartWidth  = parseFloat(el.style.width)
+        elStartHeight = parseFloat(el.style.height)
+        startX = e.clientX
+        startY = e.clientY
+
+        window.addEventListener('mousemove', onResize)
+      }
+    })
+
+    function onMove(e) {
+      // 鼠标移动事件中,鼠标按钮已经释放
+      if (e.which == 0 || e.buttons == 0) {
+        window.removeEventListener('mousemove', onMove)
+        console.log('unbind')
+      } else {
+        var moveX = e.clientX - startX
+        var moveY = e.clientY - startY
+
+        var left = elStartX + moveX
+        var top  = elStartY + moveY
+
+        if (left < 0) {
+          left = 0
+        }
+        if (left > window.innerWidth - el.offsetWidth) {
+          left = window.innerWidth - el.offsetWidth
+        }
+        if (top < 0) {
+          top = 0
+        }
+        if (top > window.innerHeight - el.offsetHeight) {
+          top = window.innerHeight - el.offsetHeight
+        }
+
+        el.style.left = left + 'px'
+        el.style.top = top + 'px'
+
+      }
+    }
+
+    function onResize(e) {
+      // 鼠标移动事件中,鼠标按钮已经释放
+      if (e.which == 0 || e.buttons == 0) {
+        window.removeEventListener('mousemove', onResize)
+        console.log('unbind')
+      } else {
+        var moveX = e.clientX - startX
+        var moveY = e.clientY - startY
+
+        var width = elStartWidth + moveX
+        var height = elStartHeight + moveY
+
+        if (width < 100) {
+          width = 100
+        }
+        if (height < 60) {
+          height = 60
+        }
+
+        el.style.width = width + 'px'
+        el.style.height = height + 'px'
+
+      }
+    }
+
+  </script>
 </body>
 </html>

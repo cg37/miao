@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html, body {
+      box-sizing: border-box;
+    }
+    * {
+      box-sizing: inherit;
+      font-size: 22px;
+    }
+    button {
+      width: 50px;
+      border: none;
+      border-top: 1px solid;
+      margin-bottom: -2px;
+    }
+    button:last-of-type{
+      border-right: 1px solid
+    }
+    button:first-child{
+      border-left: 1px solid
+    }
+    button.normal {
+      border-top:1px solid;
+      border-right:1px solid;
+      border-left:1px solid;
+    }
+    button.selected {
+      font-weight: bold;
+      /* border: 2px solid red; */
+      border-bottom: 1px solid white
+    }
+
+    button + button {
+      border-left: 1px solid
+    }
+    div[data-tabname] {
+      border: 1px solid;
+      height: 100px
+    }
+
+    div.ondisplay{
+      display: block;
+      border: 1px solid
+    }
+
+    .tabdiv{
+      border: 1px solid;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <tab-panel>
+    <div data-tabname="one">Tab one</div>
+    <div data-tabname="two">Tab two</div>
+    <div data-tabname="three">Tab three</div>
+    <div data-tabname="four">Tab four</div>
+  </tab-panel>
+  <script>
+
+    function asTabs(node) {
+      let tabs = [...node.children]
+      let tabCount = tabs.length
+
+      let tabsGroup = document.createElement('div')
+      tabsGroup.classList.add('tabsGroup')
+
+      for (let tab of tabs) {
+        tabsGroup.append(tab)
+        tab.classList.add('tabdiv')
+      }
+
+
+      let buttnsGrous = document.createElement('div')
+      buttnsGrous.classList.add('buttnsGoup')
+
+      for (let i = 0; i < tabCount; i++) {
+        let button = document.createElement('button')
+        button.textContent=tabs[i].dataset.tabname
+        button.id = tabs[i].dataset.tabname
+        buttnsGrous.append(button)
+      }
+
+      node.append(tabsGroup)  //div tabs
+      node.prepend(buttnsGrous) //div button
+
+      let buttns = [...buttnsGrous.children]
+
+      let curIdx = 0
+      buttns[curIdx].classList.add('selected')
+      tabs[curIdx].classList.add('ondisplay')
+
+      buttnsGrous.addEventListener('click', e=>{
+        if (e.target.matches ('button')) {
+          let btnIdx = buttns.indexOf(e.target)
+          if (curIdx == btnIdx) {
+            return
+          }
+          buttns[btnIdx].classList.add('selected')
+          buttns[curIdx].classList.remove('selected')
+
+          tabs[curIdx].classList.remove('ondisplay')
+          tabs[curIdx].classList.add('tabdiv')
+
+          tabs[btnIdx].classList.add('ondisplay')
+          curIdx = btnIdx
+        }
+      })
+    }
+    asTabs(document.querySelector("tab-panel"));
+
+  </script>
+</body>
+</html>

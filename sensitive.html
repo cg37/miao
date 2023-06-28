@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <input type="text">
+  </div>
+  <script>
+    let input = document.querySelector('input')
+    input.addEventListener('keypress', function(e) {
+      if (e.key == 'Q' || e.key == 'W' || e.key == 'X') {
+        e.preventDefault()
+      }
+    })
+    input.addEventListener('paste', e=>{
+      let str = e.clipboardData.getData('text')
+      console.log(str)
+      str = str.replace(/[QWX]/g,'*')
+      e.preventDefault()
+      let selectStart = input.selectionStart
+      input.value = input.value.slice(0, input.selectionStart) + str + input.value.slice(input.selectionEnd)
+
+      input.selectionStart = input.selectionEnd = str.length + selectStart
+    })
+    input.addEventListener('', e=>{
+
+    })
+
+    let valueDescripter = Object.getOwnPropertyDescriptor(input.__proto__, 'value')
+
+    Object.defineProperty(input, 'value', {
+      get: function() {
+        return valueDescripter.get.call(this)
+
+      },
+      set:function(text) {
+        valueDescripter.set.call(this, text,replace(/[QWX]g/, '*'))
+      }
+    })
+
+    console.log(this)
+  </script>
+</body>
+</html>
