@@ -35,34 +35,6 @@ var cg37 = {
   drop:function(array, n = 1) {
     return array.slice(n)
   },
-
-
-  /*
-  ,"active":false},{"user":"fred","active":false},{"user":"pebbles","active":true}],function(o)  {
-        return  o.user  ==  'barney';
-      })
-输出：undefined
-期望：0
-=================
-输入：findIndex([{"user":"barney","active":false},{"user":"fred","active":false},{"user":"pebbles","active":true}],{"user":"fred","active":false})
-输出：undefined
-期望：1
-=================
-输入：findIndex([{"user":"barney","active":false},{"user":"fred","active":false},{"user":"pebbles","active":true}],["active",false])
-输出：undefined
-期望：0
-=================
-输入：findIndex([{"user":"barney","active":false},{"user":"fred","active":false},{"user":"pebbles","active":true}],"active")
-输出：undefined
-期望：2
-
-源码：
-function(array, predicate, fromIndex = 0) {
-
-}
-
-
-  */
   findIndex:function(array, predicate, fromIndex = 0) {
     let func = iteratee(predicate)
 
@@ -75,7 +47,16 @@ function(array, predicate, fromIndex = 0) {
     return -1
   },
 
-  findLastIndex:function(array) {},
+  findLastIndex:function(array, predicate, startLastIndex = array.length == null ? 0 : array.length) {
+    let func = iteratee(predicate)
+
+    let length = array == null ? 0 : array.length
+    for(let i = startLastIndex - 1; i >= 0; i--){
+      if(func(array[i])) {
+        return i
+      }
+    }
+  },
 
   flatten:function(array) {
     let flatten = []
