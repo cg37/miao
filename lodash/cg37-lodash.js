@@ -22,16 +22,25 @@ var cg37 = {
 
   /**
    *
-   * inspectArray, 要检查的数组
-   * excludeArray, 要排除的数组
-   *
+   * @inspectArray, 要检查的数组
+   * @excludeArray, 要排除的数组
    *
    *
   */
-  difference: function(inspectArray, excludeArray) {
+  difference:function(inspectArray, ...excludeArrays) {
+    let excludeArray = []
+    for (let eArray of excludeArrays) {
+      excludeArray = excludeArray.concat(eArray)
+    }
+    if (inspectArray.length === 0) return []
+    if (excludeArray.length === 0) return inspectArray
 
+    // return inspectArray.filter(function(it){
+    //   return excludeArray.indexOf(it) < 0
+    // })
+
+    return inspectArray.filter(it=>excludeArray.indexOf(it) < 0)
   },
-
 
   fill:function(array, val, start = 0, end = array.length) {
     for (let i = start; i < end; i++) {
