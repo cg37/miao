@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Regexp railway</title>
+</head>
+<style>
+	*{
+		box-sizing: inherit;
+		font-family: Monospace,serif;
+	}
+	html,body{
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		background-color: slategrey;
+	}
+	input#regexp-input{
+		width: 100%;
+		height: 100px;
+		font-size: 30px;
+	}
+	button {
+		height: 60px;
+		width: fit-content;
+		font-size: 30px;
+	}
+	div#draw-div{
+		height: 200px;
+		width: 100%;
+		border: 1px solid;
+		background-color: white;
+		font-size: 24px;
+	}
+
+</style>
+<body>
+
+<div id="input-div">
+	<label for="regexp-input">
+		请输入正则
+	</label>
+	<input type="text" name="regexp" id="regexp-input">
+</div>
+
+<div id="function-div">
+	<button id="draw-button">绘制</button>
+	<button>下载</button>
+	<button>下载</button>
+	<button>复制链接</button>
+</div>
+<div id="draw-div">
+	<svg xmlns="http://www.w3.org/2000/svg"
+	     width="100%" height="100%" >
+
+	</svg>
+</div>
+
+<script>
+  let regExpInput = document.querySelector('#regexp-input')   //正则输入框
+  let drawButton = document.querySelector('#draw-button')
+  let drawDiv = document.querySelector('#draw-div')
+	let svg = document.querySelector('svg')
+
+  let regExpVal = ''
+
+	let hash = location.hash.slice(1) //hash包含'#', 所以要从第一位slice一下
+	if(hash) {
+    regExpInput.value = hash
+		draw()
+	}
+
+
+
+
+
+	function draw(){
+		svg.innerHTML = ''
+		let node = parseRegExp(regExpVal)
+		console.log(node)
+
+		let draw = drawExpReg(node)
+		let box = draw.getBBox()
+		svg.setAttribute('width', box.width)
+		svg.setAttribute('height', box.height)
+		location.hash = encodeURIComponent(regExpVal)
+
+
+	}
+
+  function drawExpReg(node) {
+    /* 将其每一部分画出来, 再水平串起来
+		 *
+	   *
+	   *
+	   */
+    let  graphPadding = 10
+	  let lineWidth = 2
+	  function add(a, b){
+      return a + b
+	  }
+
+
+
+
+    return drawRegExpGraph(node)
+
+
+
+    function drawRegExpGraph(node) {
+      let branchesGraph = drawBranchesGraph(node.branches)
+	    let box = branchesGraph.getBBox()
+	    let g = svgElt('g')
+
+	    let width = g.width + graphPadding * 5
+	    let height = g.height + graphPadding * 3
+
+	    let rect = svgElt('rect', {
+        height: height,
+		    width: width,
+		    fill: node,
+	    })
+
+	    g.appendChild(rect)
+
+	    let line = svgElt()
+
+	    return g
+    }
+
+    function drawQuantifierGraph(node){
+      return 1
+    }
+    function drawCharacterClassGraph(node){
+    }
+    function drawCaptureGroup(node){
+    }
+    function drawBranch(node){
+			//绘制当前分支每一部分的图形
+	    let graphs = node.parts.map(drawNodeGraph)
+	    let boxes = graphs.map(it=>it.getBBox())
+
+	    let width = boxes.map(it=>it.width).reduce(add, 0) + graphPadding * (graphs.length - 1)
+	    let height = boxes.map(it=>it.width).reduce(add, 0) + graphPadding * 2
+
+    }
+  }
+
+  regExpInput.addEventListener('input', function e(){
+    regExpVal = regExpInput.value
+  })
+
+  let regExp = ''
+  drawButton.addEventListener('click', function(e){
+	  try{
+      let regExp = new RegExp(regExpVal)
+		  draw()
+	  } catch(e) {
+      drawDiv.innerHTML = e
+			console.log(e)
+	  }
+  })
+
+
+	//////////////////////
+
+  let  graphPadding = 10
+  let node = parseRegExp('foo[abc]bar')
+  drawNodeGraph(node.branches[0])
+  function svgElt(tagName, attrs = {}){
+    let tag = document.createElementNS('http://www.w3.org/2000/svg', tagName)
+    svg.appendChild(tag)
+    let key, val
+    for ([key, val] of Object.entries(attrs)) {
+      tag.setAttribute(key, val)
+    }
+    return tag
+  }
+  function drawCharacterGraph(node) {
+    let text = svgElt('text', {
+      x: 0,
+      y: 0,
+      "dominant-baseline": "text-before-edge",
+    })
+    text.textContent = node.char
+
+    let charBox = text.getBBox()
+
+    /**
+     * rect标签的大小, 其决定了g标签的大小
+     * */
+    let width = charBox.width + 10 * 2
+    let height = charBox.height + 6  * 2
+
+    text.setAttribute('transform', `translate(${(width - charBox.width) / 2}, ${(height - charBox.height) / 2})`)
+
+    let rect = svgElt('rect', {
+      x: 0,
+      y: 0,
+      fill: '#dae9e5',
+      width: width,
+      height: height,
+    })
+
+    let g = svgElt('g')
+    g.appendChild(rect)
+    g.appendChild(text)
+    return g
+  }
+
+  function add(a, b) {
+    return a + b
+  }
+
+
+  function drawCharClassGraph(node) {
+    let graphs = node.characters.map(drawCharacterGraph)
+		let boxes = graphs.map(it=>it.getBBox())
+
+		let width = Math.max(...boxes.map(it=>it.width)) + 2 * graphPadding
+	  let height = boxes.map(it => it.height).reduce(add) + graphPadding * (boxes.length + 1)
+
+	  let rect = svgElt('rect',{
+      width: width,
+		  height: height,
+		  fill: "#cbcbba",
+		  rx: 2,
+	  })
+	  let g = svgElt('g')
+	  g.appendChild(rect)
+
+	  let y = graphPadding
+	  graphs.forEach((graph, idx)=>{
+
+      graph.setAttribute('transform', `translate(${(width - boxes[idx].width)/2},${y})`)
+		  y = y + boxes[idx].height + graphPadding
+		  g.appendChild(graph)
+	  })
+  }   //[]里的字符集
+
+  function drawBranchGraph(node) {
+    let graphs = node.parts.map(drawNodeGraph)
+	  console.log(graphs)
+	  let boxes = graphs.map(it=>it.getBBox())
+
+	  let width = boxes.map(it=>it.width).reduce(add, 0) + (boxes.length + 1) * graphPadding
+	  let height = Math.max(...boxes.map(it=>it.height)) + 2 * graphPadding
+
+	  let rect = svgElt('rect', {
+			width: width,
+		  height: height,
+		  fill: "pink",
+		  rx: 3
+	  })
+
+    let g = svgElt('g')
+    g.appendChild(rect)
+
+	  let x = graphPadding
+	  graphs.forEach((graph,idx)=>{
+      graph.setAttribute('transform', `translate(${x}, ${(height - boxes[idx].height) / 2})`)
+		  x = x + boxes[idx].width + graphPadding
+		  g.appendChild(graph)
+	  })
+
+
+		return g
+  }
+  function drawNodeGraph(node){
+    //if(Array.isArray(node)) return drawBranchesGraph(node)
+    if (node.type === 'Character') return drawCharacterGraph(node)
+    //else if (node.type === 'Quantifier') return drawQuantifierGraph(node)
+    else if (node.type === 'CharacterClass') return drawCharClassGraph(node)
+    //else if (node.type === 'CaptureGroup') return drawCaptureGroup(node)
+    else if (node.type === 'Branch') return drawBranchGraph(node)
+  }
+
+
+
+
+///////////////////////////////////
+
+  /**
+   *  node = {
+   *    type: 'Quantifier/CaptureGroup/Character/CharacterClass/Branches
+   *  }
+   *  CaptureGroup = {
+   *    type: 'CaptureGroup'
+   *    start: 2,
+   *    end: 5
+   *    raw :'(aaa|bbb)'
+   *    groupIndex: 2
+   *    branches;[]
+   *  }
+   *
+   *  Branch = {
+   *    type: 'Branch'
+   *    parts:
+   * */
+  function parseRegExp(input){
+    //let str = '(foo){2,55}?foo(b(ar)|baz|baa)[baz]'
+    let str = input
+    let i = 0
+    let groupIndex = 1
+
+    let branches = parseBranches()
+
+    return {
+      type: 'RegularExpression',
+      start: 0,
+      end: input.length,
+      raw: input,
+      branches: branches,
+    }
+
+    /**
+     * node.type = Quantifier/ CaptureGroup/Character/CharacterClass/Branch
+     *              量词                        字符          字符集
+     * CaptureGroup = {
+     *   type: captureGroup
+     *   start:
+     *   end
+     *   raw: '(aaa|bbb)'
+     *   groupIndex
+     *   branches: []
+     * }
+     *
+     * Branch{
+     *   type: 'Branch'
+     *   parts: [Character, CaptureGroup], branch
+     * }
+     * */
+
+    function parseOnePart() {
+      if (str[i] === '(') {
+        return parseCaptureGroup()    // ()捕获分组
+      }
+      if (str[i] === '[') {
+        return parseCharacterClass()  //[]字符集
+      }
+      if (str[i] === '{' || str[i] === '?' || str[i] === '+' || str[i] === '*' ) {
+        return parseQuantifier()      //
+      }
+      return parseCharacter()
+    }
+
+    function parseCaptureGroup() {  //`()` 捕获分组
+      let node = {
+        type: 'CaptureGroup',
+        start: i,
+        end: 0,
+        raw: '',
+        branches: [],
+
+        //  (?=exp)   正预测 先行断言 匹配某个位置，其后面的内容匹配表达式exp
+        //  (?<=exp)  正回顾 后发断言 匹配一个位置，其前边的内容匹配表达式exp
+        //  (?!foo)   负预测 先行断言，匹配某个位置，其后面的内容不匹配表达式exp
+        //  (?<!foo)  负回顾 后发断言, 匹配某个位置, 其前面的内容不匹配表达式exp
+        assertion: false,   //是否为零宽断言,
+        positive: false,    //true: 正(预测/回顾); false: 负(预测/回顾)
+        lookahead: false,   //true: 先行;         false: 后发
+
+        groupIndex: -1,
+        groupName: undefined,
+
+        nonCapture: false
+      }
+
+      i++   //skip '('
+
+      if (str[i] === '?') {
+        i++
+        if (str[i] === ':'){
+          i++
+          node.nonCapture = true
+        } else if (str[i] === '=') { //正预测先行断言
+          i++
+          node.assertion = true
+          node.positive = true
+          node.lookahead = true
+        } else if (str[i] === '!') { //负预测先行断言
+          i++
+          node.assertion = true
+          node.positive = false
+          node.lookahead = true
+        } else if (str[i] === '<') {
+          i++ //跳过'<'
+          if (str[i] === '=') {     //(?<= 正回顾 后发断言
+            i++
+            node.assertion = true
+            node.positive = true    //正回顾
+            node.lookahead = false  //后发
+          } else if (str[i] === '!') {  //(?<! 负回顾 后发断言 左边不满足条件
+            i++
+            node.assertion = true
+            node.positive = false       //负回顾
+            node.lookahead = false      //后发
+          } else {
+            let groupName = parseGroupName()
+            if (groupName === '') {
+              throw new SyntaxError('groupName 不能为空')
+            }
+            node.groupName = groupName
+            i++ //跳过'>'
+          }
+        }
+      }
+
+      if (!node.nonCapture) {  //不是非捕获分组
+        node.groupIndex = groupIndex++
+      }
+
+      node.branches = parseBranches()
+      i++ //skip')'
+
+      node.end = i
+      node.raw = str.slice(node.start, node.end)
+      return node
+    }
+    function parseBranches(){
+      let branches = []
+      if (str[i] === ')') return branches
+      while (i < str.length) {
+        let branch = parseBranch()
+        branches.push(branch)
+        if (str[i] === '|') {
+          i++
+          continue
+        }
+        if (str[i] === ')') {
+          break
+        }
+      }
+      return branches
+    }
+    function parseBranch(){
+      let node = {
+        type: 'Branch',
+        start: i,
+        end: 0,
+        raw: '',
+        parts: [],
+      }
+
+      if (str[i] === '|' || str[i] === ')' || i >= str.length) {
+        i++
+        node.end = i
+        node.raw = str.slice(node.start, node.end)
+        return node
+      }
+
+      while(true) {
+        let part = parseOnePart()
+        if (part.type === 'Quantifier') {
+          let repeatTarget = node.parts.pop()
+          if (repeatTarget === undefined) {
+            throw new SyntaxError(`no repeat part at ${i}`)
+          }
+          if (repeatTarget.type === 'Quantifier') {
+            throw new SyntaxError(`Quantifier can not repeat at ${i}`)
+          }
+          part.repeatTarget = repeatTarget
+          part.start = repeatTarget.start
+          part.raw = str.slice(part.start, part.end)
+        }
+        node.parts.push(part)
+        if(str[i] === '|' || str[i] === ')' || i >= str.length) {
+          break
+        }
+      }
+
+      node.end = i
+      node.raw = str.slice(node.start, node.end)
+      return node
+    }
+    function parseCharacter(){
+      let node = {
+        type: 'Character',
+        start: i,
+        end: 0,
+        raw: '',
+        char: str[i],
+      }
+      i++
+
+      node.end = i
+      node.raw = str.slice(node.start, node.end)
+      return node
+    }
+    function parseCharacterClass(){  //解析[]
+      let node = {
+        type: 'CharacterClass',
+        start: i,
+        end: 0,
+        raw: '',
+        characters: [],
+        invert: false, //取反
+      }
+      i++  //跳过[
+      if (str[i] === '^') {
+        node.invert = true
+        i++
+      }
+
+      while (true) {
+        if(str[i] === ']') {
+          i++
+          break
+        }
+        let char = parseCharacter()
+        node.characters.push(char)
+
+        if (str[i] === '-') {
+          i++
+          if (str[i] === ']'){
+            char = parseCharacter()
+            node.characters.push(char)
+            continue
+          }
+          char = parseCharacter()
+          let prevChar = node.characters.pop()
+          if (prevChar > char) {
+            throw new SyntaxError('prev Char can NOT bigger than char')
+          }
+          let rangeNode = {
+            type: 'CharacterRange',
+            start: prevChar.start,
+            end: char.end,
+            raw: str.slice(prevChar.start, char.end)
+          }
+          node.characters.push(rangeNode)
+        }
+      }
+      node.end = i
+      node.raw = str.slice(node.start, node.end)
+      return node
+    }
+    function parseQuantifier(){
+      let node = {
+        type: 'Quantifier',
+        start: i,
+        end: 0,
+        raw: '',
+        min: 0,
+        max: Infinity,
+        greedy: false,  //贪婪匹配,
+        repeatTarget: null
+      }
+      if (str[i] === '+') {
+        i++
+        node.min = 1
+      } else if (str[i] === '*') {
+        i++
+      } else if (str[i] === '?') {
+        i++
+        node.max = 1
+      } else if (str[i] === '{') {
+        i++
+        node.min = parseInteger()
+        if (str[i] === '}') {
+          node.min = node.max
+          i++
+        } else if (str[i] === ',') {
+          i++
+          if (str[i] === '}') {
+            i++
+          } else {
+            node.max = parseInteger()
+            i++
+          }
+        }
+      }
+      if (str[i] === '?') {
+        node.greedy = true
+        i++
+      }
+      node.end = i
+      node.raw = str.slice(node.start, node.end)
+      return node
+    }
+    function parseInteger(){
+      let start = i
+      while(str[i] >= '0' && str[i] <= '9') {
+        i++
+      }
+      return parseInt(str.slice(start, i))
+    }
+    function parseGroupName(){
+      let start = i
+      while(str[i] !== '>'){
+        i++
+      }
+      return str.slice(start, i)
+    }
+  }
+</script>
+</body>
+</html>

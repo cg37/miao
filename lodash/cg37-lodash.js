@@ -214,8 +214,17 @@ var cg37 = {
   },
 
 
-  countBy: function (array) {
-
+  countBy: function (array, predicate) {
+    let func = iteratee(predicate)
+    let res = {}
+    for (let item of array) {
+      if(func(item) in res) {
+        res[(func(item)).toString()] ++
+      } else {
+        res[(func(item)).toString()] = 1
+      }
+    }
+    return res
   },
   groupBy: function (array) {
 
@@ -465,7 +474,10 @@ var cg37 = {
     return function(...args) { //[1,0]
       let copy = fixedArgs.slice()
       //填空前面跳过的参数
-      for (var i = 0, j = 0; i < copy.length; i++) {
+      for (
+        var i = 0,
+        j = 0;
+       i < copy.length; i++) {
         if (copy[i] === undefined) {
           copy[i] = args[j]
           j++

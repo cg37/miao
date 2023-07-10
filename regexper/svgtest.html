@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>svg-test</title>
+  <style>
+    html,body{
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+    svg{
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <svg>
+  </svg>
+  <script>
+    let svg = document.querySelector('svg')
+    function svgElt(tag_name, attr = {}) {
+      let ele = document.createElementNS("http://www.w3.org/2000/svg",tag_name)
+      svg.appendChild(ele)
+      let key
+      let val
+      for([key, val] of Object.entries(attr)) {
+        ele.setAttribute(key, val)
+      }
+      return ele
+    }
+
+    svgElt('rect',{
+      x: 10,
+      y: 10,
+      height: 500,
+      width: 500,
+      stroke: "black",
+      fill: "none"
+    })
+
+  </script>
+</body>
+</html>
