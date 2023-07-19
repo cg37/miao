@@ -36,6 +36,8 @@
 			background-color: black;
 		}
 	</style>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </head>
 <body>
 <h1>Game of Life</h1>
@@ -52,16 +54,21 @@
 	<label for="rateInput">Play Rate</label><input type="number" id="rateInput" value = 1000 step="50" min="50" max="2000">
 
 	<button id="autoPlay">Auto Play</button>
+	<button id="analyze">analyze</button>
 </div>
 
 <br>
 <div class="grid">
 
 </div>
+<div id="svgDiv">
+
+</div>
+
+<br>
+<script src="./d3.v7.js"></script>
 
 <script>
-
-
 	let gridDiv = document.querySelector('.grid')
 	let gridColInput = document.querySelector('#colNumInput')
   let gridRowInput = document.querySelector('#rowNumInput')
@@ -74,14 +81,27 @@
 	let randomButton = document.querySelector('#randomSeed')
   let nextButton = document.querySelector('#nextButton')
 	let autoPlayButton = document.querySelector('#autoPlay')
+  let analyzeButton = document.querySelector('#analyze')
+
+
   let autoPlay = undefined
 
 	let rateInput = document.querySelector('#rateInput')
 	let playRate = rateInput.value
 
+	/**
+	 * brush 笔刷
+	 * */
+
+  let brush = 0
+
+
+
+
 
 	let playState = false
 
+	let svgDiv = document.querySelector("#svgDiv")
 
   class conWayGame{
     constructor(width, height) {
@@ -108,6 +128,8 @@
           }
         }
       }
+
+      this.aliveCell()
       return this
     }
     next(){
@@ -138,7 +160,6 @@
 	    this.aliveCell()
 	    //console.log('runtime:',this.runTime,'aliveCell', this.aliveCellNumber)
 	    this.gameData.push([this.runTime, this.aliveCellNumber])
-	    console.log(this.gameData)
       return this
     }
     get(row, col) {
@@ -240,7 +261,6 @@
 	nextButton.addEventListener('click', function(){
     start()
 	})
-
 	randomButton.addEventListener('click', function(){
     let row = Number(gridRow)
 		let col = Number(gridCol)
@@ -248,11 +268,13 @@
     game.worldWidth = col
 
     // console.log('gridRow & gridCol : ',gridRow, gridCol)
-    // console.log('game.Height & width : ',game.world Heigth, game.worldWidth)
+    // console.log('game.Height & width : ',game.worldHeigth, game.worldWidth)
 
     game._randomSeed()
     drawWorld()
+		svg = drawGameData()
 	})
+
 	rateInput.addEventListener('input', function(){
     //console.log(this.value)
     playRate = this.value
@@ -266,15 +288,17 @@
       }, playRate)
 	    autoPlayButton.textContent = 'Stop'
     } else {
+      console.log(game.gameData)
       playState = false
 	    clearInterval(autoPlay)
       autoPlayButton.textContent = 'Start'
     }
 	})
 
+
 	function start(){
     game.next()
-		drawWorld()
+    drawWorld()
 	}
 	function buildTable(){
 		game.runTime = 0
@@ -309,6 +333,7 @@
     game.world = game._newEmptyWorld()
     //console.log(game.world)
 		//console.log(1)
+		svgDiv.innerHTML = ''
 	}
   buildTable()
 	function drawWorld(){
@@ -327,7 +352,69 @@
 	      spans[i].classList.remove('span-active')
       }
 		}
+    svgDiv.innerHTML = ''
+    svgDiv.append(drawGameData())
 	}
+
+  /**
+   * 画图表
+   *
+   *
+   * */
+
+  function drawGameData(){
+    const chartWidth = 1000
+    const chartHeight = 500
+    const marginTop = 30
+    const marginBottom = 30
+    const marginLeft = 30
+    const marginRight = 30
+    //const x = d3.scaleUtc(d3.extent(aapl, d => d.date), [marginLeft, width - marginRight]);
+
+    const x = d3.scaleLinear(d3.extent(game.gameData,d=>d[0]),[marginLeft, chartWidth - marginRight])
+    const y = d3.scaleLinear([0, d3.max(game.gameData, d => d[1])], [chartHeight - marginBottom, marginTop]);
+
+    const line = d3.line()
+      .x(d => x(d[0]))
+      .y(d => y(d[1]))
+
+    const svg = d3.create('svg').attr('width', chartWidth).attr("height", chartHeight).attr('viewBox', [0, 0, chartWidth, chartHeight])
+      .attr("style", "max-width: 100%; height: auto; height: intrinsic")
+
+    svg.append('g')
+      .attr("transform", `translate(0, ${chartHeight - marginBottom})`)
+      .call(d3.axisBottom(x).ticks(chartWidth/80).tickSizeOuter(0))
+
+    svg.append('g')
+    	.attr('transform', `translate(${marginLeft}, 0)`)
+    	.call(d3.axisLeft(y).ticks(chartHeight / 40))
+    	.call(g => g.select(".domain").remove())
+    	.call(g => g.selectAll(".tick line").clone()
+		    .attr("x2", chartWidth-marginRight-marginLeft)
+		    .attr("stroke-opacity", 0.2))
+	    .call(g=>g.append("text")
+		    .attr('x', -marginLeft)
+		    .attr('y', 10)
+		    .attr("fill", "currentColor")
+		    .attr("text-anchor", "start")
+		    .text("runtime-alive cell"))
+
+	  svg.append("path")
+		  .attr("fill", "none")
+		  .attr("stroke", "steelblue")
+		  .attr("stroke-width", 1.5)
+		  .attr('d', line(game.gameData))
+
+    return svg.node()
+  }
+
+	analyzeButton.addEventListener('click', function(e){
+      svgDiv.innerHTML = ''
+			svgDiv.append(drawGameData())
+	})
+
+
+
 </script>
 </body>
 </html>
