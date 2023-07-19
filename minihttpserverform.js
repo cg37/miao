@@ -12,9 +12,11 @@ server.on('connection', conn=>{
 
   conn.on('data', data=>{
     let recv = data.toString()
-    console.log(recv)
+
     let [header, body] = recv.split('\r\n\r\n')
+
     let [firstLine, ...headerLines] = header.split('\r\n')
+    console.log(firstLine)
     let headers = parseHeaders(headerLines)
 
     let [method, url] = firstLine.split(' ')
@@ -24,10 +26,10 @@ server.on('connection', conn=>{
 
     if (method === "GET" && urlObj.pathname === "/favicon.ico") {
       conn.write("HTTP/1.1 200 OK\r\n")
-      conn.write('Content-Type: image/ico\r\n')
+      conn.write('Content-Type: image/png\r\n')
 
       conn.write("\r\n")
-      conn.write(fs.readFileSync("./favicon.ico"))
+      conn.write(fs.readFileSync("./icon.png"))
       conn.end()
       return
     }
@@ -39,6 +41,15 @@ server.on('connection', conn=>{
       messages.push({name, message})
 
       conn.write('HTTP/1.1 302 Found\r\n')
+      conn.write('location:/\r\n')
+      conn.end()
+      return
+    }
+
+    if (method === 'POST' && urlObj.pathname === "/clearMsgBoard") {
+      messages=[]
+
+      conn.write("HTTP/1.1 302 Found\r\n")
       conn.write('location:/\r\n')
       conn.end()
       return
@@ -56,14 +67,14 @@ server.on('connection', conn=>{
           <input type="text" name="name"><br>
           Message:<br>
           <input type="text" name="message"><br>
-          <button>submit<button>
+          <button>submit</button>
         </form>
-        <br>
+        <form method="POST" action="/clearMsgBoard">
+          <button>clear Msg Board</button>
+        </from>
         ${
           messages.map(msg=>{
             return `
-
-              <br>
               <fieldset>
                 <legend>${msg.name}</legend>
                 <div>${msg.message}</div>
