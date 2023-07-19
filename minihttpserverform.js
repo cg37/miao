@@ -67,10 +67,10 @@ server.on('connection', conn=>{
           <input type="text" name="name"><br>
           Message:<br>
           <input type="text" name="message"><br>
-          <button>submit</button>
+          <button >submit</button>
+          <button form='clearbutton'>clear Msg Board</button>
         </form>
-        <form method="POST" action="/clearMsgBoard">
-          <button>clear Msg Board</button>
+        <form id="clearbutton" method="POST" action="/clearMsgBoard">
         </from>
         ${
           messages.map(msg=>{
