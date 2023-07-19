@@ -2,8 +2,11 @@ let net = require('net')
 let fs = require('fs')
 
 
+
 let server = net.createServer()
 let port = 10086
+
+let date = new Date()
 
 let messages = []
 
@@ -12,6 +15,8 @@ server.on('connection', conn=>{
 
   conn.on('data', data=>{
     let recv = data.toString()
+    // console.log(recv)
+    console.log('remoteaddr',conn.remoteAddress)
 
     let [header, body] = recv.split('\r\n\r\n')
 
@@ -35,10 +40,13 @@ server.on('connection', conn=>{
     }
 
     if (method === "POST" && urlObj.pathname === "/leave-message") {
+      console.log(urlObj)
       let params = new URLSearchParams(body)
       let name = params.get("name")
       let message = params.get('message')
-      messages.push({name, message})
+      let hostname = conn.remoteAddress
+      let timeTamp = date
+      messages.push({name, message, hostname, timeTamp})
 
       conn.write('HTTP/1.1 302 Found\r\n')
       conn.write('location:/\r\n')
@@ -78,6 +86,8 @@ server.on('connection', conn=>{
               <fieldset>
                 <legend>${msg.name}</legend>
                 <div>${msg.message}</div>
+                <hr>
+                <span>from ${msg.hostname.slice(7)} at ${msg.timeTamp}</span>
               </fieldset>
             `
           }).join("\n")
